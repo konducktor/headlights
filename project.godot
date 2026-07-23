@@ -15,6 +15,10 @@ run/main_scene="uid://dmqx5au0cmxxu"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://global/icon.svg"
 
+[autoload]
+
+Global="*uid://cu650nstventr"
+
 [debug]
 
 gdscript/warnings/unused_signal=0
