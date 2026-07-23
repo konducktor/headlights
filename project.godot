@@ -35,7 +35,7 @@ window/stretch/mode="canvas_items"
 
 folder_colors={
 "res://components/": "purple",
-"res://entity/": "orange",
+"res://enemy/": "orange",
 "res://gameplay/": "red",
 "res://global/": "pink",
 "res://levels/": "blue",

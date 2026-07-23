@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://bk6xcpfk8ygg0"]
+
+[ext_resource type="PackedScene" uid="uid://cdlsclag26n7c" path="res://enemy/enemy.tscn" id="1_b67bb"]
+[ext_resource type="Script" uid="uid://dd4wb2oann6s4" path="res://enemy/hugger/hugger.gd" id="2_ibc44"]
+[ext_resource type="Script" uid="uid://cfgq62b11rbkr" path="res://enemy/fsm/states/enemy_state_chasing.gd" id="3_a6t2i"]
+[ext_resource type="Script" uid="uid://c4cdida6p2443" path="res://components/pathfinding_component.gd" id="3_u6bnj"]
+[ext_resource type="Script" uid="uid://d3qga85gsi6l4" path="res://components/los_component.gd" id="5_kyexb"]
+
+[node name="Hugger" unique_id=4220073 instance=ExtResource("1_b67bb")]
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("2_ibc44")
+movement_speed = 500.0
+
+[node name="EnemyStateMachine" parent="." index="0" unique_id=119706350 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("EnemyStateChasing")
+
+[node name="EnemyStateChasing" type="Node2D" parent="EnemyStateMachine" index="0" unique_id=367081690 node_paths=PackedStringArray("pathfinding_component", "navigation_update_timer", "los_component")]
+script = ExtResource("3_a6t2i")
+pathfinding_component = NodePath("../../PathfindingComponent")
+navigation_update_timer = NodePath("../../PathfindingComponent/NavigationUpdateTimer")
+los_component = NodePath("../../LOSComponent")
+metadata/_custom_type_script = "uid://cfgq62b11rbkr"
+
+[node name="PathfindingComponent" type="Node2D" parent="." index="4" unique_id=2081519095 node_paths=PackedStringArray("_navigation_agent")]
+script = ExtResource("3_u6bnj")
+_navigation_agent = NodePath("NavigationAgent2D")
+metadata/_custom_type_script = "uid://c4cdida6p2443"
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="PathfindingComponent" index="0" unique_id=1675738214]
+path_postprocessing = 1
+debug_enabled = true
+
+[node name="NavigationUpdateTimer" type="Timer" parent="PathfindingComponent" index="1" unique_id=1059007323]
+autostart = true
+
+[node name="LOSComponent" type="Node" parent="." index="5" unique_id=603071623 node_paths=PackedStringArray("ray")]
+script = ExtResource("5_kyexb")
+ray = NodePath("RayCast2D")
+
+[node name="RayCast2D" type="RayCast2D" parent="LOSComponent" index="0" unique_id=1562205511]
+collision_mask = 16
