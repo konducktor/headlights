@@ -17,7 +17,7 @@ radius = 26.915287
 height = 144.24074
 
 [node name="Player" type="CharacterBody2D" unique_id=249977393 groups=["Player"]]
-collision_mask = 51
+collision_mask = 49
 script = ExtResource("1_rkbax")
 max_speed = 700.0
 time_to_max_speed = 0.4
@@ -65,6 +65,8 @@ entity = NodePath("../..")
 [node name="DashTimer" type="Timer" parent="." unique_id=1083225608]
 wait_time = 0.1
 one_shot = true
+
+[node name="DashCooldownTimer" type="Timer" parent="." unique_id=1400267839]
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]

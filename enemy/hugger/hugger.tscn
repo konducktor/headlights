@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://cdvh3p16ve2le" path="res://weapons/knife/knife.tscn" id="9_aghnw"]
 
 [node name="Hugger" unique_id=4220073 instance=ExtResource("1_b67bb")]
-motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("2_ibc44")
 movement_speed = 500.0

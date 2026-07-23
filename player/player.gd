@@ -19,8 +19,11 @@ var _friction: float
 
 @export_group("Dash")
 @export var dash_speed: float
+@export
 
+var can_dash: bool
 var dash_timer: Timer
+var dash_cooldown_timer: Timer
 var dash_direction: Vector2
 
 var _attack_component: AttackComponent
@@ -31,6 +34,10 @@ func _ready() -> void:
 	
 	dash_timer = $DashTimer
 	dash_timer.timeout.connect(_on_dash_timer_timeout)
+	
+	can_dash = true
+	dash_cooldown_timer = $DashCooldownTimer
+	dash_cooldown_timer.timeout.connect(_on_dash_cooldown_timer_timeout)
 	
 	player_state = PlayerState.DEFAULT
 
@@ -45,7 +52,7 @@ func _physics_process(delta: float) -> void:
 		PlayerState.DEFAULT:
 			move_player(movement_direction, delta)
 			
-			if Input.is_action_just_pressed("player_dash"):
+			if Input.is_action_just_pressed("player_dash") and can_dash:
 				dash_direction = Vector2.RIGHT
 				if movement_direction != Vector2.ZERO:
 					dash_direction = movement_direction
@@ -81,6 +88,13 @@ func move_player(direction: Vector2, delta: float) -> void:
 func _on_dash_timer_timeout() -> void:
 	if player_state == PlayerState.DASH:
 		player_state = PlayerState.DEFAULT
+		
+		can_dash = false
+		dash_cooldown_timer.start()
+
+
+func _on_dash_cooldown_timer_timeout() -> void:
+	can_dash = true
 
 
 func _on_health_component_died() -> void:
