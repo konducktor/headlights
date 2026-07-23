@@ -3,13 +3,16 @@ extends Node2D
 class_name Weapon
 
 
+@export var entity: Node2D
+
 var can_fire: bool
 
 
 func create_projectile(projectile_scene: PackedScene) -> Projectile:
 	var projectile := projectile_scene.instantiate() as Projectile
-	add_child(projectile)
-	projectile.position = Vector2.ZERO
+	
+	get_tree().root.add_child(projectile)
+	projectile.global_position = global_position
 	
 	return projectile
 

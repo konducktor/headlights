@@ -9,7 +9,9 @@ radius = 56.0
 height = 318.0
 
 [node name="KnifeCloseAttack" unique_id=425279207 instance=ExtResource("1_3ipok")]
+collision_mask = 4
 script = ExtResource("2_yn421")
+damage = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=1740156636]
 position = Vector2(77.63448, -2.3136881e-06)

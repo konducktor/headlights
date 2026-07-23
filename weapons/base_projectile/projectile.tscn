@@ -1,5 +1,5 @@
 [gd_scene format=3 uid="uid://8x4nbkxxjb8o"]
 
-[node name="Projectile" type="Area2D" unique_id=425279207]
+[node name="Projectile" type="CharacterBody2D" unique_id=1317603494]
 collision_layer = 8
 collision_mask = 0

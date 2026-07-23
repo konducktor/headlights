@@ -2,7 +2,6 @@ extends Node2D
 class_name AttackComponent
 
 
-@export var projectile_owner: Node2D
 @export var weapon: Weapon
 
 

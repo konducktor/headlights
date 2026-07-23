@@ -5,14 +5,13 @@
 
 [node name="Knife" type="Node2D" unique_id=1848124045]
 script = ExtResource("1_iqiin")
-rotation_smoothing = 0.9
 
 [node name="CloseAttackTimer" type="Timer" parent="." unique_id=2056397998]
-wait_time = 0.75
+wait_time = 0.15
 one_shot = true
 
 [node name="CooldownTimer" type="Timer" parent="." unique_id=1954706159]
-wait_time = 0.5
+wait_time = 0.3
 one_shot = true
 
 [node name="Visual" type="Node2D" parent="." unique_id=1566469830]

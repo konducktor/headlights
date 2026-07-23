@@ -27,6 +27,10 @@ func fire() -> void:
 	_close_attack = create_projectile(CLOSE_ATTACK_SCENE)
 	_close_attack.direction_degrees = global_rotation_degrees
 	
+	get_tree().root.remove_child(_close_attack)
+	add_child(_close_attack)
+	_close_attack.position = Vector2.ZERO
+	
 	_close_attack_timer.start()
 	can_fire = false
 
