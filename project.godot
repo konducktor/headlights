@@ -93,3 +93,4 @@ player_fire_primary={
 
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="mobile"
+environment/defaults/default_clear_color=Color(0.29528838, 0.39671278, 0.61688054, 1)
