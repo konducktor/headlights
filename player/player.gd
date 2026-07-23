@@ -40,6 +40,8 @@ func _ready() -> void:
 	dash_cooldown_timer.timeout.connect(_on_dash_cooldown_timer_timeout)
 	
 	player_state = PlayerState.DEFAULT
+	
+	Global.player = self
 
 
 func _physics_process(delta: float) -> void:

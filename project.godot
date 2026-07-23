@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="gmtk-2026"
-run/main_scene="uid://dmqx5au0cmxxu"
+run/main_scene="uid://82synncfyuhr"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://global/icon.svg"
 
@@ -103,4 +103,4 @@ player_dash={
 
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="mobile"
-environment/defaults/default_clear_color=Color(0.29528838, 0.39671278, 0.61688054, 1)
+environment/defaults/default_clear_color=Color(0.046000004, 0.0947667, 0.2, 1)
