@@ -1,12 +1,15 @@
 [gd_scene format=3 uid="uid://btaokpyn0qvsy"]
 
-[ext_resource type="Texture2D" uid="uid://w5kafc3luitw" path="res://global/assets/icon.svg" id="1_oul6g"]
+[ext_resource type="Texture2D" uid="uid://w5kafc3luitw" path="res://global/icon.svg" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://c5i1sbh3kvhv8" path="res://player/player.gd" id="1_rkbax"]
+[ext_resource type="Script" uid="uid://dsbh06fe22jkp" path="res://components/attack_component.gd" id="3_yw30f"]
+[ext_resource type="PackedScene" uid="uid://cdvh3p16ve2le" path="res://weapons/knife/knife.tscn" id="4_qjkh3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
 radius = 62.936478
 
 [node name="Player" type="CharacterBody2D" unique_id=249977393]
+collision_mask = 59
 script = ExtResource("1_rkbax")
 max_speed = 700.0
 time_to_max_speed = 0.4
@@ -18,3 +21,11 @@ texture = ExtResource("1_oul6g")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=958840399]
 shape = SubResource("CircleShape2D_g4v7s")
 debug_color = Color(0.97956854, 0, 0.39084068, 0.41960785)
+
+[node name="AttackComponent" type="Node2D" parent="." unique_id=1203276977 node_paths=PackedStringArray("projectile_owner", "weapon")]
+script = ExtResource("3_yw30f")
+projectile_owner = NodePath("..")
+weapon = NodePath("Knife")
+metadata/_custom_type_script = "uid://dsbh06fe22jkp"
+
+[node name="Knife" parent="AttackComponent" unique_id=384624072 instance=ExtResource("4_qjkh3")]

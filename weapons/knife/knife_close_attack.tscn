@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://doh30ui0f2784"]
+
+[ext_resource type="PackedScene" uid="uid://8x4nbkxxjb8o" path="res://weapons/base_projectile/projectile.tscn" id="1_3ipok"]
+[ext_resource type="Texture2D" uid="uid://bysaaptk1hgi7" path="res://weapons/knife/art/knife_swoosh_placeholder.png" id="2_dej5t"]
+[ext_resource type="Script" uid="uid://hx61q44htrfd" path="res://weapons/base_projectile/projectile.gd" id="2_yn421"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yf5fn"]
+radius = 56.0
+height = 318.0
+
+[node name="KnifeCloseAttack" unique_id=425279207 instance=ExtResource("1_3ipok")]
+script = ExtResource("2_yn421")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=1740156636]
+position = Vector2(77.63448, -2.3136881e-06)
+rotation = -2.235718
+scale = Vector2(0.33970773, 0.47328615)
+texture = ExtResource("2_dej5t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1" unique_id=344370673]
+position = Vector2(132.63449, 0)
+shape = SubResource("CapsuleShape2D_yf5fn")

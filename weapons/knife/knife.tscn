@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cdvh3p16ve2le"]
+
+[ext_resource type="Texture2D" uid="uid://db14bk255rr0h" path="res://weapons/knife/art/knife_placeholder.png" id="1_h3j4c"]
+[ext_resource type="Script" uid="uid://c0n8d01pmcuy" path="res://weapons/knife/knife.gd" id="1_iqiin"]
+
+[node name="Knife" type="Node2D" unique_id=1848124045]
+script = ExtResource("1_iqiin")
+rotation_smoothing = 0.9
+
+[node name="CloseAttackTimer" type="Timer" parent="." unique_id=2056397998]
+wait_time = 0.75
+one_shot = true
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=1954706159]
+wait_time = 0.5
+one_shot = true
+
+[node name="Visual" type="Node2D" parent="." unique_id=1566469830]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visual" unique_id=215790877]
+position = Vector2(0, 2)
+rotation = 2.3561945
+scale = Vector2(0.24999997, 0.24999997)
+texture = ExtResource("1_h3j4c")
