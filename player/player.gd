@@ -44,3 +44,25 @@ func move_player(delta: float) -> void:
 	velocity.y = lerp(velocity.y, direction.y * max_speed, velocity_weight_y)
 	
 	move_and_slide()
+
+
+func _on_health_component_died() -> void:
+	Global.player_died.emit()
+
+func _on_health_component_health_changed(new_value: int) -> void:
+	Global.player_health_changed.emit(new_value)
+
+func _on_health_component_max_health_changed(new_value: int) -> void:
+	Global.player_max_health_changed.emit(new_value)
+
+func _on_health_component_max_health_decreased(amount: int) -> void:
+	Global.player_max_health_decreased.emit(amount)
+
+func _on_health_component_max_health_increased(amount: int) -> void:
+	Global.player_max_health_increased.emit(amount)
+
+func _on_health_component_regenerated(amount: int) -> void:
+	Global.player_regenerated.emit(amount)
+
+func _on_health_component_took_damage(amount: int) -> void:
+	Global.player_took_damage.emit(amount)

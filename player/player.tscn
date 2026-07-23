@@ -47,3 +47,11 @@ metadata/_custom_type_script = "uid://dsbh06fe22jkp"
 
 [node name="Knife" parent="AttackComponent" unique_id=384624072 node_paths=PackedStringArray("entity") instance=ExtResource("4_qjkh3")]
 entity = NodePath("../..")
+
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
+[connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
+[connection signal="max_health_changed" from="HealthComponent" to="." method="_on_health_component_max_health_changed"]
+[connection signal="max_health_decreased" from="HealthComponent" to="." method="_on_health_component_max_health_decreased"]
+[connection signal="max_health_increased" from="HealthComponent" to="." method="_on_health_component_max_health_increased"]
+[connection signal="regenerated" from="HealthComponent" to="." method="_on_health_component_regenerated"]
+[connection signal="took_damage" from="HealthComponent" to="." method="_on_health_component_took_damage"]

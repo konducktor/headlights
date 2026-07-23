@@ -2,6 +2,9 @@ extends Area2D
 class_name HurtboxComponent
 
 
+signal took_damage
+
+
 @export var health_component: HealthComponent
 
 
@@ -11,6 +14,7 @@ func _ready() -> void:
 
 func take_damage(damage: int) -> void:
 	health_component.take_damage(damage)
+	took_damage.emit()
 
 
 func _on_body_entered(body: Node2D) -> void:

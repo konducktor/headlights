@@ -2,6 +2,9 @@ extends Node2D
 class_name AttackComponent
 
 
+signal attacked
+
+
 @export var weapon: Weapon
 
 
@@ -13,3 +16,4 @@ func point_in_direction(vector: Vector2) -> void:
 func fire() -> void:
 	if weapon.can_fire:
 		weapon.fire()
+		attacked.emit()
