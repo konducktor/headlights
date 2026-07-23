@@ -1,17 +1,20 @@
 [gd_scene format=3 uid="uid://btaokpyn0qvsy"]
 
-[ext_resource type="Texture2D" uid="uid://w5kafc3luitw" path="res://global/icon.svg" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://c5i1sbh3kvhv8" path="res://player/player.gd" id="1_rkbax"]
+[ext_resource type="Texture2D" uid="uid://becemnhwx24jr" path="res://player/art/GirlDefault.png" id="2_g6k8r"]
+[ext_resource type="Texture2D" uid="uid://e81egkb0l45k" path="res://global/assets/shadow-normal.png" id="3_boad6"]
 [ext_resource type="Script" uid="uid://cj4hgonyylrme" path="res://components/health_component.gd" id="3_g6k8r"]
 [ext_resource type="Script" uid="uid://dsbh06fe22jkp" path="res://components/attack_component.gd" id="3_yw30f"]
 [ext_resource type="PackedScene" uid="uid://b4d7iqrgw7kw0" path="res://components/hurtbox_component.tscn" id="4_g6k8r"]
 [ext_resource type="PackedScene" uid="uid://cdvh3p16ve2le" path="res://weapons/knife/knife.tscn" id="4_qjkh3"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
-radius = 62.936478
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_boad6"]
+radius = 19.0
+height = 66.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_yf5fn"]
-radius = 53.935146
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8t03j"]
+radius = 26.915287
+height = 144.24074
 
 [node name="Player" type="CharacterBody2D" unique_id=249977393 groups=["Player"]]
 collision_mask = 51
@@ -19,14 +22,22 @@ script = ExtResource("1_rkbax")
 max_speed = 700.0
 time_to_max_speed = 0.4
 time_to_zero = 0.3
+dash_speed = 2000.0
 
 [node name="Visual" type="Node2D" parent="." unique_id=1183445228]
 
+[node name="Shadow" type="Sprite2D" parent="Visual" unique_id=840472693]
+modulate = Color(1, 1, 1, 0.29411766)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("3_boad6")
+
 [node name="Sprite2D" type="Sprite2D" parent="Visual" unique_id=902595573]
-texture = ExtResource("1_oul6g")
+position = Vector2(0, -117)
+texture = ExtResource("2_g6k8r")
 
 [node name="WallCollision" type="CollisionShape2D" parent="." unique_id=958840399]
-shape = SubResource("CircleShape2D_g4v7s")
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_boad6")
 debug_color = Color(0.97956854, 0, 0.39084068, 0.41960785)
 
 [node name="HealthComponent" type="Node" parent="." unique_id=297095711]
@@ -38,7 +49,9 @@ metadata/_custom_type_script = "uid://cj4hgonyylrme"
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=307397941]
-shape = SubResource("CircleShape2D_yf5fn")
+position = Vector2(0, -117)
+rotation = -0.016231911
+shape = SubResource("CapsuleShape2D_8t03j")
 
 [node name="AttackComponent" type="Node2D" parent="." unique_id=1203276977 node_paths=PackedStringArray("weapon")]
 script = ExtResource("3_yw30f")
@@ -46,7 +59,12 @@ weapon = NodePath("Knife")
 metadata/_custom_type_script = "uid://dsbh06fe22jkp"
 
 [node name="Knife" parent="AttackComponent" unique_id=384624072 node_paths=PackedStringArray("entity") instance=ExtResource("4_qjkh3")]
+position = Vector2(0, -117)
 entity = NodePath("../..")
+
+[node name="DashTimer" type="Timer" parent="." unique_id=1083225608]
+wait_time = 0.1
+one_shot = true
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
