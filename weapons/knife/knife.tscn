@@ -9,7 +9,7 @@ script = ExtResource("1_iqiin")
 [node name="Visual" type="Node2D" parent="." unique_id=1566469830]
 
 [node name="Sprite2D" type="Sprite2D" parent="Visual" unique_id=215790877]
-position = Vector2(0, 2)
+position = Vector2(172, 2)
 rotation = 2.3561945
 scale = Vector2(0.24999997, 0.24999997)
 texture = ExtResource("1_h3j4c")

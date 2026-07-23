@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://cdlsclag26n7c"]
 
 [ext_resource type="Texture2D" uid="uid://w5kafc3luitw" path="res://global/icon.svg" id="1_bclhr"]
-[ext_resource type="Script" uid="uid://431f0s5w6nqq" path="res://entity/entity.gd" id="1_glcaf"]
+[ext_resource type="Script" uid="uid://431f0s5w6nqq" path="res://enemy/enemy.gd" id="1_glcaf"]
 [ext_resource type="Script" uid="uid://cj4hgonyylrme" path="res://components/health_component.gd" id="3_glcaf"]
 [ext_resource type="PackedScene" uid="uid://b4d7iqrgw7kw0" path="res://components/hurtbox_component.tscn" id="3_jspmv"]
+[ext_resource type="Script" uid="uid://chldfe8hq058c" path="res://enemy/fsm/enemy_fsm.gd" id="5_pmsee"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
 radius = 63.348244
@@ -11,8 +12,15 @@ radius = 63.348244
 [sub_resource type="CircleShape2D" id="CircleShape2D_yf5fn"]
 radius = 53.935146
 
-[node name="Entity" type="CharacterBody2D" unique_id=4220073]
+[node name="Enemy" type="CharacterBody2D" unique_id=4220073]
+collision_layer = 2
+collision_mask = 16
 script = ExtResource("1_glcaf")
+
+[node name="EnemyStateMachine" type="Node2D" parent="." unique_id=119706350 node_paths=PackedStringArray("enemy")]
+script = ExtResource("5_pmsee")
+enemy = NodePath("..")
+metadata/_custom_type_script = "uid://chldfe8hq058c"
 
 [node name="Visual" type="Node2D" parent="." unique_id=11767020]
 
@@ -24,15 +32,15 @@ texture = ExtResource("1_bclhr")
 shape = SubResource("CircleShape2D_g4v7s")
 debug_color = Color(0.95472616, 0.21677268, 0, 0.41960785)
 
-[node name="HealthComponent" type="Node" parent="." unique_id=855731163]
+[node name="HurtboxComponent" parent="." unique_id=1909287759 node_paths=PackedStringArray("health_component") instance=ExtResource("3_jspmv")]
+health_component = NodePath("HealthComponent")
+
+[node name="HealthComponent" type="Node" parent="HurtboxComponent" unique_id=855731163]
 script = ExtResource("3_glcaf")
 max_health = 5
 metadata/_custom_type_script = "uid://cj4hgonyylrme"
 
-[node name="HurtboxComponent" parent="." unique_id=1909287759 node_paths=PackedStringArray("health_component") instance=ExtResource("3_jspmv")]
-health_component = NodePath("../HealthComponent")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=1072947480]
 shape = SubResource("CircleShape2D_yf5fn")
 
-[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
+[connection signal="died" from="HurtboxComponent/HealthComponent" to="." method="_on_health_component_died"]

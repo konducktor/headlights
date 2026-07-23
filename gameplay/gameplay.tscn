@@ -1,12 +1,10 @@
 [gd_scene format=3 uid="uid://dmqx5au0cmxxu"]
 
 [ext_resource type="PackedScene" uid="uid://cfatfldt20awi" path="res://gameplay/gameplay_ui.tscn" id="1_41n4r"]
-[ext_resource type="PackedScene" uid="uid://btaokpyn0qvsy" path="res://player/player.tscn" id="2_ueusv"]
+[ext_resource type="PackedScene" uid="uid://bdeqn5d43smam" path="res://levels/level.tscn" id="2_41n4r"]
 
 [node name="Gameplay" type="Node2D" unique_id=168348878]
 
 [node name="GameplayUI" parent="." unique_id=467493527 instance=ExtResource("1_41n4r")]
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1133317551]
-
-[node name="Player" parent="." unique_id=249977393 instance=ExtResource("2_ueusv")]
+[node name="Level" parent="." unique_id=1005489076 instance=ExtResource("2_41n4r")]
