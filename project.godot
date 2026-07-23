@@ -15,9 +15,14 @@ run/main_scene="uid://dmqx5au0cmxxu"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://global/icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://dm15lkcmsdmsr"
+
 [autoload]
 
 Global="*uid://cu650nstventr"
+SceneTransition="*uid://tg7cb2f1fqkm"
 
 [debug]
 
