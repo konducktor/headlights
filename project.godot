@@ -38,6 +38,7 @@ folder_colors={
 "res://entity/": "orange",
 "res://gameplay/": "red",
 "res://global/": "pink",
+"res://levels/": "blue",
 "res://player/": "teal",
 "res://sandbox/": "gray",
 "res://weapons/": "green"

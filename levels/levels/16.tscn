@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://do7aco8xccrl7"]
+
+[ext_resource type="PackedScene" uid="uid://bdeqn5d43smam" path="res://levels/level.tscn" id="1_tprkl"]
+
+[node name="Level" unique_id=1005489076 instance=ExtResource("1_tprkl")]

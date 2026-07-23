@@ -13,7 +13,7 @@ radius = 62.936478
 [sub_resource type="CircleShape2D" id="CircleShape2D_yf5fn"]
 radius = 53.935146
 
-[node name="Player" type="CharacterBody2D" unique_id=249977393]
+[node name="Player" type="CharacterBody2D" unique_id=249977393 groups=["Player"]]
 collision_mask = 51
 script = ExtResource("1_rkbax")
 max_speed = 700.0
