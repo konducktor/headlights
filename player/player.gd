@@ -26,10 +26,7 @@ var _acceleration_component: AccelerationComponent
 
 func _ready() -> void:
 	_attack_component = $AttackComponent
-	
 	_acceleration_component = $AccelerationComponent
-	#_acceleration_component.time_to_max = time_to_max_speed
-	#_acceleration_component.time_to_zero = time_to_zero
 	
 	dash_timer = $DashTimer
 	dash_timer.timeout.connect(_on_dash_timer_timeout)

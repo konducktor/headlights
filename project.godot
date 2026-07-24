@@ -103,4 +103,4 @@ player_dash={
 
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="mobile"
-environment/defaults/default_clear_color=Color(0.046000004, 0.0947667, 0.2, 1)
+environment/defaults/default_clear_color=Color(0.11938333, 0.11699999, 0.13, 1)

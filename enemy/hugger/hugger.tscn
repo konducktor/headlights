@@ -11,7 +11,10 @@
 [ext_resource type="Script" uid="uid://xeasao763wid" path="res://components/acceleration.gd" id="10_gttvy"]
 
 [node name="Hugger" unique_id=4220073 instance=ExtResource("1_b67bb")]
+motion_mode = 1
 wall_min_slide_angle = 0.0
+platform_on_leave = 2
+platform_floor_layers = 0
 movement_speed = 400.0
 
 [node name="EnemyStateMachine" parent="." index="0" unique_id=119706350 node_paths=PackedStringArray("initial_state")]
@@ -39,7 +42,6 @@ navigation_update_timer = NodePath("../../PathfindingComponent/NavigationUpdateT
 metadata/_custom_type_script = "uid://du1pdvgphjupd"
 
 [node name="SearchTimer" type="Timer" parent="EnemyStateMachine/EnemyStateSearching" index="0" unique_id=1022251868]
-wait_time = 2.0
 one_shot = true
 
 [node name="EnemyStateAttack" type="Node2D" parent="EnemyStateMachine" index="2" unique_id=1345402437 node_paths=PackedStringArray("attack_component", "exit_if_distance_change")]

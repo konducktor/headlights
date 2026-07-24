@@ -18,13 +18,14 @@ radius = 26.915287
 height = 144.24074
 
 [node name="Player" type="CharacterBody2D" unique_id=249977393 groups=["Player"]]
-collision_mask = 49
+collision_mask = 48
+motion_mode = 1
+wall_min_slide_angle = 0.0
+platform_on_leave = 2
+platform_floor_layers = 0
 script = ExtResource("1_rkbax")
 max_speed = 700.0
-time_to_max_speed = 0.4
-time_to_zero = 0.3
 dash_speed = 2000.0
-can_dash = null
 
 [node name="DashTimer" type="Timer" parent="." unique_id=1083225608]
 wait_time = 0.1
@@ -36,8 +37,8 @@ wait_time = 0.5
 [node name="Visual" type="Node2D" parent="." unique_id=1183445228]
 
 [node name="Shadow" type="Sprite2D" parent="Visual" unique_id=840472693]
-modulate = Color(1, 1, 1, 0.29411766)
-scale = Vector2(0.6, 0.6)
+modulate = Color(1, 1, 1, 0.15686275)
+scale = Vector2(0.77066326, 0.77066326)
 texture = ExtResource("3_boad6")
 
 [node name="Sprite2D" type="Sprite2D" parent="Visual" unique_id=902595573]
