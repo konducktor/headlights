@@ -3,7 +3,7 @@ class_name Player
 
 
 enum PlayerState {
-	DEFAULT, DASH, DIE
+	DEFAULT, DASH, DIE, STUCK
 }
 
 var player_state: PlayerState
@@ -19,6 +19,8 @@ var can_dash: bool
 var dash_timer: Timer
 var dash_cooldown_timer: Timer
 var dash_direction: Vector2
+
+var dashes_while_stuck: int
 
 var _attack_component: AttackComponent
 var _acceleration_component: AccelerationComponent
@@ -51,15 +53,17 @@ func _physics_process(delta: float) -> void:
 			velocity = _acceleration_component.smooth_vector(velocity, movement_dir * max_speed, delta)
 			
 			if Input.is_action_just_pressed("player_dash") and can_dash:
-				dash_direction = Vector2.RIGHT
-				if movement_dir != Vector2.ZERO:
-					dash_direction = movement_dir
-				
-				player_state = PlayerState.DASH
-				dash_timer.start()
+				dash(movement_dir)
 		
 		PlayerState.DASH:
 			velocity = dash_direction * dash_speed
+		
+		PlayerState.STUCK:
+			if Input.is_action_just_pressed("player_dash"):
+				dashes_while_stuck += 1
+				
+				if dashes_while_stuck == 5:
+					dash(movement_dir)
 	
 	move_and_slide()
 
@@ -70,6 +74,21 @@ func point_weapon_in_direction(_delta: float) -> void:
 	
 	if Input.is_action_just_pressed("player_fire_primary"):
 		_attack_component.fire()
+
+
+func dash(direction: Vector2) -> void:
+	dash_direction = Vector2.RIGHT
+	if direction != Vector2.ZERO:
+		dash_direction = direction
+	
+	player_state = PlayerState.DASH
+	dash_timer.start()
+
+
+func make_stuck() -> void:
+	velocity = Vector2.ZERO
+	player_state = PlayerState.STUCK
+	dashes_while_stuck = 0
 
 
 func _on_dash_timer_timeout() -> void:

@@ -17,4 +17,5 @@ func _process(_delta: float) -> void:
 
 
 func _on_health_component_died() -> void:
+	prints(self, "died!")
 	queue_free()
