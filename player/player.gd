@@ -8,12 +8,9 @@ enum PlayerState {
 
 var player_state: PlayerState
 
-@export_group("Movement")
 @export var max_speed: float
-
-@export_group("Dash")
 @export var dash_speed: float
-@export
+@export var dashes_to_escape: int
 
 var can_dash: bool
 var dash_timer: Timer
@@ -24,11 +21,13 @@ var dashes_while_stuck: int
 
 var _attack_component: AttackComponent
 var _acceleration_component: AccelerationComponent
+var _hurtbox_collision: CollisionShape2D
 
 
 func _ready() -> void:
 	_attack_component = $AttackComponent
 	_acceleration_component = $AccelerationComponent
+	_hurtbox_collision = $HurtboxComponent/CollisionShape2D
 	
 	dash_timer = $DashTimer
 	dash_timer.timeout.connect(_on_dash_timer_timeout)
@@ -62,11 +61,15 @@ func _physics_process(delta: float) -> void:
 			if Input.is_action_just_pressed("player_dash"):
 				dashes_while_stuck += 1
 				
-				if dashes_while_stuck == 5:
+				if dashes_while_stuck == dashes_to_escape:
 					dash(movement_dir)
 	
 	move_and_slide()
 
+
+func body_pos() -> Vector2:
+	#Debugging.draw_point(_hurtbox_collision.global_position, Color.BLUE_VIOLET)
+	return _hurtbox_collision.global_position
 
 func point_weapon_in_direction(_delta: float) -> void:
 	var attack_direction: Vector2 = (get_global_mouse_position() - global_position).normalized()

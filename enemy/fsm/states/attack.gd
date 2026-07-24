@@ -13,11 +13,11 @@ class_name EnemyStateAttack
 
 
 func physics_update(_delta: float) -> EnemyState:
-	var distance: float = enemy.position.distance_to(player.position)
+	var distance: float = enemy.position.distance_to(player.body_pos())
 	if distance > max_distance or distance < min_distance:
 		return exit_if_distance_change
 	
-	attack_component.point_in_direction(enemy.position.direction_to(player.position))
+	attack_component.point_in_direction(enemy.position.direction_to(player.body_pos()))
 	attack_component.fire()
 	
 	return null

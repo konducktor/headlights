@@ -12,4 +12,4 @@ func _process(delta: float) -> void:
 		player = Global.player
 		return
 	
-	position = lerp(position, player.position, 0.9)
+	position = lerp(position, player.body_pos(), 0.9)

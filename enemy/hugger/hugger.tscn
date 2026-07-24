@@ -1,16 +1,19 @@
 [gd_scene format=3 uid="uid://bk6xcpfk8ygg0"]
 
 [ext_resource type="PackedScene" uid="uid://cdlsclag26n7c" path="res://enemy/enemy.tscn" id="1_b67bb"]
-[ext_resource type="Script" uid="uid://cfgq62b11rbkr" path="res://enemy/fsm/states/enemy_state_chasing.gd" id="3_a6t2i"]
+[ext_resource type="Script" uid="uid://cfgq62b11rbkr" path="res://enemy/fsm/states/chasing.gd" id="3_a6t2i"]
 [ext_resource type="Script" uid="uid://c4cdida6p2443" path="res://components/pathfinding.gd" id="3_u6bnj"]
-[ext_resource type="Script" uid="uid://du1pdvgphjupd" path="res://enemy/fsm/states/enemy_state_searching.gd" id="4_27kmv"]
-[ext_resource type="Script" uid="uid://bss2tm1tkp3co" path="res://enemy/fsm/states/enemy_state_listening.gd" id="5_gttvy"]
+[ext_resource type="Script" uid="uid://du1pdvgphjupd" path="res://enemy/fsm/states/searching.gd" id="4_27kmv"]
+[ext_resource type="Script" uid="uid://bss2tm1tkp3co" path="res://enemy/fsm/states/listening.gd" id="5_gttvy"]
 [ext_resource type="Script" uid="uid://d3qga85gsi6l4" path="res://components/los.gd" id="5_kyexb"]
-[ext_resource type="Script" uid="uid://5kyj3444bt10" path="res://enemy/fsm/states/enemy_state_attack.gd" id="5_q1oms"]
-[ext_resource type="Script" uid="uid://cc0a1u5h7b42u" path="res://enemy/fsm/states/enemy_state_grab.gd" id="6_1ggug"]
+[ext_resource type="Script" uid="uid://5kyj3444bt10" path="res://enemy/fsm/states/attack.gd" id="5_q1oms"]
+[ext_resource type="Script" uid="uid://cc0a1u5h7b42u" path="res://enemy/fsm/states/grab.gd" id="6_1ggug"]
 [ext_resource type="Script" uid="uid://dsbh06fe22jkp" path="res://components/attack.gd" id="8_q1oms"]
-[ext_resource type="PackedScene" uid="uid://cdvh3p16ve2le" path="res://weapons/knife/knife.tscn" id="9_aghnw"]
+[ext_resource type="PackedScene" uid="uid://bk27swuew8ewb" path="res://weapons/punch/punch.tscn" id="10_1ggug"]
 [ext_resource type="Script" uid="uid://xeasao763wid" path="res://components/acceleration.gd" id="10_gttvy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1ggug"]
+radius = 57.035076
 
 [node name="Hugger" unique_id=4220073 instance=ExtResource("1_b67bb")]
 motion_mode = 1
@@ -31,7 +34,7 @@ metadata/_custom_type_script = "uid://bss2tm1tkp3co"
 
 [node name="EnemyStateChasing" type="Node2D" parent="EnemyStateMachine" index="1" unique_id=367081690 node_paths=PackedStringArray("los_component", "acceleration_component", "exit_if_reached", "exit_if_los_lost", "pathfinding_component", "navigation_update_timer")]
 script = ExtResource("3_a6t2i")
-reach_threshhold = 150.0
+reach_threshhold = 130.0
 los_component = NodePath("../../LOSComponent")
 acceleration_component = NodePath("../../AccelerationComponent")
 exit_if_reached = NodePath("../EnemyStateGrab")
@@ -73,6 +76,9 @@ metadata/_custom_type_script = "uid://cc0a1u5h7b42u"
 wait_time = 0.5
 one_shot = true
 
+[node name="WallCollision" parent="." index="2" unique_id=1847437153]
+shape = SubResource("CircleShape2D_1ggug")
+
 [node name="HurtboxComponent" parent="." index="3" unique_id=1909287759 node_paths=PackedStringArray("entity")]
 entity = NodePath("..")
 
@@ -83,6 +89,7 @@ metadata/_custom_type_script = "uid://c4cdida6p2443"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="PathfindingComponent" index="0" unique_id=1675738214]
 path_postprocessing = 1
+debug_enabled = true
 
 [node name="NavigationUpdateTimer" type="Timer" parent="PathfindingComponent" index="1" unique_id=1059007323]
 wait_time = 0.5
@@ -96,10 +103,10 @@ collision_mask = 16
 
 [node name="AttackComponent" type="Node2D" parent="." index="6" unique_id=1977888809 node_paths=PackedStringArray("weapon")]
 script = ExtResource("8_q1oms")
-weapon = NodePath("Knife")
+weapon = NodePath("Punch")
 metadata/_custom_type_script = "uid://dsbh06fe22jkp"
 
-[node name="Knife" parent="AttackComponent" index="0" unique_id=1848124045 node_paths=PackedStringArray("entity") instance=ExtResource("9_aghnw")]
+[node name="Punch" parent="AttackComponent" index="0" unique_id=1440157568 node_paths=PackedStringArray("entity") instance=ExtResource("10_1ggug")]
 entity = NodePath("../..")
 
 [node name="AccelerationComponent" type="Node" parent="." index="7" unique_id=2126363131]

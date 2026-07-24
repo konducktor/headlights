@@ -4,6 +4,7 @@ class_name EnemyStateMachine
 
 @export var initial_state: EnemyState
 @export var enemy: Enemy
+@export var report_current_state: bool = false
 
 var current_state: EnemyState
 
@@ -23,6 +24,9 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if not enemy.active:
 		return
+	
+	if report_current_state:
+		print(current_state.name)
 	
 	change_state(current_state.physics_update(delta))
 

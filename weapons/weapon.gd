@@ -4,8 +4,29 @@ class_name Weapon
 
 
 @export var entity: CharacterBody2D
-
 var can_fire: bool
+
+var _cooldown_timer: Timer
+
+
+func _ready() -> void:
+	_cooldown_timer = $CooldownTimer
+	_cooldown_timer.timeout.connect(_on_cooldown_timer_timeout)
+	can_fire = true
+
+
+func fire() -> void:
+	if not can_fire:
+		return
+	
+	_fire_projectile()
+	
+	_cooldown_timer.start()
+	can_fire = false
+
+
+@abstract
+func _fire_projectile() -> void
 
 
 func create_projectile(projectile_scene: PackedScene) -> Projectile:
@@ -17,5 +38,5 @@ func create_projectile(projectile_scene: PackedScene) -> Projectile:
 	
 	return projectile
 
-@abstract
-func fire() -> void
+func _on_cooldown_timer_timeout() -> void:
+	can_fire = true

@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cwhdli0txtp1g"]
+
+[ext_resource type="PackedScene" uid="uid://8x4nbkxxjb8o" path="res://weapons/base_projectile/projectile.tscn" id="1_m4tx0"]
+[ext_resource type="Texture2D" uid="uid://cyponmoaq4wbu" path="res://weapons/punch/art/punch_placeholder.webp" id="2_kcf1p"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r030d"]
+radius = 52.0
+height = 114.0
+
+[node name="PunchProjectile" unique_id=1317603494 instance=ExtResource("1_m4tx0")]
+damage = 1
+speed = 100.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=602090859]
+position = Vector2(75, -1)
+rotation = 1.5707964
+scale = Vector2(0.4304875, 0.4304875)
+texture = ExtResource("2_kcf1p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1" unique_id=1608073000]
+position = Vector2(58, 2)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_r030d")
+debug_color = Color(2.8878452e-07, 0.63904136, 0.37469375, 0.41960785)
+
+[node name="LivingTimer" parent="." index="2" unique_id=1334090812]
+wait_time = 0.1

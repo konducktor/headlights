@@ -1,5 +1,10 @@
 [gd_scene format=3 uid="uid://8x4nbkxxjb8o"]
 
+[ext_resource type="Script" uid="uid://hx61q44htrfd" path="res://weapons/base_projectile/projectile.gd" id="1_g786f"]
+
 [node name="Projectile" type="CharacterBody2D" unique_id=1317603494]
 collision_layer = 8
 collision_mask = 0
+script = ExtResource("1_g786f")
+
+[node name="LivingTimer" type="Timer" parent="." unique_id=1334090812]
