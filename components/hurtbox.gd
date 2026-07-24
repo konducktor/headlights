@@ -22,7 +22,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is Projectile:
 		var bullet := body as Projectile
 		
-		if not bullet.weapon.entity or not entity:
+		if not bullet.weapon or not entity:
 			return
 		
 		var cond1: bool = (bullet.weapon.entity is Player) and (entity is Enemy)

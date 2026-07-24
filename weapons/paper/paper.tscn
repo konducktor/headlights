@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://d1jvqv5j5sff8"]
+
+[ext_resource type="Script" uid="uid://cffudy65cx27a" path="res://weapons/paper/paper.gd" id="1_bfxfe"]
+
+[node name="Paper" type="Node2D" unique_id=816564922]
+script = ExtResource("1_bfxfe")
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=1542287765]
+wait_time = 0.5
