@@ -24,9 +24,9 @@ tile_set = ExtResource("1_cwqvt")
 
 [node name="Player" parent="." unique_id=249977393 instance=ExtResource("2_hjsbj")]
 
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=256634758]
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=882287073]
+process_callback = 0
 position_smoothing_enabled = true
-position_smoothing_speed = 10.0
 
 [node name="Enemies" type="Node2D" parent="." unique_id=1921332606]
 

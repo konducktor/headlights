@@ -3,10 +3,11 @@
 [ext_resource type="Script" uid="uid://c5i1sbh3kvhv8" path="res://player/player.gd" id="1_rkbax"]
 [ext_resource type="Texture2D" uid="uid://becemnhwx24jr" path="res://player/art/GirlDefault.png" id="2_g6k8r"]
 [ext_resource type="Texture2D" uid="uid://e81egkb0l45k" path="res://global/assets/shadow-normal.png" id="3_boad6"]
-[ext_resource type="Script" uid="uid://cj4hgonyylrme" path="res://components/health_component.gd" id="3_g6k8r"]
-[ext_resource type="Script" uid="uid://dsbh06fe22jkp" path="res://components/attack_component.gd" id="3_yw30f"]
-[ext_resource type="PackedScene" uid="uid://b4d7iqrgw7kw0" path="res://components/hurtbox_component.tscn" id="4_g6k8r"]
+[ext_resource type="Script" uid="uid://cj4hgonyylrme" path="res://components/health.gd" id="3_g6k8r"]
+[ext_resource type="Script" uid="uid://dsbh06fe22jkp" path="res://components/attack.gd" id="3_yw30f"]
+[ext_resource type="PackedScene" uid="uid://b4d7iqrgw7kw0" path="res://components/hurtbox.tscn" id="4_g6k8r"]
 [ext_resource type="PackedScene" uid="uid://cdvh3p16ve2le" path="res://weapons/knife/knife.tscn" id="4_qjkh3"]
+[ext_resource type="Script" uid="uid://xeasao763wid" path="res://components/acceleration.gd" id="8_rgyib"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_boad6"]
 radius = 19.0
@@ -23,6 +24,14 @@ max_speed = 700.0
 time_to_max_speed = 0.4
 time_to_zero = 0.3
 dash_speed = 2000.0
+can_dash = null
+
+[node name="DashTimer" type="Timer" parent="." unique_id=1083225608]
+wait_time = 0.1
+one_shot = true
+
+[node name="DashCooldownTimer" type="Timer" parent="." unique_id=1400267839]
+wait_time = 0.5
 
 [node name="Visual" type="Node2D" parent="." unique_id=1183445228]
 
@@ -62,11 +71,11 @@ metadata/_custom_type_script = "uid://dsbh06fe22jkp"
 position = Vector2(0, -117)
 entity = NodePath("../..")
 
-[node name="DashTimer" type="Timer" parent="." unique_id=1083225608]
-wait_time = 0.1
-one_shot = true
-
-[node name="DashCooldownTimer" type="Timer" parent="." unique_id=1400267839]
+[node name="AccelerationComponent" type="Node" parent="." unique_id=1650260822]
+script = ExtResource("8_rgyib")
+time_to_max = 0.4
+time_to_zero = 0.3
+metadata/_custom_type_script = "uid://xeasao763wid"
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]

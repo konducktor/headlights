@@ -13,6 +13,7 @@ func _ready() -> void:
 
 
 func enter() -> void:
+	enemy.velocity = Vector2.ZERO
 	is_active = true
 
 

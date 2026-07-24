@@ -10,12 +10,6 @@ var player_state: PlayerState
 
 @export_group("Movement")
 @export var max_speed: float
-@export var time_to_max_speed: float
-@export var time_to_zero: float
-
-const _TARGET: float = 0.99
-var _acceleration: float
-var _friction: float
 
 @export_group("Dash")
 @export var dash_speed: float
@@ -27,10 +21,15 @@ var dash_cooldown_timer: Timer
 var dash_direction: Vector2
 
 var _attack_component: AttackComponent
+var _acceleration_component: AccelerationComponent
 
 
 func _ready() -> void:
 	_attack_component = $AttackComponent
+	
+	_acceleration_component = $AccelerationComponent
+	#_acceleration_component.time_to_max = time_to_max_speed
+	#_acceleration_component.time_to_zero = time_to_zero
 	
 	dash_timer = $DashTimer
 	dash_timer.timeout.connect(_on_dash_timer_timeout)
@@ -47,17 +46,17 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	point_weapon_in_direction(delta)
 	
-	var movement_direction: Vector2 = Input.get_vector(
+	var movement_dir: Vector2 = Input.get_vector(
 		"player_left", "player_right", "player_up", "player_down")
 	
 	match player_state:
 		PlayerState.DEFAULT:
-			move_player(movement_direction, delta)
+			velocity = _acceleration_component.smooth_vector(velocity, movement_dir * max_speed, delta)
 			
 			if Input.is_action_just_pressed("player_dash") and can_dash:
 				dash_direction = Vector2.RIGHT
-				if movement_direction != Vector2.ZERO:
-					dash_direction = movement_direction
+				if movement_dir != Vector2.ZERO:
+					dash_direction = movement_dir
 				
 				player_state = PlayerState.DASH
 				dash_timer.start()
@@ -74,17 +73,6 @@ func point_weapon_in_direction(_delta: float) -> void:
 	
 	if Input.is_action_just_pressed("player_fire_primary"):
 		_attack_component.fire()
-
-
-func move_player(direction: Vector2, delta: float) -> void:
-	_acceleration = -log(1.0 - _TARGET) / time_to_max_speed
-	_friction = -log(1.0 - _TARGET) / time_to_zero
-	
-	var velocity_weight_x: float = 1.0 - exp(-(_acceleration if direction.x else _friction) * delta)
-	velocity.x = lerp(velocity.x, direction.x * max_speed, velocity_weight_x)
-	
-	var velocity_weight_y: float = 1.0 - exp(-(_acceleration if direction.y else _friction) * delta)
-	velocity.y = lerp(velocity.y, direction.y * max_speed, velocity_weight_y)
 
 
 func _on_dash_timer_timeout() -> void:

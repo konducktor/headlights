@@ -9,14 +9,14 @@ var current_state: EnemyState
 
 
 func _ready() -> void:
-	change_state(initial_state)
-	
 	for state in get_children():
 		if state is not EnemyState:
 			continue
 		
 		state.enemy = enemy
 		state.player = Global.player
+	
+	change_state(initial_state)
 
 
 func _physics_process(delta: float) -> void:

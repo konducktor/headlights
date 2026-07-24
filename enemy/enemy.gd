@@ -11,7 +11,7 @@ func _ready() -> void:
 	player = Global.player
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	move_and_slide()
 
 
