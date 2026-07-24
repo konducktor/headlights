@@ -13,11 +13,6 @@ class_name EnemyStateChasing
 @export var exit_if_los_lost: EnemyState
 
 
-func enter() -> void:
-	pathfinding_component.set_target(player.global_position)
-	super()
-
-
 func physics_update(delta: float) -> EnemyState:
 	if player == null:
 		return null

@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://xeasao763wid" path="res://components/acceleration.gd" id="10_gttvy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1ggug"]
-radius = 57.035076
+radius = 64.12488
 
 [node name="Hugger" unique_id=4220073 instance=ExtResource("1_b67bb")]
 collision_mask = 18
@@ -89,8 +89,10 @@ _navigation_agent = NodePath("NavigationAgent2D")
 metadata/_custom_type_script = "uid://c4cdida6p2443"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="PathfindingComponent" index="0" unique_id=1675738214]
+path_desired_distance = 60.0
+target_desired_distance = 30.0
+path_max_distance = 200.0
 path_postprocessing = 1
-debug_enabled = true
 
 [node name="NavigationUpdateTimer" type="Timer" parent="PathfindingComponent" index="1" unique_id=1059007323]
 wait_time = 0.5
@@ -102,16 +104,16 @@ ray = NodePath("RayCast2D")
 [node name="RayCast2D" type="RayCast2D" parent="LOSComponent" index="0" unique_id=1562205511]
 collision_mask = 16
 
-[node name="AttackComponent" type="Node2D" parent="." index="6" unique_id=1977888809 node_paths=PackedStringArray("weapon")]
+[node name="AccelerationComponent" type="Node" parent="." index="6" unique_id=2126363131]
+script = ExtResource("10_gttvy")
+time_to_max = 0.4
+time_to_zero = 0.3
+metadata/_custom_type_script = "uid://xeasao763wid"
+
+[node name="AttackComponent" type="Node2D" parent="." index="7" unique_id=1977888809 node_paths=PackedStringArray("weapon")]
 script = ExtResource("8_q1oms")
 weapon = NodePath("Punch")
 metadata/_custom_type_script = "uid://dsbh06fe22jkp"
 
 [node name="Punch" parent="AttackComponent" index="0" unique_id=1440157568 node_paths=PackedStringArray("entity") instance=ExtResource("10_1ggug")]
 entity = NodePath("../..")
-
-[node name="AccelerationComponent" type="Node" parent="." index="7" unique_id=2126363131]
-script = ExtResource("10_gttvy")
-time_to_max = 0.4
-time_to_zero = 0.3
-metadata/_custom_type_script = "uid://xeasao763wid"
