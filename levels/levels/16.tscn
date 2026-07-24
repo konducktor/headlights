@@ -1,9 +1,8 @@
 [gd_scene format=4 uid="uid://do7aco8xccrl7"]
 
 [ext_resource type="PackedScene" uid="uid://bdeqn5d43smam" path="res://levels/level.tscn" id="1_tprkl"]
-[ext_resource type="PackedScene" uid="uid://bk6xcpfk8ygg0" path="res://enemy/hugger/hugger.tscn" id="2_aw0uy"]
-[ext_resource type="PackedScene" uid="uid://bdg03bde1grlw" path="res://enemy/shooter/shooter.tscn" id="2_twf03"]
 [ext_resource type="PackedScene" uid="uid://do0fniahbe6co" path="res://levels/areas/level_area.tscn" id="2_udl7p"]
+[ext_resource type="PackedScene" uid="uid://bk6xcpfk8ygg0" path="res://enemy/hugger/hugger.tscn" id="2_y43jq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r030d"]
 size = Vector2(96, 889)
@@ -22,25 +21,18 @@ tile_map_data = PackedByteArray("AAAPAP//AAAIAAYAAAAOAAEAAAAHAAYAAAAMAP//AAAMAAc
 [node name="Walls" parent="." index="3" unique_id=664067429]
 tile_map_data = PackedByteArray("AAAGAPb/AAAAAAoAAAAIAPb/AAACAAoAAAAKAPb/AAAAAAoAAAAMAPb/AAAAAAoAAAAOAPb/AAAAAAoAAAAEAPn/AAACAAoAAAACAPn/AAACAAoAAAAAAPn/AAACAAoAAAD+//n/AAACAAoAAAD8//n/AAACAAoAAAD6//n/AAACAAoAAAD4//n/AAAAAAoAAAD4/wgAAAACAAoAAAD6/wgAAAAAAAoAAAD8/wgAAAAAAAoAAAD+/wgAAAACAAoAAAAAAAgAAAAAAAoAAAACAAgAAAAAAAoAAAAGAAoAAAAAAAoAAAAIAAoAAAAAAAoAAAAKAAoAAAAAAAoAAAAMAAoAAAACAAoAAAAOAAoAAAACAAoAAAAQAAoAAAACAAoAAAASAAoAAAAAAAoAAAAUAAoAAAACAAoAAAAWAAoAAAACAAoAAAD4/wQAAAAEAAAAAAD6/wQAAAAEAAAAAAD8/wQAAAAEAAAAAAD+/wQAAAACAAAAAAAAAAQAAAACAAAAAAACAAQAAAAEAAAAAAAEAAQAAAACAAAAAAAEAAYAAAAIAAAAAAAEAAgAAAAGAAAAAAAEAAoAAAAIAAAAAAAEAAwAAAAIAAAAAAD4//X/AAAEAAAAAAD6//X/AAAEAAAAAAD8//X/AAACAAAAAAD+//X/AAAEAAAAAAAAAPX/AAAEAAAAAAACAPX/AAAEAAAAAAAEAPX/AAAIAAAAAAAEAPT/AAAIAAAAAAAEAPL/AAACAAAAAAAGAPL/AAAEAAAAAAAIAPL/AAAEAAAAAAAKAPL/AAAEAAAAAAAMAPL/AAAEAAAAAAAOAPL/AAAEAAAAAAAQAPj/AAAAAAAAAAASAPj/AAAAAAAAAAAUAPj/AAAAAAAAAAAWAPj/AAAAAAAAAAD2//v/AAAAAAAAAAD2//z/AAAAAAAAAAD2//3/AAAAAAAAAAD2//7/AAAAAAAAAAD2////AAAAAAAAAAD2/wAAAAAAAAAAAAD2/wEAAAAAAAAAAAD2/wIAAAAAAAAAAAD2/wMAAAAAAAAAAAD2/wQAAAAAAAAAAAD2/wUAAAAAAAAAAAD2/wYAAAAAAAAAAAD2/wcAAAAAAAAAAAA=")
 
-[node name="Player" parent="." index="4" unique_id=249977393]
-position = Vector2(-447, -14)
-
 [node name="Area" type="Node2D" parent="Areas" parent_id_path=PackedInt32Array(1921332606) index="0" unique_id=2041108432]
 
-[node name="Hugger" parent="Areas/Area" index="0" unique_id=4220073 instance=ExtResource("2_aw0uy")]
-position = Vector2(841, -216)
-
-[node name="Shooter" parent="Areas/Area" index="1" unique_id=1617895909 instance=ExtResource("2_twf03")]
-position = Vector2(1192, -304)
-
-[node name="LevelArea" parent="Areas/Area" index="2" unique_id=599371635 node_paths=PackedStringArray("enemies_in_this_area") instance=ExtResource("2_udl7p")]
-position = Vector2(2, 0)
-enemies_in_this_area = [NodePath("../Shooter"), NodePath("../Hugger")]
+[node name="LevelArea" parent="Areas/Area" index="0" unique_id=599371635 node_paths=PackedStringArray("enemies_in_this_area") instance=ExtResource("2_udl7p")]
+enemies_in_this_area = [NodePath("../Hugger")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Area/LevelArea" index="0" unique_id=1088532195]
-position = Vector2(177, -42)
+position = Vector2(633, -3.5)
 shape = SubResource("RectangleShape2D_r030d")
 debug_color = Color(0.70127666, 0.49188328, 0, 0.41960785)
+
+[node name="Hugger" parent="Areas/Area" index="1" unique_id=4220073 instance=ExtResource("2_y43jq")]
+position = Vector2(1322, 4)
 
 [node name="Area2" type="Node2D" parent="Areas" parent_id_path=PackedInt32Array(1921332606) index="1" unique_id=1116708235]
 

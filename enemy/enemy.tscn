@@ -32,8 +32,7 @@ texture = ExtResource("1_bclhr")
 shape = SubResource("CircleShape2D_g4v7s")
 debug_color = Color(0.95472616, 0.21677268, 0, 0.41960785)
 
-[node name="HurtboxComponent" parent="." unique_id=1909287759 node_paths=PackedStringArray("entity", "health_component") instance=ExtResource("3_jspmv")]
-entity = NodePath("..")
+[node name="HurtboxComponent" parent="." unique_id=1909287759 node_paths=PackedStringArray("health_component") instance=ExtResource("3_jspmv")]
 health_component = NodePath("HealthComponent")
 
 [node name="HealthComponent" type="Node" parent="HurtboxComponent" unique_id=855731163]

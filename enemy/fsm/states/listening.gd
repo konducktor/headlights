@@ -4,7 +4,7 @@ extends EnemyState
 class_name EnemyStateListening
 
 
-@export_range(0, 1000) var found_radius: float
+@export var found_radius: float
 @export var found_if_has_los: bool = true
 @export var los_component: LOSComponent
 

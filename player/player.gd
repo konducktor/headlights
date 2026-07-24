@@ -42,8 +42,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if player_state != PlayerState.STUCK:
-		point_weapon_in_direction(delta)
+	point_weapon_in_direction(delta)
 	
 	var movement_dir: Vector2 = Input.get_vector(
 		"player_left", "player_right", "player_up", "player_down")
@@ -69,6 +68,7 @@ func _physics_process(delta: float) -> void:
 
 
 func body_pos() -> Vector2:
+	#Debugging.draw_point(_hurtbox_collision.global_position, Color.BLUE_VIOLET)
 	return _hurtbox_collision.global_position
 
 func point_weapon_in_direction(_delta: float) -> void:

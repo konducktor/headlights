@@ -46,11 +46,11 @@ pathfinding_component = NodePath("../../PathfindingComponent")
 navigation_update_timer = NodePath("../../PathfindingComponent/NavigationUpdateTimer")
 metadata/_custom_type_script = "uid://cfgq62b11rbkr"
 
-[node name="EnemyStateAttack" type="Node2D" parent="EnemyStateMachine" index="2" unique_id=1345402437 node_paths=PackedStringArray("attack_component", "exit_if_distance_far")]
+[node name="EnemyStateAttack" type="Node2D" parent="EnemyStateMachine" index="2" unique_id=1345402437 node_paths=PackedStringArray("attack_component", "exit_if_distance_change")]
 script = ExtResource("5_q1oms")
 max_distance = 200.0
 attack_component = NodePath("../../AttackComponent")
-exit_if_distance_far = NodePath(".")
+exit_if_distance_change = NodePath("../EnemyStateChasing")
 metadata/_custom_type_script = "uid://5kyj3444bt10"
 
 [node name="EnemyStateSearching" type="Node2D" parent="EnemyStateMachine" index="3" unique_id=1961926191 node_paths=PackedStringArray("search_timer", "los_component", "acceleration_component", "exit_if_found", "exit_if_not_found", "pathfinding_component", "navigation_update_timer")]
@@ -81,6 +81,9 @@ one_shot = true
 
 [node name="WallCollision" parent="." index="2" unique_id=1847437153]
 shape = SubResource("CircleShape2D_1ggug")
+
+[node name="HurtboxComponent" parent="." index="3" unique_id=1909287759 node_paths=PackedStringArray("entity")]
+entity = NodePath("..")
 
 [node name="PathfindingComponent" type="Node2D" parent="." index="4" unique_id=2081519095 node_paths=PackedStringArray("_navigation_agent")]
 script = ExtResource("3_u6bnj")
