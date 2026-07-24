@@ -5,12 +5,15 @@ class_name EnemyStateChasing
 
 
 @export var reach_threshhold: float
+@export var target_scatter_radius: float = 0.0
 @export var los_component: LOSComponent
 @export var acceleration_component: AccelerationComponent
 
 @export_group("Exits")
 @export var exit_if_reached: EnemyState
 @export var exit_if_los_lost: EnemyState
+
+var rng := RandomNumberGenerator.new()
 
 
 func physics_update(delta: float) -> EnemyState:
@@ -30,8 +33,11 @@ func physics_update(delta: float) -> EnemyState:
 
 
 func _on_navigation_update() -> void:
-	pathfinding_component.set_target(player.body_pos())
+	pathfinding_component.set_target(player.body_pos() + _scatter_vector(target_scatter_radius))
 
+
+func _scatter_vector(radius: float) -> Vector2:
+	return Vector2.UP.rotated(rng.randf_range(-180.0, 180.0)) * radius
 
 func _draw() -> void:
 	if Engine.is_editor_hint():
