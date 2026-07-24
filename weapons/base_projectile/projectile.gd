@@ -6,6 +6,8 @@ class_name Projectile
 @export_range(-180.0, 180.0) var direction_degrees: float
 @export var speed: float
 
+var weapon: Weapon
+
 
 func stop() -> void:
 	queue_free()

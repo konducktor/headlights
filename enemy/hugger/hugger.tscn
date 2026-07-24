@@ -73,6 +73,9 @@ metadata/_custom_type_script = "uid://cc0a1u5h7b42u"
 wait_time = 0.5
 one_shot = true
 
+[node name="HurtboxComponent" parent="." index="3" unique_id=1909287759 node_paths=PackedStringArray("entity")]
+entity = NodePath("..")
+
 [node name="PathfindingComponent" type="Node2D" parent="." index="4" unique_id=2081519095 node_paths=PackedStringArray("_navigation_agent")]
 script = ExtResource("3_u6bnj")
 _navigation_agent = NodePath("NavigationAgent2D")

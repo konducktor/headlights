@@ -5,6 +5,7 @@ class_name HurtboxComponent
 signal took_damage
 
 
+@export var entity: CharacterBody2D
 @export var health_component: HealthComponent
 
 
@@ -18,5 +19,11 @@ func take_damage(damage: int) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if (body is Projectile):
-		take_damage(body.damage)
+	if body is Projectile:
+		var bullet := body as Projectile
+		
+		var cond1: bool = (bullet.weapon.entity is Player) and (entity is Enemy)
+		var cond2: bool = (bullet.weapon.entity is Enemy) and (entity is Player)
+		
+		if cond1 or cond2:
+			take_damage(body.damage)

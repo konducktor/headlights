@@ -55,7 +55,8 @@ script = ExtResource("3_g6k8r")
 max_health = 10
 metadata/_custom_type_script = "uid://cj4hgonyylrme"
 
-[node name="HurtboxComponent" parent="." unique_id=1909287759 node_paths=PackedStringArray("health_component") instance=ExtResource("4_g6k8r")]
+[node name="HurtboxComponent" parent="." unique_id=1909287759 node_paths=PackedStringArray("entity", "health_component") instance=ExtResource("4_g6k8r")]
+entity = NodePath("..")
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=307397941]
