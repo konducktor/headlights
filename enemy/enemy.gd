@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Enemy
 
 
-@export var active: bool = true
+@export var active: bool = false
 @export var movement_speed: float
 
 var player: Player

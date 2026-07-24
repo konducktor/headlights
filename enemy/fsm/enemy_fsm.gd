@@ -17,12 +17,13 @@ func _ready() -> void:
 		state.enemy = enemy
 		state.player = Global.player
 	
-	if enemy.active:
-		change_state(initial_state)
+	change_state(initial_state)
 
 
 func _physics_process(delta: float) -> void:
 	if not enemy.active:
+		if report_current_state:
+			print("inactive")
 		return
 	
 	if report_current_state:

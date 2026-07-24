@@ -2,7 +2,6 @@
 
 [ext_resource type="TileSet" uid="uid://cxfc0uaiyefyh" path="res://levels/tileset.tres" id="1_cwqvt"]
 [ext_resource type="PackedScene" uid="uid://btaokpyn0qvsy" path="res://player/player.tscn" id="2_hjsbj"]
-[ext_resource type="PackedScene" uid="uid://bk6xcpfk8ygg0" path="res://enemy/hugger/hugger.tscn" id="3_cwqvt"]
 
 [node name="Level" type="Node2D" unique_id=1005489076]
 y_sort_enabled = true
@@ -34,9 +33,4 @@ wall_min_slide_angle = 0.2617994
 process_callback = 0
 position_smoothing_enabled = true
 
-[node name="Enemies" type="Node2D" parent="." unique_id=1921332606]
-
-[node name="Hugger" parent="Enemies" unique_id=4220073 instance=ExtResource("3_cwqvt")]
-position = Vector2(385, 444)
-collision_layer = 1
-collision_mask = 1
+[node name="Areas" type="Node2D" parent="." unique_id=1921332606]

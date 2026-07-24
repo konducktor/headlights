@@ -13,7 +13,11 @@ class_name EnemyStateListening
 
 
 func physics_update(_delta: float) -> EnemyState:
-	if enemy.position.distance_to(player.body_pos()) <= found_radius:
+	var distance: float = enemy.position.distance_to(player.body_pos())
+	if distance <= found_radius:
+		print(los_component.is_los_between_points(player.body_pos(), enemy.position))
+		Debugging.draw_point(player.body_pos())
+		Debugging.draw_point(enemy.position)
 		if los_component.is_los_between_points(player.body_pos(), enemy.position) or not found_if_has_los:
 			return exit_if_found
 	

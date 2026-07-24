@@ -16,6 +16,7 @@
 radius = 57.035076
 
 [node name="Hugger" unique_id=4220073 instance=ExtResource("1_b67bb")]
+collision_mask = 18
 motion_mode = 1
 wall_min_slide_angle = 0.0
 platform_on_leave = 2
@@ -27,7 +28,7 @@ initial_state = NodePath("EnemyStateListening")
 
 [node name="EnemyStateListening" type="Node2D" parent="EnemyStateMachine" index="0" unique_id=1762605561 node_paths=PackedStringArray("los_component", "exit_if_found")]
 script = ExtResource("5_gttvy")
-found_radius = 500.0
+found_radius = 600.0
 los_component = NodePath("../../LOSComponent")
 exit_if_found = NodePath("../EnemyStateChasing")
 metadata/_custom_type_script = "uid://bss2tm1tkp3co"
