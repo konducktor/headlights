@@ -19,7 +19,7 @@ report_current_state = true
 
 [node name="EnemyStateListening" type="Node2D" parent="EnemyStateMachine" index="0" unique_id=429731466 node_paths=PackedStringArray("los_component", "exit_if_found")]
 script = ExtResource("2_tknm7")
-found_radius = 500.0
+found_radius = 700.0
 los_component = NodePath("../../LOSComponent")
 exit_if_found = NodePath("../EnemyStateRun")
 metadata/_custom_type_script = "uid://bss2tm1tkp3co"
