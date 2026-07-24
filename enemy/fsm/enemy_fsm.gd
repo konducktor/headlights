@@ -25,7 +25,6 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	change_state(current_state.physics_update(delta))
-	print(current_state)
 
 func change_state(new_state: EnemyState) -> void:
 	if new_state == null:

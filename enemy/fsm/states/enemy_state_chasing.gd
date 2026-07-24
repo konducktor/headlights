@@ -1,3 +1,5 @@
+@tool
+## During this state the enemy pathfinds while has line of sight with the player. Exits if reached its target or los is lost. Debug visuals are red.
 extends EnemyStatePathfinding
 class_name EnemyStateChasing
 
@@ -10,6 +12,10 @@ class_name EnemyStateChasing
 @export var exit_if_reached: EnemyState
 @export var exit_if_los_lost: EnemyState
 
+
+func enter() -> void:
+	pathfinding_component.set_target(player.global_position)
+	super()
 
 
 func physics_update(delta: float) -> EnemyState:
@@ -30,3 +36,8 @@ func physics_update(delta: float) -> EnemyState:
 
 func _on_navigation_update() -> void:
 	pathfinding_component.set_target(player.global_position)
+
+
+func _draw() -> void:
+	if Engine.is_editor_hint():
+		draw_circle(Vector2.ZERO, reach_threshhold, Color.RED, false, 1.0)

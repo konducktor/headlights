@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cfgq62b11rbkr" path="res://enemy/fsm/states/enemy_state_chasing.gd" id="3_a6t2i"]
 [ext_resource type="Script" uid="uid://c4cdida6p2443" path="res://components/pathfinding.gd" id="3_u6bnj"]
 [ext_resource type="Script" uid="uid://du1pdvgphjupd" path="res://enemy/fsm/states/enemy_state_searching.gd" id="4_27kmv"]
+[ext_resource type="Script" uid="uid://bss2tm1tkp3co" path="res://enemy/fsm/states/enemy_state_listening.gd" id="5_gttvy"]
 [ext_resource type="Script" uid="uid://d3qga85gsi6l4" path="res://components/los.gd" id="5_kyexb"]
 [ext_resource type="Script" uid="uid://5kyj3444bt10" path="res://enemy/fsm/states/enemy_state_attack.gd" id="5_q1oms"]
 [ext_resource type="Script" uid="uid://dsbh06fe22jkp" path="res://components/attack.gd" id="8_q1oms"]
@@ -18,9 +19,16 @@ platform_floor_layers = 0
 movement_speed = 400.0
 
 [node name="EnemyStateMachine" parent="." index="0" unique_id=119706350 node_paths=PackedStringArray("initial_state")]
-initial_state = NodePath("EnemyStateChasing")
+initial_state = NodePath("EnemyStateListening")
 
-[node name="EnemyStateChasing" type="Node2D" parent="EnemyStateMachine" index="0" unique_id=367081690 node_paths=PackedStringArray("los_component", "acceleration_component", "exit_if_reached", "exit_if_los_lost", "pathfinding_component", "navigation_update_timer")]
+[node name="EnemyStateListening" type="Node2D" parent="EnemyStateMachine" index="0" unique_id=1762605561 node_paths=PackedStringArray("los_component", "exit_if_found")]
+script = ExtResource("5_gttvy")
+found_radius = 500.0
+los_component = NodePath("../../LOSComponent")
+exit_if_found = NodePath("../EnemyStateChasing")
+metadata/_custom_type_script = "uid://bss2tm1tkp3co"
+
+[node name="EnemyStateChasing" type="Node2D" parent="EnemyStateMachine" index="1" unique_id=367081690 node_paths=PackedStringArray("los_component", "acceleration_component", "exit_if_reached", "exit_if_los_lost", "pathfinding_component", "navigation_update_timer")]
 script = ExtResource("3_a6t2i")
 reach_threshhold = 150.0
 los_component = NodePath("../../LOSComponent")
@@ -31,25 +39,28 @@ pathfinding_component = NodePath("../../PathfindingComponent")
 navigation_update_timer = NodePath("../../PathfindingComponent/NavigationUpdateTimer")
 metadata/_custom_type_script = "uid://cfgq62b11rbkr"
 
-[node name="EnemyStateSearching" type="Node2D" parent="EnemyStateMachine" index="1" unique_id=1961926191 node_paths=PackedStringArray("search_timer", "los_component", "acceleration_component", "exit_if_found", "pathfinding_component", "navigation_update_timer")]
+[node name="EnemyStateAttack" type="Node2D" parent="EnemyStateMachine" index="2" unique_id=1345402437 node_paths=PackedStringArray("attack_component", "exit_if_distance_change")]
+script = ExtResource("5_q1oms")
+max_distance = 200.0
+attack_component = NodePath("../../AttackComponent")
+exit_if_distance_change = NodePath("../EnemyStateChasing")
+metadata/_custom_type_script = "uid://5kyj3444bt10"
+
+[node name="EnemyStateSearching" type="Node2D" parent="EnemyStateMachine" index="3" unique_id=1961926191 node_paths=PackedStringArray("search_timer", "los_component", "acceleration_component", "exit_if_found", "exit_if_not_found", "pathfinding_component", "navigation_update_timer")]
+position = Vector2(-1, 0)
 script = ExtResource("4_27kmv")
 search_timer = NodePath("SearchTimer")
 los_component = NodePath("../../LOSComponent")
 acceleration_component = NodePath("../../AccelerationComponent")
 exit_if_found = NodePath("../EnemyStateChasing")
+exit_if_not_found = NodePath("../EnemyStateListening")
 pathfinding_component = NodePath("../../PathfindingComponent")
 navigation_update_timer = NodePath("../../PathfindingComponent/NavigationUpdateTimer")
 metadata/_custom_type_script = "uid://du1pdvgphjupd"
 
 [node name="SearchTimer" type="Timer" parent="EnemyStateMachine/EnemyStateSearching" index="0" unique_id=1022251868]
+wait_time = 2.0
 one_shot = true
-
-[node name="EnemyStateAttack" type="Node2D" parent="EnemyStateMachine" index="2" unique_id=1345402437 node_paths=PackedStringArray("attack_component", "exit_if_distance_change")]
-script = ExtResource("5_q1oms")
-max_distance = 150.0
-attack_component = NodePath("../../AttackComponent")
-exit_if_distance_change = NodePath("../EnemyStateChasing")
-metadata/_custom_type_script = "uid://5kyj3444bt10"
 
 [node name="PathfindingComponent" type="Node2D" parent="." index="4" unique_id=2081519095 node_paths=PackedStringArray("_navigation_agent")]
 script = ExtResource("3_u6bnj")

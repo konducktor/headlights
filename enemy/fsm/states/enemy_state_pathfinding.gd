@@ -1,4 +1,5 @@
 @abstract
+## Base class for all states that want to use pathfinging.
 extends EnemyState
 class_name EnemyStatePathfinding
 

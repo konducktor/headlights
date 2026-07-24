@@ -1,3 +1,5 @@
+@tool
+## During this state the enemy tries to fire its weapon. Exit if the enemy is outside of range (controlled by min and max distances). Debug visuals are yellow.
 extends EnemyState
 class_name EnemyStateAttack
 
@@ -19,3 +21,9 @@ func physics_update(_delta: float) -> EnemyState:
 	attack_component.fire()
 	
 	return null
+
+
+func _draw() -> void:
+	if Engine.is_editor_hint():
+		draw_circle(Vector2.ZERO, min_distance, Color.YELLOW, false, 1.0)
+		draw_circle(Vector2.ZERO, max_distance, Color.YELLOW, false, 1.0)

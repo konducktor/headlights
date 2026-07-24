@@ -1,5 +1,11 @@
+@abstract
+## Base enemy state class. Cannot be used on its own.
 extends Node2D
 class_name EnemyState
+
+
+signal entered
+signal exited
 
 
 var enemy: Enemy
@@ -9,6 +15,7 @@ var is_active: bool
 
 
 func _ready() -> void:
+	entered.emit()
 	is_active = false
 
 
@@ -22,4 +29,5 @@ func physics_update(_delta: float) -> EnemyState:
 
 
 func exit() -> void:
+	exited.emit()
 	is_active = false

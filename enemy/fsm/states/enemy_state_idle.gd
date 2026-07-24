@@ -1,3 +1,4 @@
+## During this state the enemy does nothing
 extends EnemyState
 class_name EnemyStateIdle
 
