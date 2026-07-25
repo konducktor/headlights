@@ -6,7 +6,6 @@ extends Node2D
 
 
 func _on_enemy_state_listening_entered() -> void:
-	
 	animated_sprite.play("idle")
 
 

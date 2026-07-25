@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dmqx5au0cmxxu"]
 
 [ext_resource type="PackedScene" uid="uid://cfatfldt20awi" path="res://ui/gameplay_ui/gameplay_ui.tscn" id="1_41n4r"]
-[ext_resource type="PackedScene" uid="uid://bxbbofp71o187" path="res://levels/levels/12.tscn" id="2_ueusv"]
+[ext_resource type="PackedScene" uid="uid://do7aco8xccrl7" path="res://levels/levels/16.tscn" id="2_ueusv"]
 [ext_resource type="Shader" uid="uid://wg6vesuf1jj5" path="res://global/assets/shaders/background.gdshader" id="3_ueusv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r030d"]
@@ -18,7 +18,7 @@ shader_parameter/contrast = 1.4
 
 [node name="GameplayUI" parent="." unique_id=467493527 instance=ExtResource("1_41n4r")]
 
-[node name="12" parent="." unique_id=1005489076 instance=ExtResource("2_ueusv")]
+[node name="16" parent="." unique_id=1005489076 instance=ExtResource("2_ueusv")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=804228134]
 layer = -1

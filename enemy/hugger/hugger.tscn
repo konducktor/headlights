@@ -165,8 +165,10 @@ metadata/_custom_type_script = "uid://cc0a1u5h7b42u"
 wait_time = 0.5
 one_shot = true
 
-[node name="Visual" parent="." index="1" unique_id=11767020]
+[node name="Visual" parent="." index="1" unique_id=11767020 node_paths=PackedStringArray("animated_sprite", "animated_player")]
 script = ExtResource("7_oqbdr")
+animated_sprite = NodePath("FlipOnVelocityComponent/AnimatedSprite2D")
+animated_player = NodePath("AnimationPlayer")
 
 [node name="FlipOnVelocityComponent" type="Node2D" parent="Visual" index="0" unique_id=77286326 node_paths=PackedStringArray("target")]
 script = ExtResource("8_0oeui")
