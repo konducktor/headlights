@@ -9,9 +9,10 @@ func _ready() -> void:
 
 
 func _on_select_skill() -> void:
-	for card in cards:
-		var skill_data: SkillData = GlobalSkills.get_random_skill()
-		card.set_card(skill_data)
+	var skills: Array[SkillData] = GlobalSkills.get_random_skills(3)
+	
+	for i in range(len(cards)):
+		cards[i].set_card(skills[i])
 	
 	visible = true
 	Global.set_pause(true)

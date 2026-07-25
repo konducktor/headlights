@@ -5,14 +5,19 @@ class_name Projectile
 @export_range(-180.0, 180.0) var direction_degrees: float
 @export var speed: float
 
-var living_timer: Timer
+
 var weapon: Weapon
+
+var _living_timer: Timer
+var _active: bool
 
 
 func _ready() -> void:
-	living_timer = $LivingTimer
-	living_timer.start()
-	living_timer.timeout.connect(_on_living_timer_timeout)
+	_active = false
+	
+	_living_timer = $LivingTimer
+	_living_timer.start()
+	_living_timer.timeout.connect(_on_living_timer_timeout)
 
 
 func stop() -> void:

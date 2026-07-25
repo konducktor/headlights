@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://8x4nbkxxjb8o" path="res://weapons/base_projectile/projectile.tscn" id="1_3ipok"]
 [ext_resource type="Texture2D" uid="uid://bysaaptk1hgi7" path="res://weapons/knife/art/knife_swoosh_placeholder.png" id="2_dej5t"]
+[ext_resource type="Script" uid="uid://ctom2ddt36srv" path="res://weapons/knife/knife_close_attack.gd" id="2_yn421"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yf5fn"]
 radius = 56.0
@@ -9,7 +10,7 @@ height = 318.0
 
 [node name="KnifeCloseAttack" unique_id=425279207 instance=ExtResource("1_3ipok")]
 collision_mask = 4
-damage = 2
+script = ExtResource("2_yn421")
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=1740156636]
 position = Vector2(77.63448, -2.3136881e-06)
@@ -23,3 +24,14 @@ shape = SubResource("CapsuleShape2D_yf5fn")
 
 [node name="LivingTimer" parent="." index="2" unique_id=1334090812]
 wait_time = 0.15
+
+[node name="DeflectArea" type="Area2D" parent="." index="3" unique_id=1823261540]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeflectArea" index="0" unique_id=1907231644]
+position = Vector2(133, 0)
+shape = SubResource("CapsuleShape2D_yf5fn")
+debug_color = Color(0.98062116, 0, 0.3821024, 0.41960785)
+
+[connection signal="body_entered" from="DeflectArea" to="." method="_on_deflect_area_body_entered"]

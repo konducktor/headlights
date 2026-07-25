@@ -37,9 +37,9 @@ func _fire_projectile() -> Projectile
 func create_projectile(projectile_scene: PackedScene) -> Projectile:
 	var projectile := projectile_scene.instantiate() as Projectile
 	
-	get_tree().root.add_child(projectile)
 	projectile.global_position = global_position
 	projectile.weapon = self
+	get_tree().root.add_child(projectile)
 	
 	return projectile
 

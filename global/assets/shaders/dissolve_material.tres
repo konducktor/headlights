@@ -1,28 +1,6 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://do4oost55dfdd"]
 
-[sub_resource type="Shader" id="Shader_canym"]
-code = "shader_type canvas_item;
-
-uniform sampler2D dissolve_texture : source_color;
-uniform float dissolve_value : hint_range(0,1);
-uniform float burn_size : hint_range(0.0, 1.0, 0.01);
-uniform vec4 burn_color : source_color;
-
-void fragment(){
-    // На входе COLOR уже = texture(TEXTURE, UV) * modulate * self_modulate.
-    // Забираем это значение ДО того, как перезапишем COLOR ниже —
-    // так свечение/прогорание будет строиться на уже перекрашенном спрайте.
-    vec4 main_color = COLOR;
-    vec4 noise_texture = texture(dissolve_texture, UV);
-
-    // This is needed to avoid keeping a small burn_color dot with dissolve being 0 or 1
-    float burn_size_step = burn_size * step(0.001, dissolve_value) * step(dissolve_value, 0.999);
-    float threshold = smoothstep(noise_texture.x - burn_size_step, noise_texture.x, dissolve_value);
-    float border = smoothstep(noise_texture.x, noise_texture.x + burn_size_step, dissolve_value);
-
-    COLOR.a = main_color.a * threshold;
-    COLOR.rgb = mix(burn_color.rgb, main_color.rgb, border);
-}"
+[ext_resource type="Shader" uid="uid://b04dcj8qumfp3" path="res://global/assets/shaders/dissolve.gdshader" id="1_dud5q"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_txjm0"]
 frequency = 0.0057
@@ -32,7 +10,7 @@ noise = SubResource("FastNoiseLite_txjm0")
 
 [resource]
 resource_local_to_scene = true
-shader = SubResource("Shader_canym")
+shader = ExtResource("1_dud5q")
 shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_wuolu")
 shader_parameter/dissolve_value = 1.0
 shader_parameter/burn_size = 0.0499999988824

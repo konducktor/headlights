@@ -9,173 +9,14 @@
 [ext_resource type="Script" uid="uid://d3qga85gsi6l4" path="res://components/los.gd" id="5_kyexb"]
 [ext_resource type="Script" uid="uid://5kyj3444bt10" path="res://enemy/fsm/states/attack.gd" id="5_q1oms"]
 [ext_resource type="Script" uid="uid://cc0a1u5h7b42u" path="res://enemy/fsm/states/grab.gd" id="6_1ggug"]
-[ext_resource type="Texture2D" uid="uid://b4tpieewtpina" path="res://enemy/hugger/art/hugger_animations.png" id="7_730l8"]
 [ext_resource type="Texture2D" uid="uid://e81egkb0l45k" path="res://global/assets/shadow-normal.png" id="7_dikn0"]
 [ext_resource type="Script" uid="uid://doaxs28i4d4k2" path="res://enemy/hugger/hugger_visual.gd" id="7_oqbdr"]
 [ext_resource type="Script" uid="uid://bdthesvcg5qi3" path="res://components/flip_on_velocity.gd" id="8_0oeui"]
 [ext_resource type="Script" uid="uid://dsbh06fe22jkp" path="res://components/attack.gd" id="8_q1oms"]
+[ext_resource type="Material" uid="uid://do4oost55dfdd" path="res://global/assets/shaders/dissolve_material.tres" id="9_txjm0"]
 [ext_resource type="PackedScene" uid="uid://bk27swuew8ewb" path="res://weapons/punch/punch.tscn" id="10_1ggug"]
 [ext_resource type="Script" uid="uid://xeasao763wid" path="res://components/acceleration.gd" id="10_gttvy"]
-
-[sub_resource type="Shader" id="Shader_canym"]
-code = "shader_type canvas_item;
-
-uniform sampler2D dissolve_texture : source_color;
-uniform float dissolve_value : hint_range(0,1);
-uniform float burn_size: hint_range(0.0, 1.0, 0.01);
-uniform vec4 burn_color: source_color;
-
-void fragment(){
-    vec4 main_texture = texture(TEXTURE, UV);
-    vec4 noise_texture = texture(dissolve_texture, UV);
-	
-	// This is needed to avoid keeping a small burn_color dot with dissolve being 0 or 1
-	// is there another way to do it?
-	float burn_size_step = burn_size * step(0.001, dissolve_value) * step(dissolve_value, 0.999);
-	float threshold = smoothstep(noise_texture.x-burn_size_step, noise_texture.x, dissolve_value);
-	float border = smoothstep(noise_texture.x, noise_texture.x + burn_size_step, dissolve_value);
-	
-	COLOR.a *= threshold;
-	COLOR.rgb = mix(burn_color.rgb, main_texture.rgb, border);
-}"
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_txjm0"]
-noise_type = 2
-frequency = 0.0089
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wuolu"]
-noise = SubResource("FastNoiseLite_txjm0")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_oqbdr"]
-resource_local_to_scene = true
-shader = SubResource("Shader_canym")
-shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_wuolu")
-shader_parameter/dissolve_value = 1.0
-shader_parameter/burn_size = 0.0499999988824
-shader_parameter/burn_color = Color(0, 0, 0, 0.49411765)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dikn0"]
-atlas = ExtResource("7_730l8")
-region = Rect2(0, 384, 384, 384)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0oeui"]
-atlas = ExtResource("7_730l8")
-region = Rect2(384, 384, 384, 384)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oqbdr"]
-atlas = ExtResource("7_730l8")
-region = Rect2(768, 384, 384, 384)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_txjm0"]
-atlas = ExtResource("7_730l8")
-region = Rect2(1152, 384, 384, 384)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wuolu"]
-atlas = ExtResource("7_730l8")
-region = Rect2(1536, 384, 384, 384)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_t1va6"]
-atlas = ExtResource("7_730l8")
-region = Rect2(1920, 384, 384, 384)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_503nt"]
-atlas = ExtResource("7_730l8")
-region = Rect2(0, 0, 384, 384)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6l1dl"]
-atlas = ExtResource("7_730l8")
-region = Rect2(384, 0, 384, 384)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_obxma"]
-atlas = ExtResource("7_730l8")
-region = Rect2(768, 0, 384, 384)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xqj2v"]
-atlas = ExtResource("7_730l8")
-region = Rect2(1152, 0, 384, 384)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_38wni"]
-atlas = ExtResource("7_730l8")
-region = Rect2(1536, 0, 384, 384)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_psbf0"]
-atlas = ExtResource("7_730l8")
-region = Rect2(1920, 0, 384, 384)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kcbfl"]
-atlas = ExtResource("7_730l8")
-region = Rect2(2304, 0, 384, 384)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4yeom"]
-atlas = ExtResource("7_730l8")
-region = Rect2(0, 0, 384, 384)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lqp58"]
-atlas = ExtResource("7_730l8")
-region = Rect2(768, 0, 384, 384)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_r030d"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dikn0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0oeui")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_oqbdr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_txjm0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wuolu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_t1va6")
-}],
-"loop": 2,
-"name": &"catch",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_503nt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6l1dl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_obxma")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xqj2v")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_38wni")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_psbf0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kcbfl")
-}],
-"loop": 2,
-"name": &"chase",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4yeom")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lqp58")
-}],
-"loop": 1,
-"name": &"idle",
-"speed": 1.0
-}]
+[ext_resource type="SpriteFrames" uid="uid://cy4hbkod8lbrb" path="res://enemy/hugger/art/hugger_animations.tres" id="10_oqbdr"]
 
 [sub_resource type="Animation" id="Animation_oqbdr"]
 length = 0.001
@@ -206,7 +47,6 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_txjm0"]
 resource_name = "dissolve"
-length = 1.0000033854875714
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -325,31 +165,27 @@ metadata/_custom_type_script = "uid://cc0a1u5h7b42u"
 wait_time = 0.5
 one_shot = true
 
-[node name="Visual" parent="." index="1" unique_id=11767020 node_paths=PackedStringArray("animated_sprite", "animated_player")]
+[node name="Visual" parent="." index="1" unique_id=11767020]
 script = ExtResource("7_oqbdr")
-animated_sprite = NodePath("FlipOnVelocityComponent/AnimatedSprite2D")
-animated_player = NodePath("AnimationPlayer")
 
-[node name="FlipOnVelocityComponent" type="Node2D" parent="Visual" index="0" unique_id=1057371357 node_paths=PackedStringArray("target")]
+[node name="FlipOnVelocityComponent" type="Node2D" parent="Visual" index="0" unique_id=77286326 node_paths=PackedStringArray("target")]
 script = ExtResource("8_0oeui")
 target = NodePath("../..")
 metadata/_custom_type_script = "uid://bdthesvcg5qi3"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visual/FlipOnVelocityComponent" index="0" unique_id=2142204300]
-material = SubResource("ShaderMaterial_oqbdr")
-position = Vector2(-1, -156)
-sprite_frames = SubResource("SpriteFrames_r030d")
-animation = &"idle"
-autoplay = "idle"
-frame_progress = 0.7159539
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visual/FlipOnVelocityComponent" index="0" unique_id=1686672782]
+material = ExtResource("9_txjm0")
+position = Vector2(0, -159)
+sprite_frames = ExtResource("10_oqbdr")
+animation = &"catch"
 
-[node name="ShadowSprite" type="Sprite2D" parent="Visual/FlipOnVelocityComponent" index="1" unique_id=363947404]
+[node name="ShadowSprite" type="Sprite2D" parent="Visual/FlipOnVelocityComponent" index="1" unique_id=406773412]
 modulate = Color(1, 1, 1, 0.1548944)
-position = Vector2(-60, 0)
-scale = Vector2(1.417233, 1.417233)
+position = Vector2(-78.99999, 0)
+scale = Vector2(1.4, 1.4)
 texture = ExtResource("7_dikn0")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Visual" index="1" unique_id=1838558583]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visual" index="1" unique_id=1329796798]
 libraries/ = SubResource("AnimationLibrary_wuolu")
 
 [node name="WallCollision" parent="." index="2" unique_id=1847437153]

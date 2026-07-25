@@ -6,16 +6,44 @@
 [ext_resource type="Script" uid="uid://c45oymkgnu2iw" path="res://enemy/fsm/states/run.gd" id="3_483pe"]
 [ext_resource type="Script" uid="uid://5kyj3444bt10" path="res://enemy/fsm/states/attack.gd" id="4_uufwc"]
 [ext_resource type="Script" uid="uid://c4cdida6p2443" path="res://components/pathfinding.gd" id="5_3gopn"]
+[ext_resource type="Script" uid="uid://bkqeoxheqvoet" path="res://enemy/shooter/shooter_visual.gd" id="5_a7qml"]
+[ext_resource type="Script" uid="uid://bdthesvcg5qi3" path="res://components/flip_on_velocity.gd" id="5_m5fl1"]
 [ext_resource type="Script" uid="uid://dsbh06fe22jkp" path="res://components/attack.gd" id="6_e0hhn"]
+[ext_resource type="Shader" uid="uid://b04dcj8qumfp3" path="res://global/assets/shaders/dissolve.gdshader" id="6_ehdc8"]
+[ext_resource type="SpriteFrames" uid="uid://cy4hbkod8lbrb" path="res://enemy/hugger/art/hugger_animations.tres" id="7_a7qml"]
 [ext_resource type="PackedScene" uid="uid://d1jvqv5j5sff8" path="res://weapons/paper/paper.tscn" id="8_e0i0j"]
+[ext_resource type="Texture2D" uid="uid://e81egkb0l45k" path="res://global/assets/shadow-normal.png" id="8_v5crv"]
+[ext_resource type="Animation" uid="uid://ceiyt36r5etsh" path="res://enemy/enemy_dissolve.res" id="9_ehdc8"]
 [ext_resource type="Script" uid="uid://xeasao763wid" path="res://components/acceleration.gd" id="9_x027y"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_txjm0"]
+frequency = 0.0057
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wuolu"]
+noise = SubResource("FastNoiseLite_txjm0")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_naudl"]
+resource_local_to_scene = true
+shader = ExtResource("6_ehdc8")
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_wuolu")
+shader_parameter/dissolve_value = 1.0
+shader_parameter/burn_size = 0.0499999988824
+shader_parameter/burn_color = Color(0, 0, 0, 0.49411765)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a7qml"]
+_data = {
+&"dissolve": ExtResource("9_ehdc8")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1yd0g"]
+radius = 70.0
+height = 252.0
 
 [node name="Shooter" unique_id=4220073 instance=ExtResource("1_36a2s")]
 movement_speed = 600.0
 
 [node name="EnemyStateMachine" parent="." index="0" unique_id=119706350 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("EnemyStateListening")
-report_current_state = true
 
 [node name="EnemyStateListening" type="Node2D" parent="EnemyStateMachine" index="0" unique_id=429731466 node_paths=PackedStringArray("los_component", "exit_if_found")]
 script = ExtResource("2_tknm7")
@@ -45,10 +73,33 @@ exit_if_distance_short = NodePath("../EnemyStateRun")
 exit_if_no_los = NodePath("../EnemyStateListening")
 metadata/_custom_type_script = "uid://5kyj3444bt10"
 
-[node name="Sprite2D" parent="Visual" parent_id_path=PackedInt32Array(11767020) index="0" unique_id=1532422751]
-modulate = Color(0, 0.63867843, 0.3622336, 1)
+[node name="Visual" parent="." index="1" unique_id=11767020 node_paths=PackedStringArray("animation_player")]
+script = ExtResource("5_a7qml")
+animation_player = NodePath("AnimationPlayer")
 
-[node name="HealthComponent" parent="HurtboxComponent" parent_id_path=PackedInt32Array(1909287759) index="0" unique_id=855731163]
+[node name="FlipOnVelocityComponent" type="Node2D" parent="Visual" index="0" unique_id=482440362 node_paths=PackedStringArray("target")]
+script = ExtResource("5_m5fl1")
+target = NodePath("../..")
+metadata/_custom_type_script = "uid://bdthesvcg5qi3"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visual/FlipOnVelocityComponent" index="0" unique_id=766599311]
+modulate = Color(0, 0, 1, 1)
+material = SubResource("ShaderMaterial_naudl")
+position = Vector2(0, -159)
+sprite_frames = ExtResource("7_a7qml")
+animation = &"chase"
+autoplay = "chase"
+
+[node name="ShadowSprite" type="Sprite2D" parent="Visual/FlipOnVelocityComponent" index="1" unique_id=778999952]
+modulate = Color(1, 1, 1, 0.15489441)
+position = Vector2(-78.99999, 0)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("8_v5crv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visual" index="1" unique_id=220214910]
+libraries/enemy = SubResource("AnimationLibrary_a7qml")
+
+[node name="HealthComponent" parent="." index="3" unique_id=855731163]
 max_health = 3
 
 [node name="PathfindingComponent" type="Node2D" parent="." index="4" unique_id=102464900 node_paths=PackedStringArray("_navigation_agent")]
@@ -61,7 +112,6 @@ path_desired_distance = 60.0
 target_desired_distance = 30.0
 path_max_distance = 200.0
 path_postprocessing = 1
-debug_enabled = true
 
 [node name="NavigationUpdateTimer" type="Timer" parent="PathfindingComponent" index="1" unique_id=1655665023]
 wait_time = 0.5
@@ -87,3 +137,9 @@ script = ExtResource("9_x027y")
 time_to_max = 0.4
 time_to_zero = 0.3
 metadata/_custom_type_script = "uid://xeasao763wid"
+
+[node name="CollisionShape2D" parent="HurtboxComponent" parent_id_path=PackedInt32Array(1909287759) index="0" unique_id=1072947480]
+position = Vector2(0, -135)
+shape = SubResource("CapsuleShape2D_1yd0g")
+
+[connection signal="died" from="HealthComponent" to="Visual" method="_on_health_component_died"]

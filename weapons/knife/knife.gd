@@ -2,6 +2,9 @@ extends DirectedWeapon
 class_name Knife
 
 
+@export var deflect: bool = false
+
+
 const CLOSE_ATTACK_SCENE: PackedScene = preload("res://weapons/knife/knife_close_attack.tscn")
 
 var _close_attack: Projectile
