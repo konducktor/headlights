@@ -10,7 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://cysu5inewoy5i" path="res://player/art/girl_animations.png" id="4_hg6s5"]
 [ext_resource type="PackedScene" uid="uid://cdvh3p16ve2le" path="res://weapons/knife/knife.tscn" id="4_qjkh3"]
 [ext_resource type="Material" uid="uid://do4oost55dfdd" path="res://global/assets/shaders/dissolve_material.tres" id="4_yllr7"]
+[ext_resource type="Script" uid="uid://diecge05xce0p" path="res://player/player_sounds.gd" id="7_kb6p2"]
 [ext_resource type="Script" uid="uid://xeasao763wid" path="res://components/acceleration.gd" id="8_rgyib"]
+[ext_resource type="AudioStream" uid="uid://d01i1a2vsybg0" path="res://player/sounds/step_hospital_short.mp3" id="8_wodsf"]
 [ext_resource type="Script" uid="uid://bkptmvu7f3htp" path="res://skills/skills_context.gd" id="12_ebec5"]
 [ext_resource type="Script" uid="uid://c3qokhf8r8ry" path="res://skills/skills_controller.gd" id="12_yllr7"]
 
@@ -264,6 +266,13 @@ frame_progress = 1.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visual" unique_id=1928647732]
 libraries/ = SubResource("AnimationLibrary_kb6p2")
 
+[node name="Sounds" type="Node" parent="." unique_id=1093670299]
+script = ExtResource("7_kb6p2")
+
+[node name="HospitalStep" type="AudioStreamPlayer" parent="Sounds" unique_id=631825945]
+stream = ExtResource("8_wodsf")
+volume_db = -10.0
+
 [node name="WallCollision" type="CollisionShape2D" parent="." unique_id=958840399]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_boad6")
@@ -314,7 +323,7 @@ hurtbox = NodePath("../../HurtboxComponent")
 
 [node name="Container" type="Node" parent="Skills" unique_id=202663198]
 
-[connection signal="started_walking" from="." to="Visual" method="_on_player_started_walking"]
+[connection signal="started_walking" from="." to="Sounds" method="_on_player_started_walking"]
 [connection signal="stopped_walking" from="." to="Visual" method="_on_player_stopped_walking"]
 [connection signal="became_invincible" from="HealthComponent" to="Visual" method="_on_health_component_became_invincible"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
