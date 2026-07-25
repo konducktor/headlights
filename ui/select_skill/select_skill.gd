@@ -11,7 +11,6 @@ func _ready() -> void:
 func _on_select_skill() -> void:
 	for card in cards:
 		var skill_data: SkillData = GlobalSkills.get_random_skill()
-		print(skill_data)
 		card.set_card(skill_data)
 	
 	visible = true

@@ -1,9 +1,7 @@
 [gd_scene format=3 uid="uid://6sn8hec181oq"]
 
 [ext_resource type="Script" uid="uid://cthxlh3au6sv" path="res://skills/skills/speed_multiplier/speed_multiplier.gd" id="1_kyj1w"]
-[ext_resource type="Resource" uid="uid://cdskv8hpfea26" path="res://skills/skills/speed_multiplier/speed_multiplier.tres" id="2_8r21y"]
 
 [node name="SpeedMultiplier" type="Node2D" unique_id=971687902]
 script = ExtResource("1_kyj1w")
 factor = 1.5
-data = ExtResource("2_8r21y")

@@ -20,7 +20,6 @@ func add_skill(skill_data: SkillData) -> void:
 	var skill: Skill = skill_data.skill.instantiate()
 	container.add_child(skill)
 	
-	skill.skill_data = skill_data
 	skill.context = context
 	skill.apply()
 

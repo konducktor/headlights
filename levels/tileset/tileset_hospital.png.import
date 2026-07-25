@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://78lyop40dse"
-path="res://.godot/imported/tileset.png-e8c31d62badf8873ea1ad70282e506b2.ctex"
+uid="uid://8sy8bskhfgw0"
+path="res://.godot/imported/tileset_hospital.png-c4f7bdfb7103b297a963c87af67128fc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/tileset.png"
-dest_files=["res://.godot/imported/tileset.png-e8c31d62badf8873ea1ad70282e506b2.ctex"]
+source_file="res://levels/tileset/tileset_hospital.png"
+dest_files=["res://.godot/imported/tileset_hospital.png-c4f7bdfb7103b297a963c87af67128fc.ctex"]
 
 [params]
 

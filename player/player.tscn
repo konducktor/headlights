@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cdvh3p16ve2le" path="res://weapons/knife/knife.tscn" id="4_qjkh3"]
 [ext_resource type="Material" uid="uid://do4oost55dfdd" path="res://global/assets/shaders/dissolve_material.tres" id="4_yllr7"]
 [ext_resource type="Script" uid="uid://xeasao763wid" path="res://components/acceleration.gd" id="8_rgyib"]
-[ext_resource type="Script" uid="uid://bkptmvu7f3htp" path="res://skills_context.gd" id="12_ebec5"]
+[ext_resource type="Script" uid="uid://bkptmvu7f3htp" path="res://skills/skills/skills_context.gd" id="12_ebec5"]
 [ext_resource type="Script" uid="uid://c3qokhf8r8ry" path="res://skills/skills_controller.gd" id="12_yllr7"]
 [ext_resource type="PackedScene" uid="uid://c2ckgrj4lyrsc" path="res://skills/skills/too_dramatic/too_dramatic.tscn" id="14_kb6p2"]
 

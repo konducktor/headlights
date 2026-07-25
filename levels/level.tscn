@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://bdeqn5d43smam"]
 
-[ext_resource type="TileSet" uid="uid://cxfc0uaiyefyh" path="res://levels/tileset.tres" id="1_cwqvt"]
+[ext_resource type="TileSet" uid="uid://cxfc0uaiyefyh" path="res://levels/tileset/tileset.tres" id="1_cwqvt"]
 [ext_resource type="PackedScene" uid="uid://btaokpyn0qvsy" path="res://player/player.tscn" id="2_hjsbj"]
 
 [node name="Level" type="Node2D" unique_id=1005489076]

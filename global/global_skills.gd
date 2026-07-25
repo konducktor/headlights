@@ -28,7 +28,6 @@ func load_all_skills(path: String) -> Array[SkillData]:
 		if file.ends_with("/"):
 			out.append_array(load_all_skills(path + file))
 		elif file.ends_with(".tres"):
-			prints(path, file)
 			var res := load(path + file)
 			if res is SkillData:
 				out.append(res as SkillData)

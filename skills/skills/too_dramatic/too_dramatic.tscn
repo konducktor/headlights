@@ -1,8 +1,6 @@
 [gd_scene format=3 uid="uid://c2ckgrj4lyrsc"]
 
 [ext_resource type="Script" uid="uid://b4jvgqdn8j3dr" path="res://skills/skills/too_dramatic/too_dramatic.gd" id="1_kxeor"]
-[ext_resource type="Resource" uid="uid://c7nar0eq2k7e0" path="res://skills/skills/too_dramatic/too_dramatic.tres" id="2_xlkd5"]
 
 [node name="TooDramatic" type="Node2D" unique_id=918380001]
 script = ExtResource("1_kxeor")
-data = ExtResource("2_xlkd5")

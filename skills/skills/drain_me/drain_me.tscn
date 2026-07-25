@@ -1,9 +1,7 @@
 [gd_scene format=3 uid="uid://csl3cmvcbk5f6"]
 
 [ext_resource type="Script" uid="uid://dafb0qv3r28xx" path="res://skills/skills/drain_me/drain_me.gd" id="1_grhr3"]
-[ext_resource type="Resource" uid="uid://cnshbjkvidnls" path="res://skills/skills/drain_me/drain_me.tres" id="2_pac7y"]
 
 [node name="DrainMe" type="Node2D" unique_id=2132123184]
 script = ExtResource("1_grhr3")
 regenerate_amount = 2
-data = ExtResource("2_pac7y")

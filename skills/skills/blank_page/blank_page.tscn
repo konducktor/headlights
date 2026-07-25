@@ -1,8 +1,6 @@
 [gd_scene format=3 uid="uid://slpt1nitkgdp"]
 
 [ext_resource type="Script" uid="uid://dbnvrp080y3kw" path="res://skills/skills/blank_page/blank_page.gd" id="1_6xt7u"]
-[ext_resource type="Resource" uid="uid://h7jgt3xvu8gh" path="res://skills/skills/blank_page/blank_page.tres" id="2_3gykx"]
 
 [node name="BlankPage" type="Node2D" unique_id=1370873495]
 script = ExtResource("1_6xt7u")
-data = ExtResource("2_3gykx")
