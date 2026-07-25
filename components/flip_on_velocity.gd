@@ -9,4 +9,7 @@ const EPSILON: float = 0.5
 
 
 func _process(_delta: float) -> void:
-	scale.x = 1.0 if (target.velocity.x >= EPSILON) != reverse else -1.0
+	if absf(target.velocity.x) < EPSILON:
+		return
+	
+	scale.x = 1.0 if (target.velocity.x > EPSILON) != reverse else -1.0

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtsxkl4ywi85s"
-path="res://.godot/imported/lamp_light.png-5e1fc58609a025da4d32d740cabfb4e4.ctex"
+uid="uid://percbo7p2kpj"
+path="res://.godot/imported/HospitalLamp.png-c54de4ef18c322426bbc8588ee751cc6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/lighting/lamp_light.png"
-dest_files=["res://.godot/imported/lamp_light.png-5e1fc58609a025da4d32d740cabfb4e4.ctex"]
+source_file="res://levels/lighting/art/HospitalLamp.png"
+dest_files=["res://.godot/imported/HospitalLamp.png-c54de4ef18c322426bbc8588ee751cc6.ctex"]
 
 [params]
 

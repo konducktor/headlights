@@ -2,33 +2,16 @@ extends Enemy
 class_name Hugger
 
 
-var player_hugged: bool
-var died: bool
+var enemy_state_machine: EnemyStateMachine
 
 
 func _ready() -> void:
-	player_hugged = false
-	died = false
+	enemy_state_machine = $EnemyStateMachine
 	super()
 
 
-func _on_enemy_state_grab_entered() -> void:
-	if died:
-		return
+func clear_grab_and_queue_free() -> void:
+	if (enemy_state_machine.current_state is EnemyStateGrab) or (enemy_state_machine.current_state is EnemyStateAttack):
+		Global.player.free_from_stuck()
 	
-	player_hugged = true
-
-
-func _on_enemy_state_chasing_entered() -> void:
-	if died:
-		return
-	
-	player_hugged = true
-
-
-
-func _on_health_component_died() -> void:
-	died = true
-	player.free_from_stuck()
-	
-	super()
+	queue_free()

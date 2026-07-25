@@ -7,7 +7,6 @@
 radius = 15.0
 
 [node name="Projectile" unique_id=1317603494 instance=ExtResource("1_yeft5")]
-damage = 1
 speed = 1000.0
 
 [node name="LivingTimer" parent="." index="0" unique_id=1334090812]

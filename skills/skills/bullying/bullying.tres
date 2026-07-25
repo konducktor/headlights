@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://by8w20ffiu0v6"]
+
+[ext_resource type="Script" uid="uid://c2qrjbbmbwn2p" path="res://skills/skill_data.gd" id="1_w33pa"]
+
+[resource]
+script = ExtResource("1_w33pa")
+name = "Bullying"
+description = "Allows to deflect enemy projectiles with "
+metadata/_custom_type_script = "uid://c2qrjbbmbwn2p"

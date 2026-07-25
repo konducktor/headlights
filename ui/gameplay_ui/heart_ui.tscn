@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://6rnxfnarx8si"]
+
+[ext_resource type="Script" uid="uid://c8dn1tlif5y3g" path="res://ui/gameplay_ui/heart_ui.gd" id="1_5gxyv"]
+[ext_resource type="Texture2D" uid="uid://bxkctvi7qe3dp" path="res://ui/gameplay_ui/art/heart.png" id="1_g7ygl"]
+[ext_resource type="Texture2D" uid="uid://bl2qkjmsejay7" path="res://ui/gameplay_ui/art/half_heart.png" id="2_7i83r"]
+[ext_resource type="Texture2D" uid="uid://djoh3w8k8rka2" path="res://ui/gameplay_ui/art/no_heart.png" id="3_5gxyv"]
+
+[node name="HeartUI" type="Control" unique_id=841508613 node_paths=PackedStringArray("heart", "half_heart", "no_heart")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5gxyv")
+heart = NodePath("MarginContainer/Heart")
+half_heart = NodePath("MarginContainer/HalfHeart")
+no_heart = NodePath("MarginContainer/NoHeart")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1307304433]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Heart" type="TextureRect" parent="MarginContainer" unique_id=191490732]
+layout_mode = 2
+texture = ExtResource("1_g7ygl")
+
+[node name="HalfHeart" type="TextureRect" parent="MarginContainer" unique_id=1760687425]
+layout_mode = 2
+texture = ExtResource("2_7i83r")
+
+[node name="NoHeart" type="TextureRect" parent="MarginContainer" unique_id=1997650407]
+layout_mode = 2
+texture = ExtResource("3_5gxyv")

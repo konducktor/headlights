@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://bdthesvcg5qi3" path="res://components/flip_on_velocity.gd" id="5_m5fl1"]
 [ext_resource type="Script" uid="uid://dsbh06fe22jkp" path="res://components/attack.gd" id="6_e0hhn"]
 [ext_resource type="Shader" uid="uid://b04dcj8qumfp3" path="res://global/assets/shaders/dissolve.gdshader" id="6_ehdc8"]
-[ext_resource type="SpriteFrames" uid="uid://cy4hbkod8lbrb" path="res://enemy/hugger/art/hugger_animations.tres" id="7_a7qml"]
+[ext_resource type="Texture2D" uid="uid://dktgi2vqoy08g" path="res://enemy/shooter/art/shooter_animations.png" id="8_a7qml"]
 [ext_resource type="PackedScene" uid="uid://d1jvqv5j5sff8" path="res://weapons/paper/paper.tscn" id="8_e0i0j"]
 [ext_resource type="Texture2D" uid="uid://e81egkb0l45k" path="res://global/assets/shadow-normal.png" id="8_v5crv"]
 [ext_resource type="Animation" uid="uid://ceiyt36r5etsh" path="res://enemy/enemy_dissolve.res" id="9_ehdc8"]
@@ -30,10 +30,108 @@ shader_parameter/dissolve_value = 1.0
 shader_parameter/burn_size = 0.0499999988824
 shader_parameter/burn_color = Color(0, 0, 0, 0.49411765)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5crv"]
+atlas = ExtResource("8_a7qml")
+region = Rect2(0, 0, 384, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_naudl"]
+atlas = ExtResource("8_a7qml")
+region = Rect2(1152, 0, 384, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxdot"]
+atlas = ExtResource("8_a7qml")
+region = Rect2(0, 384, 384, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hq8q1"]
+atlas = ExtResource("8_a7qml")
+region = Rect2(384, 384, 384, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4krqn"]
+atlas = ExtResource("8_a7qml")
+region = Rect2(768, 384, 384, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lcbfy"]
+atlas = ExtResource("8_a7qml")
+region = Rect2(1152, 384, 384, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ak7e"]
+atlas = ExtResource("8_a7qml")
+region = Rect2(1536, 384, 384, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qh1qt"]
+atlas = ExtResource("8_a7qml")
+region = Rect2(0, 0, 384, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2c7nn"]
+atlas = ExtResource("8_a7qml")
+region = Rect2(384, 0, 384, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8by82"]
+atlas = ExtResource("8_a7qml")
+region = Rect2(768, 0, 384, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_slth7"]
+atlas = ExtResource("8_a7qml")
+region = Rect2(1152, 0, 384, 384)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d0rpd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5crv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_naudl")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxdot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hq8q1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4krqn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lcbfy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ak7e")
+}],
+"loop": 2,
+"name": &"shooting",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qh1qt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2c7nn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8by82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_slth7")
+}],
+"loop": 2,
+"name": &"walking",
+"speed": 10.0
+}]
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a7qml"]
 _data = {
 &"dissolve": ExtResource("9_ehdc8")
 }
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a7qml"]
+radius = 55.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1yd0g"]
 radius = 70.0
@@ -73,8 +171,9 @@ exit_if_distance_short = NodePath("../EnemyStateRun")
 exit_if_no_los = NodePath("../EnemyStateListening")
 metadata/_custom_type_script = "uid://5kyj3444bt10"
 
-[node name="Visual" parent="." index="1" unique_id=11767020 node_paths=PackedStringArray("animation_player")]
+[node name="Visual" parent="." index="1" unique_id=11767020 node_paths=PackedStringArray("animated_sprite", "animation_player")]
 script = ExtResource("5_a7qml")
+animated_sprite = NodePath("FlipOnVelocityComponent/AnimatedSprite2D")
 animation_player = NodePath("AnimationPlayer")
 
 [node name="FlipOnVelocityComponent" type="Node2D" parent="Visual" index="0" unique_id=482440362 node_paths=PackedStringArray("target")]
@@ -83,21 +182,25 @@ target = NodePath("../..")
 metadata/_custom_type_script = "uid://bdthesvcg5qi3"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visual/FlipOnVelocityComponent" index="0" unique_id=766599311]
-modulate = Color(0, 0, 1, 1)
 material = SubResource("ShaderMaterial_naudl")
-position = Vector2(0, -159)
-sprite_frames = ExtResource("7_a7qml")
-animation = &"chase"
-autoplay = "chase"
+position = Vector2(0, -117)
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_d0rpd")
+animation = &"shooting"
+autoplay = "idle"
+frame_progress = 0.25996795
 
 [node name="ShadowSprite" type="Sprite2D" parent="Visual/FlipOnVelocityComponent" index="1" unique_id=778999952]
 modulate = Color(1, 1, 1, 0.15489441)
-position = Vector2(-78.99999, 0)
-scale = Vector2(1.4, 1.4)
+position = Vector2(-49.000008, 0)
+scale = Vector2(1.2, 1.2)
 texture = ExtResource("8_v5crv")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visual" index="1" unique_id=220214910]
 libraries/enemy = SubResource("AnimationLibrary_a7qml")
+
+[node name="WallCollision" parent="." index="2" unique_id=1847437153]
+shape = SubResource("CircleShape2D_a7qml")
 
 [node name="HealthComponent" parent="." index="3" unique_id=855731163]
 max_health = 3
@@ -130,6 +233,7 @@ weapon = NodePath("Paper")
 metadata/_custom_type_script = "uid://dsbh06fe22jkp"
 
 [node name="Paper" parent="AttackComponent" index="0" unique_id=816564922 node_paths=PackedStringArray("entity") instance=ExtResource("8_e0i0j")]
+position = Vector2(0, -135)
 entity = NodePath("../..")
 
 [node name="AccelerationComponent" type="Node" parent="." index="7" unique_id=1831776162]
@@ -142,4 +246,7 @@ metadata/_custom_type_script = "uid://xeasao763wid"
 position = Vector2(0, -135)
 shape = SubResource("CapsuleShape2D_1yd0g")
 
+[connection signal="entered" from="EnemyStateMachine/EnemyStateListening" to="Visual" method="_on_enemy_state_listening_entered"]
+[connection signal="entered" from="EnemyStateMachine/EnemyStateRun" to="Visual" method="_on_enemy_state_run_entered"]
+[connection signal="entered" from="EnemyStateMachine/EnemyStateAttack" to="Visual" method="_on_enemy_state_attack_entered"]
 [connection signal="died" from="HealthComponent" to="Visual" method="_on_health_component_died"]

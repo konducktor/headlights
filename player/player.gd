@@ -156,3 +156,7 @@ func _on_health_component_regenerated(amount: int) -> void:
 
 func _on_health_component_took_damage(amount: int) -> void:
 	Global.player_took_damage.emit(amount)
+
+
+func _on_health_component_died() -> void:
+	die()
