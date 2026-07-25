@@ -27,16 +27,16 @@ metadata/_custom_type_script = "uid://chldfe8hq058c"
 shape = SubResource("CircleShape2D_g4v7s")
 debug_color = Color(0.95472616, 0.21677268, 0, 0.41960785)
 
-[node name="HurtboxComponent" parent="." unique_id=1909287759 node_paths=PackedStringArray("entity", "health_component") instance=ExtResource("3_jspmv")]
-entity = NodePath("..")
-health_component = NodePath("HealthComponent")
-
-[node name="HealthComponent" type="Node" parent="HurtboxComponent" unique_id=855731163]
+[node name="HealthComponent" type="Node" parent="." unique_id=855731163]
 script = ExtResource("3_glcaf")
 max_health = 5
 metadata/_custom_type_script = "uid://cj4hgonyylrme"
 
+[node name="HurtboxComponent" parent="." unique_id=1909287759 node_paths=PackedStringArray("entity", "health_component") instance=ExtResource("3_jspmv")]
+entity = NodePath("..")
+health_component = NodePath("../HealthComponent")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=1072947480]
 shape = SubResource("CircleShape2D_yf5fn")
 
-[connection signal="died" from="HurtboxComponent/HealthComponent" to="." method="_on_health_component_died"]
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]

@@ -2,7 +2,7 @@ extends Area2D
 class_name HurtboxComponent
 
 
-signal took_damage
+signal took_damage(projectile: Projectile)
 
 
 @export var entity: CharacterBody2D
@@ -13,20 +13,20 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 
 
-func take_damage(damage: int) -> void:
+func take_damage(damage: int, projectile: Projectile = null) -> void:
 	health_component.take_damage(damage)
-	took_damage.emit()
+	took_damage.emit(projectile)
 
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Projectile:
-		var bullet := body as Projectile
+		var projectile := body as Projectile
 		
-		if not bullet.weapon or not entity:
+		if not projectile.weapon or not entity:
 			return
 		
-		var cond1: bool = (bullet.weapon.entity is Player) and (entity is Enemy)
-		var cond2: bool = (bullet.weapon.entity is Enemy) and (entity is Player)
+		var cond1: bool = (projectile.weapon.entity is Player) and (entity is Enemy)
+		var cond2: bool = (projectile.weapon.entity is Enemy) and (entity is Player)
 		
 		if cond1 or cond2:
-			take_damage(body.damage)
+			take_damage(projectile.weapon.damage, projectile)

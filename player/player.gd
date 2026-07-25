@@ -128,14 +128,16 @@ func _on_dash_timer_timeout() -> void:
 		stopped_dashing.emit()
 
 
-func _on_dash_cooldown_timer_timeout() -> void:
-	can_dash = true
-
-
-func _on_health_component_died() -> void:
+func die() -> void:
 	died.emit()
 	player_state = PlayerState.DIE
 	Global.player_died.emit()
+
+
+
+func _on_dash_cooldown_timer_timeout() -> void:
+	can_dash = true
+
 
 func _on_health_component_health_changed(new_value: int) -> void:
 	Global.player_health_changed.emit(new_value)

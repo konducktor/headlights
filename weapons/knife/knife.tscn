@@ -5,6 +5,7 @@
 
 [node name="Knife" type="Node2D" unique_id=1848124045]
 script = ExtResource("1_iqiin")
+damage = 2
 
 [node name="Visual" type="Node2D" parent="." unique_id=1566469830]
 

@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://bgnlnpksxqdc"]
+
+[ext_resource type="PackedScene" uid="uid://bdrdqsbsh2won" path="res://ui/select_skill/card.tscn" id="1_nqw3i"]
+[ext_resource type="Script" uid="uid://dt1xkptfpup0e" path="res://ui/select_skill/select_skill.gd" id="1_p5sd2"]
+
+[node name="SelectSkill" type="Control" unique_id=974454752 node_paths=PackedStringArray("cards")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p5sd2")
+cards = [NodePath("Control/Card"), NodePath("Control/Card2"), NodePath("Control/Card3")]
+
+[node name="Control" type="Control" parent="." unique_id=607018415]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 51.0
+offset_right = 20.0
+offset_bottom = 91.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Card" parent="Control" unique_id=1169764385 instance=ExtResource("1_nqw3i")]
+layout_mode = 1
+offset_left = -257.0
+offset_right = 243.0
+
+[node name="Card2" parent="Control" unique_id=2068448509 instance=ExtResource("1_nqw3i")]
+layout_mode = 1
+offset_left = -807.0
+offset_right = -307.0
+
+[node name="Card3" parent="Control" unique_id=243730734 instance=ExtResource("1_nqw3i")]
+layout_mode = 1
+offset_left = 298.0
+offset_right = 798.0
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2129044635]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 67.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 64
+
+[node name="Label" type="Label" parent="MarginContainer" unique_id=1336965953]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Self-deprecation: Hurt yourself to get one of these abilities"
+horizontal_alignment = 1

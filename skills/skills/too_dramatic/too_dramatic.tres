@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://c7nar0eq2k7e0"]
+
+[ext_resource type="Script" uid="uid://c2qrjbbmbwn2p" path="res://skills/skill_data.gd" id="1_qy35m"]
+[ext_resource type="PackedScene" uid="uid://c2ckgrj4lyrsc" path="res://skills/skills/too_dramatic/too_dramatic.tscn" id="2_nnrch"]
+
+[resource]
+script = ExtResource("1_qy35m")
+name = "Too dramatic"
+description = "Doubles the damage of the knife"
+skill = ExtResource("2_nnrch")
+metadata/_custom_type_script = "uid://c2qrjbbmbwn2p"

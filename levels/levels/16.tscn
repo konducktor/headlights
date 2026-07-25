@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bdeqn5d43smam" path="res://levels/level.tscn" id="1_tprkl"]
 [ext_resource type="PackedScene" uid="uid://do0fniahbe6co" path="res://levels/areas/level_area.tscn" id="2_udl7p"]
 [ext_resource type="PackedScene" uid="uid://bk6xcpfk8ygg0" path="res://enemy/hugger/hugger.tscn" id="2_y43jq"]
+[ext_resource type="PackedScene" uid="uid://b135samrckoi6" path="res://skills/skill_trigger/skill_trigger.tscn" id="4_aw0uy"]
 [ext_resource type="PackedScene" uid="uid://b103m5ni47eib" path="res://levels/lighting/lamp.tscn" id="4_twf03"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fcnqv"]
@@ -76,9 +77,12 @@ position = Vector2(1092, 4027)
 
 [node name="Area4" type="Node2D" parent="Areas" index="3" unique_id=162831258]
 y_sort_enabled = true
-position = Vector2(0, 11)
+position = Vector2(1, 11)
 
-[node name="LevelArea" parent="Areas/Area4" index="0" unique_id=889201473 node_paths=PackedStringArray("enemies_in_this_area") instance=ExtResource("2_udl7p")]
+[node name="SkillTrigger" parent="Areas/Area4" index="0" unique_id=1588274220 instance=ExtResource("4_aw0uy")]
+position = Vector2(1715, 1575)
+
+[node name="LevelArea" parent="Areas/Area4" index="1" unique_id=889201473 node_paths=PackedStringArray("enemies_in_this_area") instance=ExtResource("2_udl7p")]
 position = Vector2(2874, 1962)
 enemies_in_this_area = [NodePath("../Hugger"), NodePath("../Hugger2"), NodePath("../Hugger3"), NodePath("../Hugger4")]
 
@@ -86,16 +90,16 @@ enemies_in_this_area = [NodePath("../Hugger"), NodePath("../Hugger2"), NodePath(
 position = Vector2(-941, -283)
 shape = SubResource("RectangleShape2D_p1u0y")
 
-[node name="Hugger" parent="Areas/Area4" index="1" unique_id=1182316531 instance=ExtResource("2_y43jq")]
+[node name="Hugger" parent="Areas/Area4" index="2" unique_id=1182316531 instance=ExtResource("2_y43jq")]
 position = Vector2(3705, 2395)
 
-[node name="Hugger2" parent="Areas/Area4" index="2" unique_id=2038542474 instance=ExtResource("2_y43jq")]
+[node name="Hugger2" parent="Areas/Area4" index="3" unique_id=2038542474 instance=ExtResource("2_y43jq")]
 position = Vector2(3956, 2331)
 
-[node name="Hugger3" parent="Areas/Area4" index="3" unique_id=1740518471 instance=ExtResource("2_y43jq")]
+[node name="Hugger3" parent="Areas/Area4" index="4" unique_id=1740518471 instance=ExtResource("2_y43jq")]
 position = Vector2(3892, 1897)
 
-[node name="Hugger4" parent="Areas/Area4" index="4" unique_id=1506589883 instance=ExtResource("2_y43jq")]
+[node name="Hugger4" parent="Areas/Area4" index="5" unique_id=1506589883 instance=ExtResource("2_y43jq")]
 position = Vector2(3641, 1679)
 
 [node name="Area5" type="Node2D" parent="Areas" index="4" unique_id=1373380442]

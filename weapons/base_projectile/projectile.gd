@@ -2,7 +2,6 @@ extends CharacterBody2D
 class_name Projectile
 
 
-@export var damage: int
 @export_range(-180.0, 180.0) var direction_degrees: float
 @export var speed: float
 

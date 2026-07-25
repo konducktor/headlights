@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://b103m5ni47eib"]
 
-[ext_resource type="Texture2D" uid="uid://bfq0fox1l3166" path="res://levels/lighting/LampSketch.png" id="1_q2kur"]
+[ext_resource type="Texture2D" uid="uid://percbo7p2kpj" path="res://levels/lighting/HospitalLamp.png" id="1_o18or"]
 [ext_resource type="Texture2D" uid="uid://dtsxkl4ywi85s" path="res://levels/lighting/lamp_light.png" id="2_o18or"]
 
 [node name="Lamp" type="Node2D" unique_id=242089751]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=860667441]
 z_index = 1
-texture = ExtResource("1_q2kur")
+texture = ExtResource("1_o18or")
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=850107468]
 z_index = -1

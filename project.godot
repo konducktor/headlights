@@ -24,6 +24,7 @@ buses/default_bus_layout="uid://dm15lkcmsdmsr"
 Global="*uid://cu650nstventr"
 SceneTransition="*uid://tg7cb2f1fqkm"
 Debugging="*uid://dafobwyy8vkgo"
+GlobalSkills="*uid://blf6hn6f8w2jp"
 
 [debug]
 
@@ -47,6 +48,7 @@ folder_colors={
 "res://levels/": "blue",
 "res://player/": "teal",
 "res://sandbox/": "gray",
+"res://skills/": "yellow",
 "res://weapons/": "green"
 }
 

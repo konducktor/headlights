@@ -22,3 +22,5 @@ func _on_enemy_state_chasing_entered() -> void:
 func _on_health_component_died() -> void:
 	if player_hugged:
 		player.free_from_stuck()
+	
+	super()

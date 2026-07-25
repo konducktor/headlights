@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://cdskv8hpfea26"]
+
+[ext_resource type="Script" uid="uid://c2qrjbbmbwn2p" path="res://skills/skill_data.gd" id="1_8ipp6"]
+[ext_resource type="PackedScene" uid="uid://6sn8hec181oq" path="res://skills/skills/speed_multiplier/speed_multiplier.tscn" id="2_6yin0"]
+
+[resource]
+script = ExtResource("1_8ipp6")
+name = "Speed limit ahead"
+description = "Increases speed by 50%"
+skill = ExtResource("2_6yin0")
+metadata/_custom_type_script = "uid://c2qrjbbmbwn2p"

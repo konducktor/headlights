@@ -14,3 +14,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	move_and_slide()
+
+
+func _on_health_component_died() -> void:
+	Global.enemy_died.emit()

@@ -3,6 +3,10 @@ extends Node2D
 class_name Weapon
 
 
+signal fired(projectile: Projectile)
+
+
+@export var damage: int
 @export var entity: CharacterBody2D
 var can_fire: bool
 
@@ -19,14 +23,14 @@ func fire() -> void:
 	if not can_fire:
 		return
 	
-	_fire_projectile()
+	fired.emit(_fire_projectile())
 	
 	_cooldown_timer.start()
 	can_fire = false
 
 
 @abstract
-func _fire_projectile() -> void
+func _fire_projectile() -> Projectile
 
 
 func create_projectile(projectile_scene: PackedScene) -> Projectile:

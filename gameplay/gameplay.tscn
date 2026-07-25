@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://dmqx5au0cmxxu"]
 
-[ext_resource type="PackedScene" uid="uid://cfatfldt20awi" path="res://gameplay/gameplay_ui.tscn" id="1_41n4r"]
+[ext_resource type="PackedScene" uid="uid://cfatfldt20awi" path="res://ui/gameplay_ui/gameplay_ui.tscn" id="1_41n4r"]
 [ext_resource type="PackedScene" uid="uid://do7aco8xccrl7" path="res://levels/levels/16.tscn" id="2_41n4r"]
 [ext_resource type="Shader" uid="uid://wg6vesuf1jj5" path="res://global/assets/shaders/background.gdshader" id="3_ueusv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r030d"]
 shader = ExtResource("3_ueusv")
 shader_parameter/color_a = Color(0.02, 0.02, 0.05, 1)
-shader_parameter/color_b = Color(0.04690831, 0.045500003, 0.13, 1)
+shader_parameter/color_b = Color(0.107547544, 0.10762096, 0.23824042, 1)
 shader_parameter/color_c = Color(0.034999996, 0.13891661, 0.25, 1)
 shader_parameter/noise_scale = 3.0
 shader_parameter/speed = 0.1600000076

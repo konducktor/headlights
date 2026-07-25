@@ -3,14 +3,17 @@
 [ext_resource type="Script" uid="uid://c5i1sbh3kvhv8" path="res://player/player.gd" id="1_rkbax"]
 [ext_resource type="Script" uid="uid://dm7naomcfnfxa" path="res://player/player_visual.gd" id="2_8t03j"]
 [ext_resource type="Texture2D" uid="uid://becemnhwx24jr" path="res://player/art/GirlDefault.png" id="2_g6k8r"]
-[ext_resource type="Texture2D" uid="uid://e81egkb0l45k" path="res://global/assets/shadow-normal.png" id="3_boad6"]
 [ext_resource type="Script" uid="uid://cj4hgonyylrme" path="res://components/health.gd" id="3_g6k8r"]
 [ext_resource type="Script" uid="uid://dsbh06fe22jkp" path="res://components/attack.gd" id="3_yw30f"]
 [ext_resource type="Script" uid="uid://bdthesvcg5qi3" path="res://components/flip_on_velocity.gd" id="4_2ieo8"]
 [ext_resource type="PackedScene" uid="uid://b4d7iqrgw7kw0" path="res://components/hurtbox.tscn" id="4_g6k8r"]
 [ext_resource type="Texture2D" uid="uid://cysu5inewoy5i" path="res://player/art/girl_animations.png" id="4_hg6s5"]
 [ext_resource type="PackedScene" uid="uid://cdvh3p16ve2le" path="res://weapons/knife/knife.tscn" id="4_qjkh3"]
+[ext_resource type="Material" uid="uid://do4oost55dfdd" path="res://global/assets/shaders/dissolve_material.tres" id="4_yllr7"]
 [ext_resource type="Script" uid="uid://xeasao763wid" path="res://components/acceleration.gd" id="8_rgyib"]
+[ext_resource type="Script" uid="uid://bkptmvu7f3htp" path="res://skills_context.gd" id="12_ebec5"]
+[ext_resource type="Script" uid="uid://c3qokhf8r8ry" path="res://skills/skills_controller.gd" id="12_yllr7"]
+[ext_resource type="PackedScene" uid="uid://c2ckgrj4lyrsc" path="res://skills/skills/too_dramatic/too_dramatic.tscn" id="14_kb6p2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hg6s5"]
 atlas = ExtResource("2_g6k8r")
@@ -60,6 +63,85 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="Animation" id="Animation_ebec5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlipOnVelocityComponent/AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlipOnVelocityComponent/AnimatedSprite2D:material:shader_parameter/dissolve_value")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_kb6p2"]
+resource_name = "death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlipOnVelocityComponent/AnimatedSprite2D:material:shader_parameter/dissolve_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"die"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_yllr7"]
+resource_name = "took_damage"
+length = 0.4666700243387371
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlipOnVelocityComponent/AnimatedSprite2D:modulate")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.1, 0.13333334, 0.16666667, 0.20000002, 0.23333335, 0.26666668, 0.3, 0.33333334, 0.36666667, 0.40000004, 0.43333337, 0.46666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kb6p2"]
+_data = {
+&"RESET": SubResource("Animation_ebec5"),
+&"death": SubResource("Animation_kb6p2"),
+&"took_damage": SubResource("Animation_yllr7")
+}
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_boad6"]
 radius = 19.0
 height = 66.0
@@ -86,14 +168,14 @@ one_shot = true
 [node name="DashCooldownTimer" type="Timer" parent="." unique_id=1400267839]
 wait_time = 0.5
 
-[node name="Visual" type="Node2D" parent="." unique_id=1183445228 node_paths=PackedStringArray("animated_sprite")]
+[node name="Visual" type="Node2D" parent="." unique_id=1183445228 node_paths=PackedStringArray("animated_sprite", "animation_player")]
 script = ExtResource("2_8t03j")
 animated_sprite = NodePath("FlipOnVelocityComponent/AnimatedSprite2D")
+animation_player = NodePath("AnimationPlayer")
 
 [node name="Shadow" type="Sprite2D" parent="Visual" unique_id=840472693]
 modulate = Color(1, 1, 1, 0.15686275)
 scale = Vector2(0.77066326, 0.77066326)
-texture = ExtResource("3_boad6")
 
 [node name="FlipOnVelocityComponent" type="Node2D" parent="Visual" unique_id=1772114146 node_paths=PackedStringArray("target")]
 script = ExtResource("4_2ieo8")
@@ -102,21 +184,29 @@ reverse = true
 metadata/_custom_type_script = "uid://bdthesvcg5qi3"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visual/FlipOnVelocityComponent" unique_id=2144488361]
+material = ExtResource("4_yllr7")
 position = Vector2(0, -117)
 sprite_frames = SubResource("SpriteFrames_rgyib")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.10511581
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visual" unique_id=1928647732]
+libraries/ = SubResource("AnimationLibrary_kb6p2")
+
 [node name="WallCollision" type="CollisionShape2D" parent="." unique_id=958840399]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_boad6")
 debug_color = Color(0.97956854, 0, 0.39084068, 0.41960785)
 
-[node name="HealthComponent" type="Node" parent="." unique_id=297095711]
+[node name="HealthComponent" type="Node" parent="." unique_id=297095711 node_paths=PackedStringArray("damage_cooldown_timer")]
 script = ExtResource("3_g6k8r")
 max_health = 10
+damage_cooldown_timer = NodePath("DamageCooldownTimer")
 metadata/_custom_type_script = "uid://cj4hgonyylrme"
+
+[node name="DamageCooldownTimer" type="Timer" parent="HealthComponent" unique_id=214751218]
+one_shot = true
 
 [node name="HurtboxComponent" parent="." unique_id=1909287759 node_paths=PackedStringArray("entity", "health_component") instance=ExtResource("4_g6k8r")]
 entity = NodePath("..")
@@ -142,12 +232,26 @@ time_to_max = 0.4
 time_to_zero = 0.3
 metadata/_custom_type_script = "uid://xeasao763wid"
 
+[node name="Skills" type="Node" parent="." unique_id=644768250]
+script = ExtResource("12_yllr7")
+
+[node name="Context" type="Node" parent="Skills" unique_id=587520695 node_paths=PackedStringArray("player", "health", "attack", "hurtbox")]
+script = ExtResource("12_ebec5")
+player = NodePath("../..")
+health = NodePath("../../HealthComponent")
+attack = NodePath("../../AttackComponent")
+hurtbox = NodePath("../../HurtboxComponent")
+
+[node name="Container" type="Node" parent="Skills" unique_id=202663198]
+
+[node name="TooDramatic" parent="Skills/Container" unique_id=918380001 instance=ExtResource("14_kb6p2")]
+
 [connection signal="started_walking" from="." to="Visual" method="_on_player_started_walking"]
 [connection signal="stopped_walking" from="." to="Visual" method="_on_player_stopped_walking"]
-[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
 [connection signal="max_health_changed" from="HealthComponent" to="." method="_on_health_component_max_health_changed"]
 [connection signal="max_health_decreased" from="HealthComponent" to="." method="_on_health_component_max_health_decreased"]
 [connection signal="max_health_increased" from="HealthComponent" to="." method="_on_health_component_max_health_increased"]
 [connection signal="regenerated" from="HealthComponent" to="." method="_on_health_component_regenerated"]
 [connection signal="took_damage" from="HealthComponent" to="." method="_on_health_component_took_damage"]
+[connection signal="took_damage" from="HealthComponent" to="Visual" method="_on_health_component_took_damage"]

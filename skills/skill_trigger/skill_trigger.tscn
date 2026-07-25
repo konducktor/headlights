@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://b135samrckoi6"]
+
+[ext_resource type="Script" uid="uid://rrwl5ajebxo8" path="res://skills/skill_trigger/skill_trigger.gd" id="1_nm7ll"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r030d"]
+size = Vector2(128, 256)
+
+[node name="SkillTrigger" type="Area2D" unique_id=1588274220]
+script = ExtResource("1_nm7ll")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2078432326]
+shape = SubResource("RectangleShape2D_r030d")
+debug_color = Color(0.61273676, 0.53822136, 0, 0.41960785)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
