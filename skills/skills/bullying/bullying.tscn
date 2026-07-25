@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bvredi8vc4y2i"]
+
+[ext_resource type="Script" uid="uid://c678jcsym6f7d" path="res://skills/skills/bullying/bullying.gd" id="1_hxu31"]
+
+[node name="Bullying" type="Node2D" unique_id=1946203400]
+script = ExtResource("1_hxu31")

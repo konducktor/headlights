@@ -1,5 +1,6 @@
 extends Control
 
+
 @export var cards: Array[SkillSelectCard]
 
 func _ready() -> void:
@@ -14,10 +15,17 @@ func _on_select_skill() -> void:
 	for i in range(len(cards)):
 		cards[i].set_card(skills[i])
 	
-	visible = true
-	Global.set_pause(true)
+	set_active(true)
 
 
 func _on_apply_skill(_skill: SkillData) -> void:
-	visible = false
-	Global.set_pause(false)
+	set_active(false)
+
+
+func _on_skip_button_pressed() -> void:
+	set_active(false)
+
+
+func set_active(value: bool) -> void:
+	visible = value
+	Global.set_pause(value)

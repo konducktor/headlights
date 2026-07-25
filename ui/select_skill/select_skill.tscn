@@ -2,6 +2,22 @@
 
 [ext_resource type="PackedScene" uid="uid://bdrdqsbsh2won" path="res://ui/select_skill/card.tscn" id="1_nqw3i"]
 [ext_resource type="Script" uid="uid://dt1xkptfpup0e" path="res://ui/select_skill/select_skill.gd" id="1_p5sd2"]
+[ext_resource type="FontFile" uid="uid://bwa1aeuh6torw" path="res://global/assets/NanumBrushScript-Regular.ttf" id="3_2l2ni"]
+[ext_resource type="FontFile" uid="uid://dllwvp0853vla" path="res://ui/menu/NanumBrushScript-Regular.ttf" id="3_iiqla"]
+[ext_resource type="Texture2D" uid="uid://b24y8uurjvvbv" path="res://ui/select_skill/art/button.png" id="4_2l2ni"]
+[ext_resource type="Texture2D" uid="uid://uebfua7k74mg" path="res://ui/select_skill/art/button pressed.png" id="5_hvqut"]
+[ext_resource type="Texture2D" uid="uid://c7wl3yr1u6abx" path="res://ui/select_skill/art/button hover.png" id="6_57wrs"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_teh7h"]
+content_margin_top = 8.0
+content_margin_bottom = 0.0
+texture = ExtResource("4_2l2ni")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_66s8p"]
+texture = ExtResource("5_hvqut")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qrk5y"]
+texture = ExtResource("6_57wrs")
 
 [node name="SelectSkill" type="Control" unique_id=974454752 node_paths=PackedStringArray("cards")]
 layout_mode = 3
@@ -21,9 +37,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -20.0
-offset_top = 51.0
+offset_top = 1.0
 offset_right = 20.0
-offset_bottom = 91.0
+offset_bottom = 41.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -42,16 +58,42 @@ layout_mode = 1
 offset_left = 298.0
 offset_right = 798.0
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2129044635]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 67.0
-grow_horizontal = 2
-theme_override_constants/margin_top = 64
-
-[node name="Label" type="Label" parent="MarginContainer" unique_id=1336965953]
-layout_mode = 2
-theme_override_font_sizes/font_size = 48
+[node name="Label" type="Label" parent="." unique_id=1336965953]
+layout_mode = 0
+offset_top = 75.0
+offset_right = 1920.0
+offset_bottom = 140.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/font = ExtResource("3_2l2ni")
+theme_override_font_sizes/font_size = 64
 text = "Self-deprecation: Hurt yourself to get one of these abilities"
 horizontal_alignment = 1
+
+[node name="SkipButton" type="Button" parent="." unique_id=816252610]
+z_index = 5
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -102.0
+offset_right = 161.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+offset_transform_enabled = true
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.49803922, 0.49803922, 0.49803922, 1)
+theme_override_fonts/font = ExtResource("3_iiqla")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxTexture_teh7h")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_66s8p")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qrk5y")
+text = "SKIP"
+
+[connection signal="pressed" from="SkipButton" to="." method="_on_skip_button_pressed"]

@@ -5,13 +5,24 @@ var health_label: Label
 var _player_health: int
 var _player_max_health: int
 
+var animation_player: AnimationPlayer
+
 func _ready() -> void:
 	health_label = $Control/Health/MarginContainer/HealthLabel
+	animation_player = $AnimationPlayer
+	
 	_player_health = 10
 	_player_max_health = 10
 	setup_health_label()
+	
 	Global.player_health_changed.connect(_on_player_health_changed)
 	Global.player_max_health_changed.connect(_on_player_max_health_changed)
+	
+	Global.paused.connect(_on_paused)
+	Global.unpaused.connect(_on_unpaused)
+
+
+
 
 
 func _on_player_health_changed(new_value: int) -> void:
@@ -31,3 +42,9 @@ func setup_health_label() -> void:
 		health_label.text += "<3 "
 	for i in _player_max_health - _player_health:
 		health_label.text += "0 "
+
+func _on_paused() -> void:
+	animation_player.play("paused")
+
+func _on_unpaused() -> void:
+	animation_player.play("unpaused")
