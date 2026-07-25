@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://dwxnm6rgscfyu" path="res://ui/menu/settings/art/back_button_pressed.png" id="6_g5pvn"]
 [ext_resource type="Texture2D" uid="uid://dk45rxbu2v3hs" path="res://ui/menu/settings/art/back_button_hover.png" id="7_ei1i3"]
 [ext_resource type="Script" uid="uid://bmdrd7umw1xyg" path="res://ui/menu/settings/texture_button.gd" id="8_l52iw"]
+[ext_resource type="AudioStream" uid="uid://dxeaa2t3nybw1" path="res://ui/menu/sounds/Click - press button.wav" id="11_tw7fl"]
+[ext_resource type="AudioStream" uid="uid://t4jeoq4vo0fb" path="res://ui/menu/sounds/Cursor - choose option.wav" id="12_mm33y"]
 
 [node name="Settings" type="Control" unique_id=1064492059]
 layout_mode = 3
@@ -95,7 +97,7 @@ expand_icon = true
 script = ExtResource("3_tcj1p")
 audio_bus_name = "Master"
 
-[node name="TextureButton" type="TextureButton" parent="." unique_id=1986413000]
+[node name="Back" type="TextureButton" parent="." unique_id=1986413000]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -129,7 +131,17 @@ theme_override_fonts/font = ExtResource("1_u7srk")
 theme_override_font_sizes/font_size = 160
 text = "SETTINGS"
 
+[node name="Click" type="AudioStreamPlayer2D" parent="." unique_id=1421619689]
+stream = ExtResource("11_tw7fl")
+
+[node name="Hover" type="AudioStreamPlayer2D" parent="." unique_id=1139672008]
+stream = ExtResource("12_mm33y")
+
+[connection signal="mouse_entered" from="VBoxContainer3/VBoxContainer/AudioControlMusic" to="VBoxContainer3/VBoxContainer/AudioControlMusic" method="_on_mouse_entered"]
 [connection signal="value_changed" from="VBoxContainer3/VBoxContainer/AudioControlMusic" to="VBoxContainer3/VBoxContainer/AudioControlMusic" method="_on_value_changed"]
+[connection signal="mouse_entered" from="VBoxContainer3/VBoxContainer2/AudioControlSFX" to="VBoxContainer3/VBoxContainer2/AudioControlSFX" method="_on_mouse_entered"]
 [connection signal="value_changed" from="VBoxContainer3/VBoxContainer2/AudioControlSFX" to="VBoxContainer3/VBoxContainer2/AudioControlSFX" method="_on_value_changed"]
+[connection signal="mouse_entered" from="VBoxContainer3/Mute" to="VBoxContainer3/Mute" method="_on_mouse_entered"]
 [connection signal="toggled" from="VBoxContainer3/Mute" to="VBoxContainer3/Mute" method="_on_toggled"]
-[connection signal="pressed" from="TextureButton" to="TextureButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="Back" to="Back" method="_on_mouse_entered"]
+[connection signal="pressed" from="Back" to="Back" method="_on_pressed"]
