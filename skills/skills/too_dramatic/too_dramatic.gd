@@ -8,3 +8,4 @@ func apply() -> void:
 
 func remove() -> void:
 	context.attack.weapon.damage /= 2
+	super()

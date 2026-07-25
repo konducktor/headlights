@@ -12,6 +12,9 @@ signal max_health_changed(new_value: int)
 signal max_health_increased(amount: int)
 signal max_health_decreased(amount: int)
 
+signal became_invincible
+signal exited_invincible
+
 
 @export var max_health: int
 @export var damage_cooldown_timer: Timer
@@ -79,6 +82,15 @@ func change_max_health(amount: int) -> void:
 
 func set_invincibility(value: bool) -> void:
 	_invincible = value
+	
+	if value:
+		became_invincible.emit()
+	else:
+		exited_invincible.emit()
+
+
+func is_invincible() -> bool:
+	return _invincible
 
 
 func _on_damage_cooldown_timer_timeout() -> void:

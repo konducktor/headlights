@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c1feqm70pffro"]
+
+[ext_resource type="Script" uid="uid://c0okqhfkoogm5" path="res://skills/skills/avoiding_problems/avoiding_problems.gd" id="1_a00ba"]
+
+[node name="AvoidingProblems" type="Node2D" unique_id=1561267408]
+script = ExtResource("1_a00ba")

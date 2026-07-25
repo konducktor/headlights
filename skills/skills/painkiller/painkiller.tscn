@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b3nc1cf5foixq"]
+
+[ext_resource type="Script" uid="uid://xvwwk7l0nstw" path="res://skills/skills/painkiller/painkiller.gd" id="1_gjckb"]
+
+[node name="Painkiller" type="Node2D" unique_id=1240795668]
+script = ExtResource("1_gjckb")
+base_invincibility_time = 0.5
+additional_time = 0.2

@@ -30,3 +30,4 @@ func _on_body_entered(body: Node2D) -> void:
 		
 		if cond1 or cond2:
 			take_damage(projectile.weapon.damage, projectile)
+			projectile.hit(entity)

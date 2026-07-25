@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://itpq3h31s4af"]
+
+[ext_resource type="Script" uid="uid://bj0pni5k6cft3" path="res://skills/skills/hatred_for_society/hatred_for_society.gd" id="1_jjk0s"]
+
+[node name="HatredForSociety" type="Node2D" unique_id=527756528]
+script = ExtResource("1_jjk0s")
+factor = 1.5

@@ -13,3 +13,4 @@ func apply() -> void:
 
 func remove() -> void:
 	context.health.change_health(-_amount)
+	super()

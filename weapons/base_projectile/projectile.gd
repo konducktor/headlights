@@ -28,3 +28,7 @@ func _physics_process(_delta: float) -> void:
 
 func _on_living_timer_timeout() -> void:
 	stop()
+
+
+func hit(entity: CharacterBody2D) -> void:
+	weapon.hit.emit(entity)

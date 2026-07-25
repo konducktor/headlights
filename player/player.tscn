@@ -11,9 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://cdvh3p16ve2le" path="res://weapons/knife/knife.tscn" id="4_qjkh3"]
 [ext_resource type="Material" uid="uid://do4oost55dfdd" path="res://global/assets/shaders/dissolve_material.tres" id="4_yllr7"]
 [ext_resource type="Script" uid="uid://xeasao763wid" path="res://components/acceleration.gd" id="8_rgyib"]
-[ext_resource type="Script" uid="uid://bkptmvu7f3htp" path="res://skills/skills/skills_context.gd" id="12_ebec5"]
+[ext_resource type="Script" uid="uid://bkptmvu7f3htp" path="res://skills/skills_context.gd" id="12_ebec5"]
 [ext_resource type="Script" uid="uid://c3qokhf8r8ry" path="res://skills/skills_controller.gd" id="12_yllr7"]
-[ext_resource type="PackedScene" uid="uid://c2ckgrj4lyrsc" path="res://skills/skills/too_dramatic/too_dramatic.tscn" id="14_kb6p2"]
+[ext_resource type="PackedScene" uid="uid://b3nc1cf5foixq" path="res://skills/skills/painkiller/painkiller.tscn" id="14_kb6p2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hg6s5"]
 atlas = ExtResource("2_g6k8r")
@@ -122,6 +122,7 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_yllr7"]
 resource_name = "took_damage"
 length = 0.4666700243387371
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -172,6 +173,8 @@ wait_time = 0.5
 script = ExtResource("2_8t03j")
 animated_sprite = NodePath("FlipOnVelocityComponent/AnimatedSprite2D")
 animation_player = NodePath("AnimationPlayer")
+invincible_in_time = 0.1
+invincible_out_time = 0.15
 
 [node name="Shadow" type="Sprite2D" parent="Visual" unique_id=840472693]
 modulate = Color(1, 1, 1, 0.15686275)
@@ -189,7 +192,6 @@ position = Vector2(0, -117)
 sprite_frames = SubResource("SpriteFrames_rgyib")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.10511581
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visual" unique_id=1928647732]
 libraries/ = SubResource("AnimationLibrary_kb6p2")
@@ -244,10 +246,12 @@ hurtbox = NodePath("../../HurtboxComponent")
 
 [node name="Container" type="Node" parent="Skills" unique_id=202663198]
 
-[node name="TooDramatic" parent="Skills/Container" unique_id=918380001 instance=ExtResource("14_kb6p2")]
+[node name="Painkiller" parent="Skills/Container" unique_id=1240795668 instance=ExtResource("14_kb6p2")]
 
 [connection signal="started_walking" from="." to="Visual" method="_on_player_started_walking"]
 [connection signal="stopped_walking" from="." to="Visual" method="_on_player_stopped_walking"]
+[connection signal="became_invincible" from="HealthComponent" to="Visual" method="_on_health_component_became_invincible"]
+[connection signal="exited_invincible" from="HealthComponent" to="Visual" method="_on_health_component_exited_invincible"]
 [connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
 [connection signal="max_health_changed" from="HealthComponent" to="." method="_on_health_component_max_health_changed"]
 [connection signal="max_health_decreased" from="HealthComponent" to="." method="_on_health_component_max_health_decreased"]
@@ -255,3 +259,4 @@ hurtbox = NodePath("../../HurtboxComponent")
 [connection signal="regenerated" from="HealthComponent" to="." method="_on_health_component_regenerated"]
 [connection signal="took_damage" from="HealthComponent" to="." method="_on_health_component_took_damage"]
 [connection signal="took_damage" from="HealthComponent" to="Visual" method="_on_health_component_took_damage"]
+[connection signal="timeout" from="HealthComponent/DamageCooldownTimer" to="Visual" method="_on_damage_cooldown_timer_timeout"]

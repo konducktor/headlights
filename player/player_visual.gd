@@ -3,6 +3,10 @@ extends Node2D
 @export var animated_sprite: AnimatedSprite2D
 @export var animation_player: AnimationPlayer
 
+@export_group("Invincibility Visuals")
+@export var invincible_in_time: float
+@export var invincible_out_time: float
+
 var died: bool
 
 
@@ -31,3 +35,18 @@ func _on_health_component_died() -> void:
 	
 	animation_player.play("death")
 	died = true
+
+
+func _on_damage_cooldown_timer_timeout() -> void:
+	if animation_player.current_animation == "took_damage":
+		animation_player.stop()
+
+
+func _on_health_component_became_invincible() -> void:
+	var tween := create_tween()
+	tween.tween_property(animated_sprite, "modulate", Color("ffcd18"), invincible_in_time)
+
+
+func _on_health_component_exited_invincible() -> void:
+	var tween := create_tween()
+	tween.tween_property(animated_sprite, "modulate", Color.WHITE, invincible_out_time)

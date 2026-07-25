@@ -11,3 +11,4 @@ func apply() -> void:
 
 func remove() -> void:
 	context.player.max_speed /= factor
+	super()

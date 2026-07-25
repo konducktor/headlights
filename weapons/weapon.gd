@@ -4,6 +4,7 @@ class_name Weapon
 
 
 signal fired(projectile: Projectile)
+signal hit(entity: CharacterBody2D)
 
 
 @export var damage: int

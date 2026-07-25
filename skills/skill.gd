@@ -10,5 +10,5 @@ var context: SkillsContext
 func apply() -> void
 
 
-@abstract
-func remove() -> void
+func remove() -> void:
+	queue_free()
