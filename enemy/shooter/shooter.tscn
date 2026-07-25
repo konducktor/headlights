@@ -130,6 +130,9 @@ _data = {
 &"dissolve": ExtResource("9_ehdc8")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_a7qml"]
+radius = 55.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1yd0g"]
 radius = 70.0
 height = 252.0
@@ -195,6 +198,9 @@ texture = ExtResource("8_v5crv")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visual" index="1" unique_id=220214910]
 libraries/enemy = SubResource("AnimationLibrary_a7qml")
+
+[node name="WallCollision" parent="." index="2" unique_id=1847437153]
+shape = SubResource("CircleShape2D_a7qml")
 
 [node name="HealthComponent" parent="." index="3" unique_id=855731163]
 max_health = 3

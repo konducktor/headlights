@@ -22,6 +22,18 @@ func _on_player_stopped_walking() -> void:
 	animated_sprite.play("idle")
 
 
+func _on_attack_component_attacked() -> void:
+	var last_animation: StringName = animated_sprite.animation
+	
+	if last_animation == "idle":
+		animated_sprite.play("idle_attack")
+	else:
+		animated_sprite.play("walk_attack")
+	
+	await animated_sprite.animation_finished
+	animated_sprite.play(last_animation)
+
+
 func _on_health_component_took_damage(_amount: int) -> void:
 	if died:
 		return

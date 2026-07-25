@@ -1,11 +1,9 @@
 [gd_scene format=3 uid="uid://cfatfldt20awi"]
 
 [ext_resource type="Script" uid="uid://cwemmvnecske2" path="res://ui/gameplay_ui/gameplay_ui.gd" id="1_2yrgj"]
+[ext_resource type="PackedScene" uid="uid://6rnxfnarx8si" path="res://ui/gameplay_ui/heart_ui.tscn" id="2_n5c7t"]
 [ext_resource type="Shader" uid="uid://clllrp6vhqo7k" path="res://global/assets/shaders/vhs.gdshader" id="2_rxnur"]
 [ext_resource type="PackedScene" uid="uid://bgnlnpksxqdc" path="res://ui/select_skill/select_skill.tscn" id="3_h414r"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_g4v7s"]
-font_size = 48
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r030d"]
 shader = ExtResource("2_rxnur")
@@ -31,7 +29,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_n5c7t"]
 resource_name = "select_skill"
-length = 0.19999999999999998
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -47,7 +45,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_ht2um"]
 resource_name = "unpaused"
-length = 0.19999999999999998
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -71,6 +69,16 @@ _data = {
 [node name="GameplayUI" type="CanvasLayer" unique_id=467493527]
 process_mode = 3
 script = ExtResource("1_2yrgj")
+heart_ui_scene = ExtResource("2_n5c7t")
+
+[node name="VHS" type="ColorRect" parent="." unique_id=1057895405]
+material = SubResource("ShaderMaterial_r030d")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="Control" type="Control" parent="." unique_id=385632661]
 layout_mode = 3
@@ -84,30 +92,33 @@ size_flags_vertical = 6
 
 [node name="Health" type="Control" parent="Control" unique_id=1466226199]
 layout_mode = 1
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="MarginContainer" type="MarginContainer" parent="Control/Health" unique_id=1853763647]
-layout_mode = 0
-offset_right = 280.0
-offset_bottom = 91.0
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 24
-
-[node name="HealthLabel" type="Label" parent="Control/Health/MarginContainer" unique_id=233608821]
-layout_mode = 2
-text = "<3 <3 <3 <3 <3"
-label_settings = SubResource("LabelSettings_g4v7s")
-
-[node name="VHS" type="ColorRect" parent="." unique_id=1057895405]
-material = SubResource("ShaderMaterial_r030d")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Health" unique_id=43522089]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_constants/separation = 70
+
+[node name="HeartUI" parent="Control/Health/HBoxContainer" unique_id=841508613 instance=ExtResource("2_n5c7t")]
+layout_mode = 2
+
+[node name="HeartUI2" parent="Control/Health/HBoxContainer" unique_id=1640241926 instance=ExtResource("2_n5c7t")]
+layout_mode = 2
+
+[node name="HeartUI3" parent="Control/Health/HBoxContainer" unique_id=710155994 instance=ExtResource("2_n5c7t")]
+layout_mode = 2
+
+[node name="HeartUI4" parent="Control/Health/HBoxContainer" unique_id=1014933600 instance=ExtResource("2_n5c7t")]
+layout_mode = 2
+
+[node name="HeartUI5" parent="Control/Health/HBoxContainer" unique_id=1231412434 instance=ExtResource("2_n5c7t")]
+layout_mode = 2
 
 [node name="SelectSkill" parent="." unique_id=974454752 instance=ExtResource("3_h414r")]
 
