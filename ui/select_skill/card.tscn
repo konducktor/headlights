@@ -2,6 +2,21 @@
 
 [ext_resource type="Script" uid="uid://doikcf3josj2s" path="res://ui/select_skill/card.gd" id="1_2ewhd"]
 [ext_resource type="Texture2D" uid="uid://becemnhwx24jr" path="res://player/art/GirlDefault.png" id="1_fi7s3"]
+[ext_resource type="FontFile" uid="uid://dllwvp0853vla" path="res://ui/menu/NanumBrushScript-Regular.ttf" id="3_5xrdk"]
+[ext_resource type="Texture2D" uid="uid://b24y8uurjvvbv" path="res://ui/select_skill/art/button.png" id="4_85dj2"]
+[ext_resource type="Texture2D" uid="uid://uebfua7k74mg" path="res://ui/select_skill/art/button pressed.png" id="5_7l77p"]
+[ext_resource type="Texture2D" uid="uid://c7wl3yr1u6abx" path="res://ui/select_skill/art/button hover.png" id="6_bddtm"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_562yr"]
+content_margin_top = 8.0
+content_margin_bottom = 0.0
+texture = ExtResource("4_85dj2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f2ogv"]
+texture = ExtResource("5_7l77p")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6e0gq"]
+texture = ExtResource("6_bddtm")
 
 [node name="Card" type="Control" unique_id=1169764385 node_paths=PackedStringArray("name_label", "desc_label", "icon_texture")]
 layout_mode = 3
@@ -36,6 +51,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+offset_transform_enabled = true
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
@@ -72,7 +88,14 @@ horizontal_alignment = 1
 [node name="Button" type="Button" parent="Panel/MarginContainer" unique_id=1110161824]
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_font_sizes/font_size = 32
-text = "Choose"
+offset_transform_enabled = true
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.49803922, 0.49803922, 0.49803922, 1)
+theme_override_fonts/font = ExtResource("3_5xrdk")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxTexture_562yr")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_f2ogv")
+theme_override_styles/hover = SubResource("StyleBoxTexture_6e0gq")
+text = "CHOOSE"
 
 [connection signal="pressed" from="Panel/MarginContainer/Button" to="." method="_on_button_pressed"]
