@@ -4,6 +4,9 @@ extends EnemyState
 class_name EnemyStateAttack
 
 
+signal fired
+
+
 @export var min_distance: float
 @export var max_distance: float
 @export var attack_component: AttackComponent
@@ -31,6 +34,7 @@ func physics_update(_delta: float) -> EnemyState:
 	
 	attack_component.point_in_direction(enemy.position.direction_to(player.body_pos()))
 	attack_component.fire()
+	fired.emit()
 	
 	return null
 

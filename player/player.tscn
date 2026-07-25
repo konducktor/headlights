@@ -248,6 +248,7 @@ hurtbox = NodePath("../../HurtboxComponent")
 [connection signal="started_walking" from="." to="Visual" method="_on_player_started_walking"]
 [connection signal="stopped_walking" from="." to="Visual" method="_on_player_stopped_walking"]
 [connection signal="became_invincible" from="HealthComponent" to="Visual" method="_on_health_component_became_invincible"]
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="exited_invincible" from="HealthComponent" to="Visual" method="_on_health_component_exited_invincible"]
 [connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
 [connection signal="max_health_changed" from="HealthComponent" to="." method="_on_health_component_max_health_changed"]

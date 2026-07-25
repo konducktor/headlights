@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_w33pa")
 name = "Bullying"
-description = "Allows to deflect enemy projectiles with a knife attack"
+description = "Allows to deflect enemy projectiles with "
 metadata/_custom_type_script = "uid://c2qrjbbmbwn2p"
