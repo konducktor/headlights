@@ -1,13 +1,64 @@
 [gd_scene format=3 uid="uid://btaokpyn0qvsy"]
 
 [ext_resource type="Script" uid="uid://c5i1sbh3kvhv8" path="res://player/player.gd" id="1_rkbax"]
+[ext_resource type="Script" uid="uid://dm7naomcfnfxa" path="res://player/player_visual.gd" id="2_8t03j"]
 [ext_resource type="Texture2D" uid="uid://becemnhwx24jr" path="res://player/art/GirlDefault.png" id="2_g6k8r"]
 [ext_resource type="Texture2D" uid="uid://e81egkb0l45k" path="res://global/assets/shadow-normal.png" id="3_boad6"]
 [ext_resource type="Script" uid="uid://cj4hgonyylrme" path="res://components/health.gd" id="3_g6k8r"]
 [ext_resource type="Script" uid="uid://dsbh06fe22jkp" path="res://components/attack.gd" id="3_yw30f"]
+[ext_resource type="Script" uid="uid://bdthesvcg5qi3" path="res://components/flip_on_velocity.gd" id="4_2ieo8"]
 [ext_resource type="PackedScene" uid="uid://b4d7iqrgw7kw0" path="res://components/hurtbox.tscn" id="4_g6k8r"]
+[ext_resource type="Texture2D" uid="uid://cysu5inewoy5i" path="res://player/art/girl_animations.png" id="4_hg6s5"]
 [ext_resource type="PackedScene" uid="uid://cdvh3p16ve2le" path="res://weapons/knife/knife.tscn" id="4_qjkh3"]
 [ext_resource type="Script" uid="uid://xeasao763wid" path="res://components/acceleration.gd" id="8_rgyib"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hg6s5"]
+atlas = ExtResource("2_g6k8r")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8t03j"]
+atlas = ExtResource("4_hg6s5")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ieo8"]
+atlas = ExtResource("4_hg6s5")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebec5"]
+atlas = ExtResource("4_hg6s5")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yllr7"]
+atlas = ExtResource("4_hg6s5")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rgyib"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hg6s5")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8t03j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ieo8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebec5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yllr7")
+}],
+"loop": 1,
+"name": &"walking",
+"speed": 8.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_boad6"]
 radius = 19.0
@@ -35,16 +86,27 @@ one_shot = true
 [node name="DashCooldownTimer" type="Timer" parent="." unique_id=1400267839]
 wait_time = 0.5
 
-[node name="Visual" type="Node2D" parent="." unique_id=1183445228]
+[node name="Visual" type="Node2D" parent="." unique_id=1183445228 node_paths=PackedStringArray("animated_sprite")]
+script = ExtResource("2_8t03j")
+animated_sprite = NodePath("FlipOnVelocityComponent/AnimatedSprite2D")
 
 [node name="Shadow" type="Sprite2D" parent="Visual" unique_id=840472693]
 modulate = Color(1, 1, 1, 0.15686275)
 scale = Vector2(0.77066326, 0.77066326)
 texture = ExtResource("3_boad6")
 
-[node name="Sprite2D" type="Sprite2D" parent="Visual" unique_id=902595573]
+[node name="FlipOnVelocityComponent" type="Node2D" parent="Visual" unique_id=1772114146 node_paths=PackedStringArray("target")]
+script = ExtResource("4_2ieo8")
+target = NodePath("../..")
+reverse = true
+metadata/_custom_type_script = "uid://bdthesvcg5qi3"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visual/FlipOnVelocityComponent" unique_id=2144488361]
 position = Vector2(0, -117)
-texture = ExtResource("2_g6k8r")
+sprite_frames = SubResource("SpriteFrames_rgyib")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.10511581
 
 [node name="WallCollision" type="CollisionShape2D" parent="." unique_id=958840399]
 rotation = 1.5707964
@@ -80,6 +142,8 @@ time_to_max = 0.4
 time_to_zero = 0.3
 metadata/_custom_type_script = "uid://xeasao763wid"
 
+[connection signal="started_walking" from="." to="Visual" method="_on_player_started_walking"]
+[connection signal="stopped_walking" from="." to="Visual" method="_on_player_stopped_walking"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
 [connection signal="max_health_changed" from="HealthComponent" to="." method="_on_health_component_max_health_changed"]

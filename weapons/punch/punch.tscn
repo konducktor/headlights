@@ -6,4 +6,4 @@
 script = ExtResource("1_x2rcu")
 
 [node name="CooldownTimer" type="Timer" parent="." unique_id=1105853529]
-wait_time = 0.3
+wait_time = 0.6

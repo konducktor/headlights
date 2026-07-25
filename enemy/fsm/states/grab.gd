@@ -11,6 +11,7 @@ var can_exit: bool
 
 
 func enter() -> void:
+	enemy.position = player.position
 	can_exit = false
 	player.make_stuck()
 	
@@ -18,6 +19,11 @@ func enter() -> void:
 		timeout_timer.start()
 		timeout_timer.timeout.connect(_on_timeout_timer_timeout)
 	
+	super()
+
+
+func exit() -> void:
+	timeout_timer.timeout.disconnect(_on_timeout_timer_timeout)
 	super()
 
 

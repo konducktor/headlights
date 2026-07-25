@@ -1,0 +1,68 @@
+shader_type canvas_item;
+
+// === Настраиваемые цвета фона (по умолчанию — тёмные, приглушённые) ===
+uniform vec4 color_a : source_color = vec4(0.02, 0.02, 0.05, 1.0); // почти чёрный, с холодным оттенком
+uniform vec4 color_b : source_color = vec4(0.06, 0.02, 0.10, 1.0); // тёмно-фиолетовый
+uniform vec4 color_c : source_color = vec4(0.01, 0.03, 0.04, 1.0); // тёмно-бирюзовый
+
+// === Параметры шума ===
+uniform float noise_scale : hint_range(0.5, 10.0) = 3.0; // размер "пятен" шума
+uniform float speed : hint_range(0.0, 1.0) = 0.08;        // скорость переливания
+uniform float brightness : hint_range(0.0, 2.0) = 1.0;     // общая яркость фона
+uniform float contrast : hint_range(0.5, 3.0) = 1.4;       // резкость перехода между цветами
+
+// Псевдослучайное число для точки (детерминированный "шум")
+float hash21(vec2 p) {
+    p = fract(p * vec2(123.34, 456.21));
+    p += dot(p, p + 45.32);
+    return fract(p.x * p.y);
+}
+
+// Плавный value-noise: смешиваем 4 угла клетки
+float noise(vec2 p) {
+    vec2 i = floor(p);
+    vec2 f = fract(p);
+
+    float a = hash21(i);
+    float b = hash21(i + vec2(1.0, 0.0));
+    float c = hash21(i + vec2(0.0, 1.0));
+    float d = hash21(i + vec2(1.0, 1.0));
+
+    // Сглаживающая кривая (smoothstep), чтобы не было резких углов
+    vec2 u = f * f * (3.0 - 2.0 * f);
+
+    return mix(a, b, u.x) + (c - a) * u.y * (1.0 - u.x) + (d - b) * u.x * u.y;
+}
+
+// Несколько слоёв шума разного масштаба -> эффект "дыма"/"тумана"
+float fbm(vec2 p) {
+    float value = 0.0;
+    float amp = 0.5;
+    for (int i = 0; i < 5; i++) {
+        value += amp * noise(p);
+        p *= 2.0;
+        amp *= 0.5;
+    }
+    return value;
+}
+
+void fragment() {
+    vec2 uv = UV * noise_scale;
+
+    // Два независимых потока движения — чтобы слои не совпадали
+    vec2 motion1 = vec2(TIME * speed, TIME * speed * 0.6);
+    vec2 motion2 = vec2(-TIME * speed * 0.7, TIME * speed * 0.4);
+
+    float n1 = fbm(uv + motion1);
+    float n2 = fbm(uv * 1.6 + motion2);
+
+    // Повышаем контраст, чтобы пятна были более выраженными
+    n1 = pow(n1, contrast);
+    n2 = pow(n2, contrast);
+
+    vec3 col = mix(color_a.rgb, color_b.rgb, n1);
+    col = mix(col, color_c.rgb, n2 * 0.5);
+    col *= brightness;
+
+    COLOR = vec4(col, 1.0);
+}

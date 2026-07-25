@@ -2,6 +2,14 @@ extends CharacterBody2D
 class_name Player
 
 
+signal started_walking
+signal stopped_walking
+signal got_stuck
+signal started_dashing
+signal stopped_dashing
+signal died
+
+
 enum PlayerState {
 	DEFAULT, DASH, DIE, STUCK
 }
@@ -18,6 +26,8 @@ var dash_cooldown_timer: Timer
 var dash_direction: Vector2
 
 var dashes_while_stuck: int
+
+var is_walking: bool
 
 var _attack_component: AttackComponent
 var _acceleration_component: AccelerationComponent
@@ -38,6 +48,8 @@ func _ready() -> void:
 	
 	player_state = PlayerState.DEFAULT
 	
+	is_walking = false
+	
 	Global.player = self
 
 
@@ -51,6 +63,13 @@ func _physics_process(delta: float) -> void:
 	match player_state:
 		PlayerState.DEFAULT:
 			velocity = _acceleration_component.smooth_vector(velocity, movement_dir * max_speed, delta)
+			
+			if (movement_dir != Vector2.ZERO) and (not is_walking):
+				is_walking = true
+				started_walking.emit()
+			elif (movement_dir == Vector2.ZERO) and is_walking:
+				is_walking = false
+				stopped_walking.emit()
 			
 			if Input.is_action_just_pressed("player_dash") and can_dash:
 				dash(movement_dir)
@@ -86,12 +105,18 @@ func dash(direction: Vector2) -> void:
 	
 	player_state = PlayerState.DASH
 	dash_timer.start()
+	started_dashing.emit()
 
 
 func make_stuck() -> void:
 	velocity = Vector2.ZERO
 	player_state = PlayerState.STUCK
 	dashes_while_stuck = 0
+	got_stuck.emit()
+
+
+func free_from_stuck() -> void:
+	player_state = PlayerState.DEFAULT
 
 
 func _on_dash_timer_timeout() -> void:
@@ -100,6 +125,7 @@ func _on_dash_timer_timeout() -> void:
 		
 		can_dash = false
 		dash_cooldown_timer.start()
+		stopped_dashing.emit()
 
 
 func _on_dash_cooldown_timer_timeout() -> void:
@@ -107,6 +133,7 @@ func _on_dash_cooldown_timer_timeout() -> void:
 
 
 func _on_health_component_died() -> void:
+	died.emit()
 	player_state = PlayerState.DIE
 	Global.player_died.emit()
 

@@ -15,11 +15,11 @@ var is_active: bool
 
 
 func _ready() -> void:
-	entered.emit()
 	is_active = false
 
 
 func enter() -> void:
+	entered.emit()
 	enemy.velocity = Vector2.ZERO
 	is_active = true
 
