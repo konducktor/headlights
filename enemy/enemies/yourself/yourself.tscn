@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cdlsclag26n7c" path="res://enemy/enemy.tscn" id="1_35cf2"]
 [ext_resource type="Shader" uid="uid://b04dcj8qumfp3" path="res://global/assets/shaders/dissolve.gdshader" id="2_3qypn"]
 [ext_resource type="SpriteFrames" uid="uid://bprgrm1daxwf3" path="res://player/art/player_animations.tres" id="2_d1a6c"]
+[ext_resource type="Script" uid="uid://da3wkmyfauxrc" path="res://enemy/enemies/yourself/yourself.gd" id="2_jeeqt"]
 [ext_resource type="Script" uid="uid://cfgq62b11rbkr" path="res://enemy/fsm/states/chasing.gd" id="2_v434t"]
 [ext_resource type="Script" uid="uid://5kyj3444bt10" path="res://enemy/fsm/states/attack.gd" id="3_v5bnd"]
 [ext_resource type="Script" uid="uid://c45oymkgnu2iw" path="res://enemy/fsm/states/run.gd" id="4_oy5ss"]
@@ -52,6 +53,7 @@ radius = 37.0
 height = 220.0
 
 [node name="Yourself" unique_id=4220073 instance=ExtResource("1_35cf2")]
+script = ExtResource("2_jeeqt")
 movement_speed = 600.0
 
 [node name="EnemyStateMachine" parent="." index="0" unique_id=119706350 node_paths=PackedStringArray("initial_state")]
@@ -129,7 +131,7 @@ position = Vector2(0, 110)
 shape = SubResource("CircleShape2D_oy5ss")
 
 [node name="HealthComponent" parent="." index="3" unique_id=855731163]
-max_health = 20
+max_health = 10
 
 [node name="CollisionShape2D" parent="HurtboxComponent" parent_id_path=PackedInt32Array(1909287759) index="0" unique_id=1072947480]
 shape = SubResource("CapsuleShape2D_y4050")
