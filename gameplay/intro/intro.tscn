@@ -116,3 +116,4 @@ color = Color(1, 1, 1, 0)
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sounds" unique_id=614215462]
 stream = ExtResource("2_que80")
 autoplay = true
+bus = &"Music"

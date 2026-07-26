@@ -67,6 +67,7 @@ stretch_mode = 0
 [node name="BGMusic" type="AudioStreamPlayer" parent="Sounds" unique_id=1947639478]
 stream = ExtResource("10_u4nky")
 autoplay = true
+bus = &"Music"
 
 [node name="Label" type="Label" parent="." unique_id=823674250]
 layout_mode = 0

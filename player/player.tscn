@@ -165,6 +165,7 @@ step_hospital = NodePath("HospitalStep")
 
 [node name="HospitalStep" type="AudioStreamPlayer" parent="Sounds" unique_id=631825945]
 volume_db = -20.0
+bus = &"SFX"
 
 [node name="WallCollision" type="CollisionShape2D" parent="." unique_id=958840399]
 rotation = 1.5707964

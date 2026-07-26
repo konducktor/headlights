@@ -143,6 +143,7 @@ stream = ExtResource("12_mm33y")
 [node name="BGMusic" type="AudioStreamPlayer" parent="Sounds" unique_id=1262085724]
 stream = ExtResource("13_mm33y")
 autoplay = true
+bus = &"Music"
 
 [connection signal="mouse_entered" from="VBoxContainer3/VBoxContainer/AudioControlMusic" to="VBoxContainer3/VBoxContainer/AudioControlMusic" method="_on_mouse_entered"]
 [connection signal="value_changed" from="VBoxContainer3/VBoxContainer/AudioControlMusic" to="VBoxContainer3/VBoxContainer/AudioControlMusic" method="_on_value_changed"]
