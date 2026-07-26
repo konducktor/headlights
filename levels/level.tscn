@@ -55,6 +55,7 @@ player = NodePath("../Player")
 wall_min_slide_angle = 0.2617994
 
 [node name="Areas" type="Node2D" parent="." unique_id=1921332606]
+y_sort_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1270387722]
 layer = -1

@@ -1,0 +1,275 @@
+[gd_scene format=3 uid="uid://cvdl2xktn0l8b"]
+
+[ext_resource type="PackedScene" uid="uid://cdlsclag26n7c" path="res://enemy/enemy.tscn" id="1_35cf2"]
+[ext_resource type="Shader" uid="uid://b04dcj8qumfp3" path="res://global/assets/shaders/dissolve.gdshader" id="2_3qypn"]
+[ext_resource type="Script" uid="uid://cfgq62b11rbkr" path="res://enemy/fsm/states/chasing.gd" id="2_v434t"]
+[ext_resource type="Script" uid="uid://5kyj3444bt10" path="res://enemy/fsm/states/attack.gd" id="3_v5bnd"]
+[ext_resource type="Script" uid="uid://c45oymkgnu2iw" path="res://enemy/fsm/states/run.gd" id="4_oy5ss"]
+[ext_resource type="Script" uid="uid://hxu7f7lilevb" path="res://enemy/enemies/yourself/yourself_visual.gd" id="5_6dkoc"]
+[ext_resource type="Script" uid="uid://xeasao763wid" path="res://components/acceleration.gd" id="5_f5v8p"]
+[ext_resource type="Script" uid="uid://bdthesvcg5qi3" path="res://components/flip_on_velocity.gd" id="5_y4050"]
+[ext_resource type="Script" uid="uid://c4cdida6p2443" path="res://components/pathfinding.gd" id="6_yrf8x"]
+[ext_resource type="Texture2D" uid="uid://cysu5inewoy5i" path="res://player/art/girl_animations.png" id="8_6dkoc"]
+[ext_resource type="Animation" uid="uid://ceiyt36r5etsh" path="res://enemy/enemy_dissolve.res" id="8_a3jgg"]
+[ext_resource type="Script" uid="uid://dsbh06fe22jkp" path="res://components/attack.gd" id="8_jc2gv"]
+[ext_resource type="PackedScene" uid="uid://cdvh3p16ve2le" path="res://weapons/knife/knife.tscn" id="9_lgxj6"]
+[ext_resource type="PackedScene" uid="uid://d1jvqv5j5sff8" path="res://weapons/paper/paper.tscn" id="10_oy5ss"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_txjm0"]
+seed = 1
+frequency = 0.0124
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wuolu"]
+noise = SubResource("FastNoiseLite_txjm0")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v434t"]
+resource_local_to_scene = true
+shader = ExtResource("2_3qypn")
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_wuolu")
+shader_parameter/dissolve_value = 0.70000003325
+shader_parameter/burn_size = 0.0499999988824
+shader_parameter/burn_color = Color(0.13, 0, 0, 0.49411765)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kb6p2"]
+atlas = ExtResource("8_6dkoc")
+region = Rect2(0, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wodsf"]
+atlas = ExtResource("8_6dkoc")
+region = Rect2(256, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7oew"]
+atlas = ExtResource("8_6dkoc")
+region = Rect2(0, 512, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqiix"]
+atlas = ExtResource("8_6dkoc")
+region = Rect2(256, 512, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32hag"]
+atlas = ExtResource("8_6dkoc")
+region = Rect2(512, 512, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjvpn"]
+atlas = ExtResource("8_6dkoc")
+region = Rect2(0, 768, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7c3f"]
+atlas = ExtResource("8_6dkoc")
+region = Rect2(256, 768, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65viv"]
+atlas = ExtResource("8_6dkoc")
+region = Rect2(512, 768, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c35mf"]
+atlas = ExtResource("8_6dkoc")
+region = Rect2(768, 768, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8t03j"]
+atlas = ExtResource("8_6dkoc")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ieo8"]
+atlas = ExtResource("8_6dkoc")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebec5"]
+atlas = ExtResource("8_6dkoc")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yllr7"]
+atlas = ExtResource("8_6dkoc")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jeeqt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kb6p2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wodsf")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e7oew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqiix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32hag")
+}],
+"loop": 0,
+"name": &"idle_attack",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjvpn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7c3f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65viv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c35mf")
+}],
+"loop": 0,
+"name": &"walk_attack",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8t03j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ieo8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebec5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yllr7")
+}],
+"loop": 1,
+"name": &"walking",
+"speed": 8.0
+}]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6dkoc"]
+_data = {
+&"dissolve": ExtResource("8_a3jgg")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oy5ss"]
+radius = 24.020824
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y4050"]
+radius = 37.0
+height = 220.0
+
+[node name="Yourself" unique_id=4220073 instance=ExtResource("1_35cf2")]
+movement_speed = 600.0
+
+[node name="EnemyStateMachine" parent="." index="0" unique_id=119706350 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("EnemyStateChasing")
+report_current_state = true
+
+[node name="EnemyStateChasing" type="Node2D" parent="EnemyStateMachine" index="0" unique_id=1734988455 node_paths=PackedStringArray("acceleration_component", "exit_if_reached", "pathfinding_component", "navigation_update_timer")]
+script = ExtResource("2_v434t")
+reach_threshhold = 150.0
+target_scatter_radius = 200.0
+acceleration_component = NodePath("../../AccelerationComponent")
+exit_if_reached = NodePath("../KnifeAttack")
+pathfinding_component = NodePath("../../PathfindingComponent")
+navigation_update_timer = NodePath("../../PathfindingComponent/NavigationUpdateTimer")
+metadata/_custom_type_script = "uid://cfgq62b11rbkr"
+
+[node name="KnifeAttack" type="Node2D" parent="EnemyStateMachine" index="1" unique_id=1262615440 node_paths=PackedStringArray("attack_component", "exit_if_distance_far", "exit_if_distance_short", "exit_if_attack_amount")]
+script = ExtResource("3_v5bnd")
+min_distance = 80.0
+max_distance = 250.0
+attack_component = NodePath("../../KnifeAttack")
+exit_if_distance_far = NodePath("../EnemyStateRun")
+exit_if_distance_short = NodePath("../EnemyStateRun")
+exit_if_attack_amount = NodePath("../EnemyStateRun")
+metadata/_custom_type_script = "uid://5kyj3444bt10"
+
+[node name="EnemyStateRun" type="Node2D" parent="EnemyStateMachine" index="2" unique_id=1222597128 node_paths=PackedStringArray("acceleration_component", "exit_if_far_enough", "exit_if_too_close", "pathfinding_component", "navigation_update_timer")]
+script = ExtResource("4_oy5ss")
+desired_distance = 500.0
+min_distance = 200.0
+acceleration_component = NodePath("../../AccelerationComponent")
+exit_if_far_enough = NodePath("../PaperAttack")
+exit_if_too_close = NodePath("../KnifeAttack")
+pathfinding_component = NodePath("../../PathfindingComponent")
+navigation_update_timer = NodePath("../../PathfindingComponent/NavigationUpdateTimer")
+metadata/_custom_type_script = "uid://c45oymkgnu2iw"
+
+[node name="PaperAttack" type="Node2D" parent="EnemyStateMachine" index="3" unique_id=1307268003 node_paths=PackedStringArray("attack_component", "exit_if_distance_far", "exit_if_distance_short")]
+script = ExtResource("3_v5bnd")
+min_distance = 250.0
+max_distance = 700.0
+attack_component = NodePath("../../PaperAttack")
+exit_if_distance_far = NodePath("../EnemyStateRun")
+exit_if_distance_short = NodePath("../EnemyStateChasing")
+metadata/_custom_type_script = "uid://5kyj3444bt10"
+
+[node name="Visual" parent="." index="1" unique_id=11767020 node_paths=PackedStringArray("animation_player")]
+script = ExtResource("5_6dkoc")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="FlipOnVelocityComponent" type="Node2D" parent="Visual" index="0" unique_id=501418619 node_paths=PackedStringArray("target")]
+script = ExtResource("5_y4050")
+target = NodePath("../..")
+reverse = true
+metadata/_custom_type_script = "uid://bdthesvcg5qi3"
+
+[node name="ShadowSprite" type="Sprite2D" parent="Visual/FlipOnVelocityComponent" index="0" unique_id=541997864]
+modulate = Color(1, 1, 1, 0.15489441)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visual/FlipOnVelocityComponent" index="1" unique_id=280490587]
+material = SubResource("ShaderMaterial_v434t")
+sprite_frames = SubResource("SpriteFrames_jeeqt")
+animation = &"walking"
+autoplay = "walking"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visual" index="1" unique_id=196413047]
+libraries/enemy = SubResource("AnimationLibrary_6dkoc")
+
+[node name="WallCollision" parent="." index="2" unique_id=1847437153]
+position = Vector2(0, 110)
+shape = SubResource("CircleShape2D_oy5ss")
+
+[node name="HealthComponent" parent="." index="3" unique_id=855731163]
+max_health = 20
+
+[node name="CollisionShape2D" parent="HurtboxComponent" parent_id_path=PackedInt32Array(1909287759) index="0" unique_id=1072947480]
+shape = SubResource("CapsuleShape2D_y4050")
+
+[node name="AccelerationComponent" type="Node" parent="." index="5" unique_id=1680515564]
+script = ExtResource("5_f5v8p")
+time_to_max = 0.4
+time_to_zero = 0.3
+metadata/_custom_type_script = "uid://xeasao763wid"
+
+[node name="PathfindingComponent" type="Node2D" parent="." index="6" unique_id=726448005 node_paths=PackedStringArray("_navigation_agent")]
+script = ExtResource("6_yrf8x")
+_navigation_agent = NodePath("NavigationAgent2D")
+metadata/_custom_type_script = "uid://c4cdida6p2443"
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="PathfindingComponent" index="0" unique_id=1369393695]
+path_desired_distance = 60.0
+target_desired_distance = 30.0
+path_max_distance = 200.0
+path_postprocessing = 1
+
+[node name="NavigationUpdateTimer" type="Timer" parent="PathfindingComponent" index="1" unique_id=1313162376]
+wait_time = 0.5
+
+[node name="KnifeAttack" type="Node2D" parent="." index="7" unique_id=819230285 node_paths=PackedStringArray("weapon")]
+script = ExtResource("8_jc2gv")
+weapon = NodePath("Knife")
+metadata/_custom_type_script = "uid://dsbh06fe22jkp"
+
+[node name="Knife" parent="KnifeAttack" index="0" unique_id=1848124045 node_paths=PackedStringArray("entity") instance=ExtResource("9_lgxj6")]
+entity = NodePath("../..")
+
+[node name="PaperAttack" type="Node2D" parent="." index="8" unique_id=1958924411 node_paths=PackedStringArray("weapon")]
+script = ExtResource("8_jc2gv")
+weapon = NodePath("Paper")
+metadata/_custom_type_script = "uid://dsbh06fe22jkp"
+
+[node name="Paper" parent="PaperAttack" index="0" unique_id=816564922 node_paths=PackedStringArray("entity") instance=ExtResource("10_oy5ss")]
+position = Vector2(-4, -52)
+entity = NodePath("../..")
+
+[connection signal="died" from="HealthComponent" to="Visual" method="_on_health_component_died"]

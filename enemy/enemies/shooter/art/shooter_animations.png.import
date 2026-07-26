@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4tpieewtpina"
-path="res://.godot/imported/hugger_animations.png-32ac7e7f0219fc8227fa90edc9bd3d7d.ctex"
+uid="uid://dktgi2vqoy08g"
+path="res://.godot/imported/shooter_animations.png-cee15df9c93c0af69092d6d0ba07ccbc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemy/hugger/art/hugger_animations.png"
-dest_files=["res://.godot/imported/hugger_animations.png-32ac7e7f0219fc8227fa90edc9bd3d7d.ctex"]
+source_file="res://enemy/enemies/shooter/art/shooter_animations.png"
+dest_files=["res://.godot/imported/shooter_animations.png-cee15df9c93c0af69092d6d0ba07ccbc.ctex"]
 
 [params]
 

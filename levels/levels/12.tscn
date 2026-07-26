@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://bdeqn5d43smam" path="res://levels/level.tscn" id="1_8k1up"]
 [ext_resource type="PackedScene" uid="uid://do0fniahbe6co" path="res://levels/triggers/areas/level_area.tscn" id="2_1yd0g"]
-[ext_resource type="PackedScene" uid="uid://bdg03bde1grlw" path="res://enemy/shooter/shooter.tscn" id="2_pun38"]
-[ext_resource type="PackedScene" uid="uid://bk6xcpfk8ygg0" path="res://enemy/hugger/hugger.tscn" id="4_4fntk"]
+[ext_resource type="PackedScene" uid="uid://bdg03bde1grlw" path="res://enemy/enemies/shooter/shooter.tscn" id="2_pun38"]
+[ext_resource type="PackedScene" uid="uid://bk6xcpfk8ygg0" path="res://enemy/enemies/hugger/hugger.tscn" id="4_4fntk"]
 [ext_resource type="PackedScene" uid="uid://b135samrckoi6" path="res://skills/skill_trigger/skill_trigger.tscn" id="5_qgcr0"]
 [ext_resource type="PackedScene" uid="uid://t8u2oti3r8oa" path="res://levels/triggers/level_transition/level_transition.tscn" id="6_14v8y"]
 [ext_resource type="PackedScene" uid="uid://clxgftsxwm8w2" path="res://levels/lighting/school_lamp.tscn" id="6_qgcr0"]

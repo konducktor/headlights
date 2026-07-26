@@ -20,7 +20,7 @@ func physics_update(delta: float) -> EnemyState:
 	if player == null:
 		return null
 	
-	if not los_component.is_los_between_points(enemy.position, player.body_pos()):
+	if los_component and not los_component.is_los_between_points(enemy.position, player.body_pos()):
 		return exit_if_los_lost
 	
 	if enemy.position.distance_to(player.body_pos()) <= reach_threshhold:

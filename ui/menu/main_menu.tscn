@@ -19,7 +19,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1x3cv")
-gameplay_scene_path = "res://gameplay/intro/intro.tscn"
+gameplay_scene_path = "res://gameplay/gameplay.tscn"
 
 [node name="background" type="TextureRect" parent="." unique_id=2079721490]
 layout_mode = 1

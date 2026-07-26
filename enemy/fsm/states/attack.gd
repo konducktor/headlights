@@ -18,6 +18,7 @@ signal fired
 @export var exit_if_distance_far: EnemyState
 @export var exit_if_distance_short: EnemyState
 @export var exit_if_no_los: EnemyState
+@export var exit_if_attack_amount: EnemyState
 
 
 func physics_update(_delta: float) -> EnemyState:

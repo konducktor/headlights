@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bdeqn5d43smam" path="res://levels/level.tscn" id="1_tprkl"]
 [ext_resource type="PackedScene" uid="uid://do0fniahbe6co" path="res://levels/triggers/areas/level_area.tscn" id="2_udl7p"]
-[ext_resource type="PackedScene" uid="uid://bk6xcpfk8ygg0" path="res://enemy/hugger/hugger.tscn" id="2_y43jq"]
+[ext_resource type="PackedScene" uid="uid://bk6xcpfk8ygg0" path="res://enemy/enemies/hugger/hugger.tscn" id="2_y43jq"]
 [ext_resource type="PackedScene" uid="uid://b135samrckoi6" path="res://skills/skill_trigger/skill_trigger.tscn" id="4_aw0uy"]
 [ext_resource type="PackedScene" uid="uid://bfbmogdrisr46" path="res://levels/triggers/tutorial_trigger/tutorial_trigger.tscn" id="4_pn6cn"]
 [ext_resource type="PackedScene" uid="uid://b103m5ni47eib" path="res://levels/lighting/hospital_lamp.tscn" id="4_twf03"]
