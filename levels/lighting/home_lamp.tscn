@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bjl1c0peoff3n"]
+
+[ext_resource type="Texture2D" uid="uid://dmbklfnvo2bfa" path="res://levels/lighting/art/home_lamp.png" id="1_4jt2o"]
+[ext_resource type="Texture2D" uid="uid://dtsxkl4ywi85s" path="res://levels/lighting/art/lamp_light.png" id="2_hs4k7"]
+
+[node name="HospitalLamp" type="Node2D" unique_id=242089751]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=860667441]
+z_index = 1
+texture = ExtResource("1_4jt2o")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=850107468]
+z_index = -1
+position = Vector2(2, 566.2)
+color = Color(0.85, 0.96, 1, 1)
+energy = 0.25
+shadow_enabled = true
+shadow_item_cull_mask = 2
+texture = ExtResource("2_hs4k7")
+texture_scale = 2.7
+
+[node name="PointLight2D2" type="PointLight2D" parent="." unique_id=809703595]
+z_index = -1
+position = Vector2(2, 566.2)
+color = Color(0.85, 0.96, 1, 1)
+energy = 0.25
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 15.0
+texture = ExtResource("2_hs4k7")
+texture_scale = 2.7
