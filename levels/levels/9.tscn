@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://clxgftsxwm8w2" path="res://levels/lighting/school_lamp.tscn" id="6_djrgy"]
 [ext_resource type="PackedScene" uid="uid://b103m5ni47eib" path="res://levels/lighting/hospital_lamp.tscn" id="7_v6rtp"]
 [ext_resource type="PackedScene" uid="uid://bfbmogdrisr46" path="res://levels/triggers/tutorial_trigger/tutorial_trigger.tscn" id="8_lhuyq"]
+[ext_resource type="Script" uid="uid://cxgnrqfw5joge" path="res://levels/levels/home_sounds.gd" id="12_v6ml0"]
+[ext_resource type="AudioStream" uid="uid://b4dvx72db8oml" path="res://levels/sounds/home_loop.mp3" id="13_xuexo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
 size = Vector2(707, 314)
@@ -237,3 +239,13 @@ position = Vector2(925, -3027)
 
 [node name="Lamp2" parent="Light" index="7" unique_id=1577243315 instance=ExtResource("6_djrgy")]
 position = Vector2(957, -4233)
+
+[node name="GameSounds" type="Node" parent="." index="12" unique_id=1711851479 node_paths=PackedStringArray("home")]
+script = ExtResource("12_v6ml0")
+home = NodePath("HomeLoop")
+metadata/_custom_type_script = "uid://cy4ry3fxcdg3t"
+
+[node name="HomeLoop" type="AudioStreamPlayer" parent="GameSounds" index="0" unique_id=379938615]
+stream = ExtResource("13_xuexo")
+bus = &"Music"
+parameters/looping = true

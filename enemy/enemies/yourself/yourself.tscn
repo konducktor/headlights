@@ -97,7 +97,7 @@ initial_state = NodePath("EnemyStateChasing")
 
 [node name="EnemyStateChasing" type="Node2D" parent="EnemyStateMachine" index="0" unique_id=1734988455 node_paths=PackedStringArray("acceleration_component", "exit_if_reached", "pathfinding_component", "navigation_update_timer")]
 script = ExtResource("2_v434t")
-reach_threshhold = 150.0
+reach_threshhold = 200.0
 target_scatter_radius = 200.0
 acceleration_component = NodePath("../../AccelerationComponent")
 exit_if_reached = NodePath("../KnifeAttack")
@@ -108,7 +108,7 @@ metadata/_custom_type_script = "uid://cfgq62b11rbkr"
 [node name="KnifeAttack" type="Node2D" parent="EnemyStateMachine" index="1" unique_id=1262615440 node_paths=PackedStringArray("attack_component", "exit_if_distance_far", "exit_if_distance_short", "exit_if_attack_amount")]
 script = ExtResource("3_v5bnd")
 min_distance = 80.0
-max_distance = 250.0
+max_distance = 300.0
 attack_component = NodePath("../../KnifeAttack")
 exit_if_distance_far = NodePath("../EnemyStateRun")
 exit_if_distance_short = NodePath("../EnemyStateRun")
@@ -118,7 +118,7 @@ metadata/_custom_type_script = "uid://5kyj3444bt10"
 [node name="EnemyStateRun" type="Node2D" parent="EnemyStateMachine" index="2" unique_id=1222597128 node_paths=PackedStringArray("acceleration_component", "exit_if_far_enough", "exit_if_too_close", "pathfinding_component", "navigation_update_timer")]
 script = ExtResource("4_oy5ss")
 desired_distance = 500.0
-min_distance = 200.0
+min_distance = 250.0
 acceleration_component = NodePath("../../AccelerationComponent")
 exit_if_far_enough = NodePath("../PaperAttack")
 exit_if_too_close = NodePath("../KnifeAttack")

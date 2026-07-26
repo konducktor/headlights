@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_wtu5v")
 name = "Blank page"
-description = "Regenerates full health"
+description = "Regenerates to current health (doesn't give new hearts)."
 icon = ExtResource("1_ievee")
 skill = ExtResource("2_xncj6")
 metadata/_custom_type_script = "uid://c2qrjbbmbwn2p"
