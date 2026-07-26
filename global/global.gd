@@ -1,6 +1,8 @@
 extends Node
 
 
+signal level_finished
+
 signal paused
 signal unpaused
 

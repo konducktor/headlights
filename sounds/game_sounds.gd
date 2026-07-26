@@ -2,11 +2,7 @@ extends Node
 class_name GameSounds
 
 
-var random : RandomNumberGenerator
-
-
-func _ready() -> void:
-	random = RandomNumberGenerator.new()
+var random := RandomNumberGenerator.new()
 
 
 func play_sound(stream_player: AudioStreamPlayer, pitch: float = 1.0) -> void:

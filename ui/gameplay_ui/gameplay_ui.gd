@@ -1,9 +1,9 @@
-extends CanvasLayer
+extends Node
 
 
 @export var heart_ui_scene: PackedScene
+@export var level_controller: LevelConrtoller
 
-var health_label: Label
 var _player_health: int
 var _player_max_health: int
 
@@ -12,36 +12,34 @@ var _heart_container: HBoxContainer
 
 
 func _ready() -> void:
-	health_label = $Control/Health/MarginContainer/HealthLabel
 	_animation_player = $AnimationPlayer
-	_heart_container = $Control/Health/HBoxContainer
+	_heart_container = $CanvasLayer/Control/Health/HBoxContainer
 	
 	_player_health = 10
 	_player_max_health = 10
-	setup_health_label()
+	setup_health_ui()
 	
 	Global.player_health_changed.connect(_on_player_health_changed)
 	Global.player_max_health_changed.connect(_on_player_max_health_changed)
 	
 	Global.paused.connect(_on_paused)
 	Global.unpaused.connect(_on_unpaused)
-
-
-
+	
+	Global.level_finished.connect(_on_level_finished)
 
 
 func _on_player_health_changed(new_value: int) -> void:
 	_player_health = new_value
-	setup_health_label()
+	setup_health_ui()
 
 
 func _on_player_max_health_changed(new_value: int) -> void:
 	_player_max_health = new_value
 	_player_health = clamp(_player_health, 0, _player_max_health)
-	setup_health_label()
+	setup_health_ui()
 
 
-func setup_health_label() -> void:
+func setup_health_ui() -> void:
 	for child in _heart_container.get_children():
 		child.queue_free()
 	
@@ -68,5 +66,14 @@ func _add_heart_to_container(type: HeartUI.HeartTypes) -> HeartUI:
 func _on_paused() -> void:
 	_animation_player.play("paused")
 
+
 func _on_unpaused() -> void:
 	_animation_player.play("unpaused")
+
+
+func _on_level_finished() -> void:
+	_animation_player.play("level_end")
+
+
+func next_level() -> void:
+	level_controller.next_level()

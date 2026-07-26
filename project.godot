@@ -47,8 +47,8 @@ folder_colors={
 "res://global/": "pink",
 "res://levels/": "blue",
 "res://player/": "teal",
-"res://sandbox/": "gray",
 "res://skills/": "yellow",
+"res://sounds/": "gray",
 "res://weapons/": "green"
 }
 

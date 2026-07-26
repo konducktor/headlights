@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://cdvh3p16ve2le"]
 
-[ext_resource type="Texture2D" uid="uid://db14bk255rr0h" path="res://weapons/knife/art/knife_placeholder.png" id="1_h3j4c"]
 [ext_resource type="Script" uid="uid://c0n8d01pmcuy" path="res://weapons/knife/knife.gd" id="1_iqiin"]
+[ext_resource type="Script" uid="uid://ces2ijwj71a4g" path="res://weapons/knife/knife_sounds.gd" id="2_iqiin"]
+[ext_resource type="AudioStream" uid="uid://53b57ghpuvhi" path="res://weapons/knife/sound/knife.mp3" id="3_yhxna"]
 
 [node name="Knife" type="Node2D" unique_id=1848124045]
 script = ExtResource("1_iqiin")
@@ -9,13 +10,16 @@ damage = 2
 
 [node name="Visual" type="Node2D" parent="." unique_id=1566469830]
 
-[node name="Sprite2D" type="Sprite2D" parent="Visual" unique_id=215790877]
-visible = false
-position = Vector2(172, 2)
-rotation = 2.3561945
-scale = Vector2(0.24999997, 0.24999997)
-texture = ExtResource("1_h3j4c")
+[node name="Sounds" type="Node" parent="." unique_id=1696971204 node_paths=PackedStringArray("swoosh")]
+script = ExtResource("2_iqiin")
+swoosh = NodePath("Swoosh")
+
+[node name="Swoosh" type="AudioStreamPlayer" parent="Sounds" unique_id=1958528970]
+stream = ExtResource("3_yhxna")
+volume_db = -10.0
 
 [node name="CooldownTimer" type="Timer" parent="." unique_id=1954706159]
 wait_time = 0.45
 one_shot = true
+
+[connection signal="fired" from="." to="Sounds" method="_on_knife_fired"]

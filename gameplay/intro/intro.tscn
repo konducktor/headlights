@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://bs7hboxysf7ok"]
+
+[ext_resource type="Script" uid="uid://bua1uxxicai2n" path="res://gameplay/intro/intro.gd" id="1_4vu2s"]
+[ext_resource type="FontFile" uid="uid://dllwvp0853vla" path="res://ui/menu/NanumBrushScript-Regular.ttf" id="2_dcpql"]
+[ext_resource type="AudioStream" uid="uid://dj0lx5hgi0lbn" path="res://gameplay/intro/sounds/nightmare.mp3" id="2_que80"]
+[ext_resource type="Shader" uid="uid://wg6vesuf1jj5" path="res://global/assets/shaders/background.gdshader" id="2_vwy0r"]
+[ext_resource type="Material" uid="uid://do4oost55dfdd" path="res://global/assets/shaders/dissolve_material.tres" id="2_xbjfy"]
+
+[sub_resource type="Animation" id="Animation_xbjfy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TMPLayer/Control/Label:material:shader_parameter/dissolve_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_4vu2s"]
+resource_name = "intro"
+length = 5.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"end"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TMPLayer/Control/Label:material:shader_parameter/dissolve_value")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_que80"]
+_data = {
+&"RESET": SubResource("Animation_xbjfy"),
+&"intro": SubResource("Animation_4vu2s")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dcpql"]
+shader = ExtResource("2_vwy0r")
+shader_parameter/color_a = Color(0.02, 0.02, 0.05, 1)
+shader_parameter/color_b = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/color_c = Color(0.09, 0.09, 0.09, 1)
+shader_parameter/noise_scale = 3.0
+shader_parameter/speed = 0.1600000076
+shader_parameter/brightness = 1.0
+shader_parameter/contrast = 1.4
+
+[node name="Intro" type="Node" unique_id=337656784]
+script = ExtResource("1_4vu2s")
+on_finish_scene_path = "res://gameplay/gameplay.tscn"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=823490456]
+libraries/ = SubResource("AnimationLibrary_que80")
+
+[node name="TMPLayer" type="CanvasLayer" parent="." unique_id=1759298021]
+layer = -1
+
+[node name="Control" type="Control" parent="TMPLayer" unique_id=4728124]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="TMPLayer/Control" unique_id=1873975882]
+material = ExtResource("2_xbjfy")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_dcpql")
+theme_override_font_sizes/font_size = 128
+text = "It is all your fault. Remember it."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BG" type="CanvasLayer" parent="." unique_id=941545899]
+layer = -2
+
+[node name="ColorRect" type="ColorRect" parent="BG" unique_id=1554176835]
+material = SubResource("ShaderMaterial_dcpql")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Sounds" type="Node" parent="." unique_id=1471719061]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sounds" unique_id=614215462]
+stream = ExtResource("2_que80")
+autoplay = true

@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://bmdrd7umw1xyg" path="res://ui/menu/settings/texture_button.gd" id="8_l52iw"]
 [ext_resource type="AudioStream" uid="uid://dxeaa2t3nybw1" path="res://ui/menu/sounds/Click - press button.wav" id="11_tw7fl"]
 [ext_resource type="AudioStream" uid="uid://t4jeoq4vo0fb" path="res://ui/menu/sounds/Cursor - choose option.wav" id="12_mm33y"]
+[ext_resource type="AudioStream" uid="uid://lnyn1w25uxf6" path="res://ui/menu/sounds/main_menu.mp3" id="13_mm33y"]
 
 [node name="Settings" type="Control" unique_id=1064492059]
 layout_mode = 3
@@ -136,6 +137,12 @@ stream = ExtResource("11_tw7fl")
 
 [node name="Hover" type="AudioStreamPlayer2D" parent="." unique_id=1139672008]
 stream = ExtResource("12_mm33y")
+
+[node name="Sounds" type="Node" parent="." unique_id=1283057103]
+
+[node name="BGMusic" type="AudioStreamPlayer" parent="Sounds" unique_id=1262085724]
+stream = ExtResource("13_mm33y")
+autoplay = true
 
 [connection signal="mouse_entered" from="VBoxContainer3/VBoxContainer/AudioControlMusic" to="VBoxContainer3/VBoxContainer/AudioControlMusic" method="_on_mouse_entered"]
 [connection signal="value_changed" from="VBoxContainer3/VBoxContainer/AudioControlMusic" to="VBoxContainer3/VBoxContainer/AudioControlMusic" method="_on_value_changed"]

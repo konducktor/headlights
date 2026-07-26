@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bgm8w4v7hveso" path="res://ui/menu/art/settings_button.png" id="7_k17ts"]
 [ext_resource type="Texture2D" uid="uid://dd57ss357ah8s" path="res://ui/menu/art/settings_button_pressed.png" id="8_1vfm6"]
 [ext_resource type="Texture2D" uid="uid://bqfkfw1qybxda" path="res://ui/menu/art/settings_button_hover.png" id="9_23ste"]
+[ext_resource type="AudioStream" uid="uid://lnyn1w25uxf6" path="res://ui/menu/sounds/main_menu.mp3" id="10_u4nky"]
 
 [node name="MainMenu" type="Control" unique_id=2057709459]
 layout_mode = 3
@@ -18,7 +19,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1x3cv")
-gameplay_scene_path = "res://gameplay/gameplay.tscn"
+gameplay_scene_path = "res://gameplay/intro/intro.tscn"
 
 [node name="background" type="TextureRect" parent="." unique_id=2079721490]
 layout_mode = 1
@@ -69,6 +70,12 @@ texture_pressed = ExtResource("8_1vfm6")
 texture_hover = ExtResource("9_23ste")
 ignore_texture_size = true
 stretch_mode = 0
+
+[node name="Sounds" type="Node" parent="." unique_id=447747054]
+
+[node name="BGMusic" type="AudioStreamPlayer" parent="Sounds" unique_id=1947639478]
+stream = ExtResource("10_u4nky")
+autoplay = true
 
 [connection signal="mouse_entered" from="play" to="." method="_on_play_mouse_entered"]
 [connection signal="pressed" from="play" to="." method="_on_play_button_pressed"]
