@@ -1,11 +1,13 @@
 [gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://33dum0eksapf"]
 
 [ext_resource type="Script" uid="uid://c2qrjbbmbwn2p" path="res://skills/skill_data.gd" id="1_6ss6x"]
+[ext_resource type="Texture2D" uid="uid://dakn0lch32ubm" path="res://skills/skills/painkiller/painkiller.png" id="1_ee33c"]
 [ext_resource type="PackedScene" uid="uid://b3nc1cf5foixq" path="res://skills/skills/painkiller/painkiller.tscn" id="2_1pf8x"]
 
 [resource]
 script = ExtResource("1_6ss6x")
 name = "Painkiller"
 description = "When hitting enemies, firstly gives invincibility for 0.5 seconds, then adds 0.2 to it."
+icon = ExtResource("1_ee33c")
 skill = ExtResource("2_1pf8x")
 metadata/_custom_type_script = "uid://c2qrjbbmbwn2p"

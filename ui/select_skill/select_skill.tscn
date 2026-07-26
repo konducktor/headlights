@@ -27,9 +27,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_p5sd2")
-cards = [NodePath("Control/Card"), NodePath("Control/Card2"), NodePath("Control/Card3")]
+cards = [NodePath("Container/Cards/Card"), NodePath("Container/Cards/Card2"), NodePath("Container/Cards/Card3")]
 
-[node name="Control" type="Control" parent="." unique_id=607018415]
+[node name="Container" type="Control" parent="." unique_id=2059191408]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Cards" type="Control" parent="Container" unique_id=607018415]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -43,22 +52,22 @@ offset_bottom = 41.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Card" parent="Control" unique_id=1169764385 instance=ExtResource("1_nqw3i")]
+[node name="Card" parent="Container/Cards" unique_id=1169764385 instance=ExtResource("1_nqw3i")]
 layout_mode = 1
 offset_left = -257.0
 offset_right = 243.0
 
-[node name="Card2" parent="Control" unique_id=2068448509 instance=ExtResource("1_nqw3i")]
+[node name="Card2" parent="Container/Cards" unique_id=2068448509 instance=ExtResource("1_nqw3i")]
 layout_mode = 1
 offset_left = -807.0
 offset_right = -307.0
 
-[node name="Card3" parent="Control" unique_id=243730734 instance=ExtResource("1_nqw3i")]
+[node name="Card3" parent="Container/Cards" unique_id=243730734 instance=ExtResource("1_nqw3i")]
 layout_mode = 1
 offset_left = 298.0
 offset_right = 798.0
 
-[node name="Label" type="Label" parent="." unique_id=1336965953]
+[node name="Label" type="Label" parent="Container" unique_id=1336965953]
 layout_mode = 0
 offset_top = 75.0
 offset_right = 1920.0
@@ -68,10 +77,10 @@ theme_override_constants/shadow_offset_x = 3
 theme_override_constants/shadow_offset_y = 3
 theme_override_fonts/font = ExtResource("3_2l2ni")
 theme_override_font_sizes/font_size = 64
-text = "Self-deprecation: Hurt yourself to get one of these abilities"
+text = "Self-deprecation: Hurt yourself (lose one heart) to get one of these abilities"
 horizontal_alignment = 1
 
-[node name="SkipButton" type="Button" parent="." unique_id=816252610]
+[node name="SkipButton" type="Button" parent="Container" unique_id=816252610]
 z_index = 5
 layout_mode = 1
 anchors_preset = 7
@@ -96,4 +105,4 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_66s8p")
 theme_override_styles/hover = SubResource("StyleBoxTexture_qrk5y")
 text = "SKIP"
 
-[connection signal="pressed" from="SkipButton" to="." method="_on_skip_button_pressed"]
+[connection signal="pressed" from="Container/SkipButton" to="." method="_on_skip_button_pressed"]

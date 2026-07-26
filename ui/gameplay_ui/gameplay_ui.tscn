@@ -178,26 +178,30 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Health" unique_id=43522089]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-grow_horizontal = 2
-theme_override_constants/separation = 70
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/Health" unique_id=768156763]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
 
-[node name="HeartUI" parent="CanvasLayer/Control/Health/HBoxContainer" unique_id=841508613 instance=ExtResource("2_n5c7t")]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Health/MarginContainer" unique_id=43522089]
+layout_mode = 2
+theme_override_constants/separation = 83
+
+[node name="HeartUI" parent="CanvasLayer/Control/Health/MarginContainer/HBoxContainer" unique_id=841508613 instance=ExtResource("2_n5c7t")]
 layout_mode = 2
 
-[node name="HeartUI2" parent="CanvasLayer/Control/Health/HBoxContainer" unique_id=1640241926 instance=ExtResource("2_n5c7t")]
+[node name="HeartUI2" parent="CanvasLayer/Control/Health/MarginContainer/HBoxContainer" unique_id=1640241926 instance=ExtResource("2_n5c7t")]
 layout_mode = 2
 
-[node name="HeartUI3" parent="CanvasLayer/Control/Health/HBoxContainer" unique_id=710155994 instance=ExtResource("2_n5c7t")]
+[node name="HeartUI3" parent="CanvasLayer/Control/Health/MarginContainer/HBoxContainer" unique_id=710155994 instance=ExtResource("2_n5c7t")]
 layout_mode = 2
 
-[node name="HeartUI4" parent="CanvasLayer/Control/Health/HBoxContainer" unique_id=1014933600 instance=ExtResource("2_n5c7t")]
+[node name="HeartUI4" parent="CanvasLayer/Control/Health/MarginContainer/HBoxContainer" unique_id=1014933600 instance=ExtResource("2_n5c7t")]
 layout_mode = 2
 
-[node name="HeartUI5" parent="CanvasLayer/Control/Health/HBoxContainer" unique_id=1231412434 instance=ExtResource("2_n5c7t")]
+[node name="HeartUI5" parent="CanvasLayer/Control/Health/MarginContainer/HBoxContainer" unique_id=1231412434 instance=ExtResource("2_n5c7t")]
 layout_mode = 2
 
 [node name="Tutorial" parent="CanvasLayer" unique_id=673164223 instance=ExtResource("5_wapsp")]
