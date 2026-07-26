@@ -2,17 +2,6 @@
 
 [ext_resource type="TileSet" uid="uid://cxfc0uaiyefyh" path="res://levels/tileset/tileset.tres" id="1_cwqvt"]
 [ext_resource type="Script" uid="uid://clu8285b8evum" path="res://gameplay/main_camera.gd" id="3_5mrsh"]
-[ext_resource type="Shader" uid="uid://wg6vesuf1jj5" path="res://global/assets/shaders/background.gdshader" id="3_cwqvt"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5mrsh"]
-shader = ExtResource("3_cwqvt")
-shader_parameter/color_a = Color(0.02, 0.02, 0.05, 1)
-shader_parameter/color_b = Color(0.107547544, 0.10762096, 0.23824042, 1)
-shader_parameter/color_c = Color(0.034999996, 0.13891661, 0.25, 1)
-shader_parameter/noise_scale = 3.0
-shader_parameter/speed = 0.1600000076
-shader_parameter/brightness = 1.0
-shader_parameter/contrast = 1.4
 
 [node name="Level" type="Node2D" unique_id=1005489076]
 y_sort_enabled = true
@@ -51,18 +40,6 @@ level_start_pos = NodePath("../CameraStartPosition")
 
 [node name="Areas" type="Node2D" parent="." unique_id=1921332606]
 y_sort_enabled = true
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1270387722]
-layer = -1
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1803115834]
-material = SubResource("ShaderMaterial_5mrsh")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 1, 1, 0)
 
 [node name="Sounds" type="Node" parent="." unique_id=1409857496]
 process_mode = 3
