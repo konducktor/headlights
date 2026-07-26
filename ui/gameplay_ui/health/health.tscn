@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dbsb3fotk1tns"]
+
+[ext_resource type="PackedScene" uid="uid://6rnxfnarx8si" path="res://ui/gameplay_ui/health/heart_ui.tscn" id="1_0nap0"]
+[ext_resource type="Script" uid="uid://2x6ejecyunc6" path="res://ui/gameplay_ui/health/health.gd" id="1_4jyif"]
+
+[node name="Health" type="Control" unique_id=733240420]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_4jyif")
+heart_ui_scene = ExtResource("1_0nap0")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1790606990]
+layout_mode = 1
+offset_right = 432.0
+offset_bottom = 100.0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="HeartContainer" type="HBoxContainer" parent="MarginContainer" unique_id=2082144593]
+layout_mode = 2
+theme_override_constants/separation = 83

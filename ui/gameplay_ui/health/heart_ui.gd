@@ -42,10 +42,12 @@ func set_heart(type: HeartTypes, previous_type: HeartTypes) -> void:
 		HeartTypes.REMOVED:
 			no_heart.visible = true
 			dissolve_heart()
+	
+	if previous_type == HeartTypes.REMOVED and type != HeartTypes.REMOVED:
+			restore_heart()
 
 
 func dissolve_heart() -> void:
-	print("dissolve_heart")
 	animation_player.play("dissolve_heart")
 	await animation_player.animation_finished
 	queue_free()
@@ -53,3 +55,7 @@ func dissolve_heart() -> void:
 
 func damage_heart() -> void:
 	animation_player.play("damage_heart")
+
+
+func restore_heart() -> void:
+	animation_player.play("restore_heart")

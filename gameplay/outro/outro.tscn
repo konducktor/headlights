@@ -137,7 +137,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_xjhm8")
 theme_override_font_sizes/font_size = 128
-text = "It's not your fault. And you should move on."
+text = "It's time to let go."
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -151,7 +151,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_xjhm8")
 theme_override_font_sizes/font_size = 128
-text = "Thanks for playing."
+text = "Thanks for playing"
 horizontal_alignment = 1
 vertical_alignment = 1
 

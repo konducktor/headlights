@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://6rnxfnarx8si"]
 
-[ext_resource type="Script" uid="uid://c8dn1tlif5y3g" path="res://ui/gameplay_ui/heart_ui.gd" id="1_5gxyv"]
-[ext_resource type="Texture2D" uid="uid://bxkctvi7qe3dp" path="res://ui/gameplay_ui/art/heart.png" id="1_g7ygl"]
-[ext_resource type="Texture2D" uid="uid://bl2qkjmsejay7" path="res://ui/gameplay_ui/art/half_heart.png" id="2_7i83r"]
+[ext_resource type="Script" uid="uid://c8dn1tlif5y3g" path="res://ui/gameplay_ui/health/heart_ui.gd" id="1_5gxyv"]
+[ext_resource type="Texture2D" uid="uid://bxkctvi7qe3dp" path="res://ui/gameplay_ui/health/art/heart.png" id="1_g7ygl"]
+[ext_resource type="Texture2D" uid="uid://bl2qkjmsejay7" path="res://ui/gameplay_ui/health/art/half_heart.png" id="2_7i83r"]
 [ext_resource type="Shader" uid="uid://b04dcj8qumfp3" path="res://global/assets/shaders/dissolve.gdshader" id="2_7o1ev"]
-[ext_resource type="Texture2D" uid="uid://djoh3w8k8rka2" path="res://ui/gameplay_ui/art/no_heart.png" id="3_5gxyv"]
+[ext_resource type="Texture2D" uid="uid://djoh3w8k8rka2" path="res://ui/gameplay_ui/health/art/no_heart.png" id="3_5gxyv"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_txjm0"]
 seed = 1
@@ -79,11 +79,28 @@ tracks/0/keys = {
 "values": [1.0, 0.0]
 }
 
+[sub_resource type="Animation" id="Animation_o5iuq"]
+resource_name = "restore_heart"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/Heart:material:shader_parameter/dissolve_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ishws"]
 _data = {
 &"RESET": SubResource("Animation_ishws"),
 &"damage_heart": SubResource("Animation_n8f1e"),
-&"dissolve_heart": SubResource("Animation_7o1ev")
+&"dissolve_heart": SubResource("Animation_7o1ev"),
+&"restore_heart": SubResource("Animation_o5iuq")
 }
 
 [node name="HeartUI" type="Control" unique_id=841508613 node_paths=PackedStringArray("heart", "half_heart", "no_heart", "animation_player")]

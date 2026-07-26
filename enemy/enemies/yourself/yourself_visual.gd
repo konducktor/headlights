@@ -24,3 +24,7 @@ func _on_knife_attack_fired() -> void:
 
 func _on_paper_attack_fired() -> void:
 	animated_sprite.play("idle_throw")
+
+
+func _on_yourself_activated() -> void:
+	animation_player.play("enemy/appear")

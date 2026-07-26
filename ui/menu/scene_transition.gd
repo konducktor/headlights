@@ -1,16 +1,27 @@
 extends CanvasLayer
 
+
+signal loaded
+signal reloaded
+
+
 func _ready() -> void:
 	$ColorRect.visible = false
 
-func load_scene(target_scene: String)->void:
+
+func load_scene(target_scene: String) -> void:
 	$AnimationPlayer.play("fade")
 	await $AnimationPlayer.animation_finished
 	get_tree().change_scene_to_file(target_scene)
 	$AnimationPlayer.play_backwards("fade")
+	
+	loaded.emit()
 
-func reload_scene()->void:
+
+func reload_scene() -> void:
 	$AnimationPlayer.play("fade")
 	await $AnimationPlayer.animation_finished
 	get_tree().reload_current_scene()
 	$AnimationPlayer.play_backwards("fade")
+	
+	reloaded.emit()

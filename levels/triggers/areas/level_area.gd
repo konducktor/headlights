@@ -17,6 +17,9 @@ func _on_body_entered(body: Node2D) -> void:
 
 
 func set_all_enemies_activation(value: bool) -> void:
+	if not value:
+		return
+	
 	for enemy in enemies_in_this_area:
 		if enemy != null:
-			enemy.active = value
+			enemy.activate()

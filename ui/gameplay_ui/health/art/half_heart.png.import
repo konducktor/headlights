@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djoh3w8k8rka2"
-path="res://.godot/imported/no_heart.png-33ae40df0530cd16dfbc2306f745a178.ctex"
+uid="uid://bl2qkjmsejay7"
+path="res://.godot/imported/half_heart.png-9089637a95310833cf7ff6d0bb158ec3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/gameplay_ui/art/no_heart.png"
-dest_files=["res://.godot/imported/no_heart.png-33ae40df0530cd16dfbc2306f745a178.ctex"]
+source_file="res://ui/gameplay_ui/health/art/half_heart.png"
+dest_files=["res://.godot/imported/half_heart.png-9089637a95310833cf7ff6d0bb158ec3.ctex"]
 
 [params]
 

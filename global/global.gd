@@ -18,6 +18,8 @@ signal player_max_health_changed(new_value: int)
 signal player_max_health_increased(amount: int)
 signal player_max_health_decreased(amount: int)
 
+signal bossfight_started(enemy: Enemy)
+
 
 var player: Player
 

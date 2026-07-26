@@ -15,3 +15,4 @@ level_controller = NodePath("../LevelController")
 [node name="LevelController" type="Node" parent="." unique_id=870319205]
 script = ExtResource("2_ktb3l")
 levels_in_order = Array[PackedScene]([ExtResource("2_ueusv"), ExtResource("4_ktb3l"), ExtResource("5_gvicd"), ExtResource("6_7pdct")])
+initial_level = 2

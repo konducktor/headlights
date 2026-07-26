@@ -18,6 +18,9 @@ func _ready() -> void:
 	_living_timer = $LivingTimer
 	_living_timer.start()
 	_living_timer.timeout.connect(_on_living_timer_timeout)
+	
+	SceneTransition.loaded.connect(stop)
+	SceneTransition.reloaded.connect(stop)
 
 
 func stop() -> void:

@@ -30,6 +30,8 @@ var dashes_while_stuck: int
 
 var is_walking: bool
 
+var health_component: HealthComponent
+
 var _attack_component: AttackComponent
 var _acceleration_component: AccelerationComponent
 var _hurtbox_collision: CollisionShape2D
@@ -43,6 +45,7 @@ func _ready() -> void:
 	_attack_component = $AttackComponent
 	_acceleration_component = $AccelerationComponent
 	_hurtbox_collision = $HurtboxComponent/CollisionShape2D
+	health_component = $HealthComponent
 	
 	dash_timer = $DashTimer
 	dash_timer.timeout.connect(_on_dash_timer_timeout)

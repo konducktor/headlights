@@ -40,8 +40,44 @@ gradient = SubResource("Gradient_yllr7")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="Animation" id="Animation_jeeqt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlipOnVelocityComponent/AnimatedSprite2D:material:shader_parameter/dissolve_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.70000003325]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7n0ej"]
+_data = {
+&"RESET": SubResource("Animation_jeeqt")
+}
+
+[sub_resource type="Animation" id="Animation_pg04j"]
+resource_name = "appear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlipOnVelocityComponent/AnimatedSprite2D:material:shader_parameter/dissolve_value")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.70000003325]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6dkoc"]
 _data = {
+&"appear": SubResource("Animation_pg04j"),
 &"dissolve": ExtResource("8_a3jgg")
 }
 
@@ -58,7 +94,6 @@ movement_speed = 600.0
 
 [node name="EnemyStateMachine" parent="." index="0" unique_id=119706350 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("EnemyStateChasing")
-report_current_state = true
 
 [node name="EnemyStateChasing" type="Node2D" parent="EnemyStateMachine" index="0" unique_id=1734988455 node_paths=PackedStringArray("acceleration_component", "exit_if_reached", "pathfinding_component", "navigation_update_timer")]
 script = ExtResource("2_v434t")
@@ -113,27 +148,34 @@ metadata/_custom_type_script = "uid://bdthesvcg5qi3"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visual/FlipOnVelocityComponent" index="0" unique_id=280490587]
 material = SubResource("ShaderMaterial_v434t")
+position = Vector2(0, -112)
 sprite_frames = ExtResource("2_d1a6c")
 animation = &"walking"
 autoplay = "walking"
 
 [node name="ShadowSprite" type="Sprite2D" parent="Visual/FlipOnVelocityComponent" index="1" unique_id=405134887]
 modulate = Color(1, 1, 1, 0.19607843)
-position = Vector2(0, 109.99999)
+position = Vector2(0, -2)
 scale = Vector2(1.7812501, 1.162942)
 texture = SubResource("GradientTexture2D_6dkoc")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visual" index="1" unique_id=196413047]
+libraries/ = SubResource("AnimationLibrary_7n0ej")
 libraries/enemy = SubResource("AnimationLibrary_6dkoc")
 
 [node name="WallCollision" parent="." index="2" unique_id=1847437153]
-position = Vector2(0, 110)
+position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_oy5ss")
 
-[node name="HealthComponent" parent="." index="3" unique_id=855731163]
-max_health = 10
+[node name="HealthComponent" parent="." index="3" unique_id=855731163 node_paths=PackedStringArray("damage_cooldown_timer")]
+max_health = 16
+damage_cooldown_timer = NodePath("DamageCooldownTimer")
+
+[node name="DamageCooldownTimer" type="Timer" parent="HealthComponent" index="0" unique_id=735492505]
+one_shot = true
 
 [node name="CollisionShape2D" parent="HurtboxComponent" parent_id_path=PackedInt32Array(1909287759) index="0" unique_id=1072947480]
+position = Vector2(0, -112)
 shape = SubResource("CapsuleShape2D_y4050")
 
 [node name="AccelerationComponent" type="Node" parent="." index="5" unique_id=1680515564]
@@ -149,7 +191,7 @@ metadata/_custom_type_script = "uid://c4cdida6p2443"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="PathfindingComponent" index="0" unique_id=1369393695]
 path_desired_distance = 60.0
-target_desired_distance = 30.0
+target_desired_distance = 60.0
 path_max_distance = 200.0
 path_postprocessing = 1
 
@@ -173,6 +215,7 @@ metadata/_custom_type_script = "uid://dsbh06fe22jkp"
 position = Vector2(-4, -52)
 entity = NodePath("../..")
 
+[connection signal="activated" from="." to="Visual" method="_on_yourself_activated"]
 [connection signal="entered" from="EnemyStateMachine/EnemyStateChasing" to="Visual" method="_on_enemy_state_chasing_entered"]
 [connection signal="fired" from="EnemyStateMachine/KnifeAttack" to="Visual" method="_on_knife_attack_fired"]
 [connection signal="entered" from="EnemyStateMachine/EnemyStateRun" to="Visual" method="_on_enemy_state_run_entered"]
