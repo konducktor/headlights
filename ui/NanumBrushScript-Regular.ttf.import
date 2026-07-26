@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://dllwvp0853vla"
-path="res://.godot/imported/NanumBrushScript-Regular.ttf-6596432946306176bfe90a14db1cf409.fontdata"
+path="res://.godot/imported/NanumBrushScript-Regular.ttf-7ca6ac331f2d8ec1e331a7128c9fb861.fontdata"
 
 [deps]
 
-source_file="res://ui/menu/NanumBrushScript-Regular.ttf"
-dest_files=["res://.godot/imported/NanumBrushScript-Regular.ttf-6596432946306176bfe90a14db1cf409.fontdata"]
+source_file="res://ui/NanumBrushScript-Regular.ttf"
+dest_files=["res://.godot/imported/NanumBrushScript-Regular.ttf-7ca6ac331f2d8ec1e331a7128c9fb861.fontdata"]
 
 [params]
 

@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://8sy8bskhfgw0" path="res://levels/tileset/tileset_hospital.png" id="1_yu7w1"]
 [ext_resource type="PackedScene" uid="uid://b103m5ni47eib" path="res://levels/lighting/hospital_lamp.tscn" id="2_1odbp"]
 [ext_resource type="Texture2D" uid="uid://ieil2nvncvyh" path="res://levels/tileset/tileset_school.png" id="3_s1rgd"]
+[ext_resource type="Texture2D" uid="uid://b3nd60xkt8bct" path="res://levels/tileset/tileset_home.png" id="4_1odbp"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_uoq8t"]
 polygon = PackedVector2Array(-32, -198.40001, 96, -198.40001, 96, 147.2, -32, 147.2)
@@ -517,6 +518,10 @@ texture_region_size = Vector2i(64, 64)
 0:3/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_068qy")
 0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10.666666, -224, 74.66667, -224, 74.66667, 160, -10.666666, 160)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s1rgd"]
+texture = ExtResource("4_1odbp")
+texture_region_size = Vector2i(64, 64)
+
 [resource]
 tile_size = Vector2i(64, 64)
 occlusion_layer_0/light_mask = 1
@@ -526,3 +531,4 @@ navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_hjsbj")
 sources/1 = SubResource("TileSetScenesCollectionSource_0tc62")
 sources/2 = SubResource("TileSetAtlasSource_l68sl")
+sources/3 = SubResource("TileSetAtlasSource_s1rgd")

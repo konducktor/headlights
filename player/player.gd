@@ -5,6 +5,7 @@ class_name Player
 signal started_walking
 signal stopped_walking
 signal got_stuck
+signal got_unstuck
 signal started_dashing
 signal stopped_dashing
 signal died
@@ -34,6 +35,10 @@ var _acceleration_component: AccelerationComponent
 var _hurtbox_collision: CollisionShape2D
 
 
+func _init() -> void:
+	Global.player = self
+
+
 func _ready() -> void:
 	_attack_component = $AttackComponent
 	_acceleration_component = $AccelerationComponent
@@ -49,8 +54,6 @@ func _ready() -> void:
 	player_state = PlayerState.DEFAULT
 	
 	is_walking = false
-	
-	Global.player = self
 
 
 func _physics_process(delta: float) -> void:
@@ -83,6 +86,7 @@ func _physics_process(delta: float) -> void:
 				
 				if dashes_while_stuck == dashes_to_escape:
 					dash(movement_dir)
+					got_unstuck.emit()
 	
 	move_and_slide()
 
@@ -117,6 +121,7 @@ func make_stuck() -> void:
 
 func free_from_stuck() -> void:
 	player_state = PlayerState.DEFAULT
+	got_unstuck.emit()
 
 
 func _on_dash_timer_timeout() -> void:

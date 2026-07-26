@@ -1,6 +1,7 @@
 extends Node
 
 
+signal tutorial_show
 signal level_finished
 
 signal paused
@@ -19,7 +20,6 @@ signal player_max_health_decreased(amount: int)
 
 
 var player: Player
-
 
 func _ready() -> void:
 	player_died.connect(_on_player_died)

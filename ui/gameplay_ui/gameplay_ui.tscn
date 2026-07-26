@@ -5,6 +5,8 @@
 [ext_resource type="Shader" uid="uid://clllrp6vhqo7k" path="res://global/assets/shaders/vhs.gdshader" id="2_rxnur"]
 [ext_resource type="PackedScene" uid="uid://bgnlnpksxqdc" path="res://ui/select_skill/select_skill.tscn" id="3_h414r"]
 [ext_resource type="Shader" uid="uid://brdv3gb404ag4" path="res://global/assets/shaders/brightness.gdshader" id="4_ht2um"]
+[ext_resource type="PackedScene" uid="uid://cdtmr5uuycv4f" path="res://ui/tutorial/tutorial.tscn" id="5_wapsp"]
+[ext_resource type="PackedScene" uid="uid://djjp3a1ecr7si" path="res://ui/hugger_warning/hugger_warning.tscn" id="6_akeve"]
 
 [sub_resource type="Animation" id="Animation_h414r"]
 length = 0.001
@@ -23,7 +25,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Brightness2/Brightness:material:shader_parameter/amount")
+tracks/1/path = NodePath("Brightness/Brightness:material:shader_parameter/amount")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -51,7 +53,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Brightness2/Brightness:material:shader_parameter/amount")
+tracks/1/path = NodePath("Brightness/Brightness:material:shader_parameter/amount")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -145,9 +147,9 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Brightness2" type="CanvasLayer" parent="." unique_id=1207668672]
+[node name="Brightness" type="CanvasLayer" parent="." unique_id=1207668672]
 
-[node name="Brightness" type="ColorRect" parent="Brightness2" unique_id=1080032395]
+[node name="Brightness" type="ColorRect" parent="Brightness" unique_id=1080032395]
 material = SubResource("ShaderMaterial_ht2um")
 anchors_preset = 15
 anchor_right = 1.0
@@ -197,5 +199,9 @@ layout_mode = 2
 
 [node name="HeartUI5" parent="CanvasLayer/Control/Health/HBoxContainer" unique_id=1231412434 instance=ExtResource("2_n5c7t")]
 layout_mode = 2
+
+[node name="Tutorial" parent="CanvasLayer" unique_id=673164223 instance=ExtResource("5_wapsp")]
+
+[node name="HuggerWarning" parent="CanvasLayer" unique_id=2090646477 instance=ExtResource("6_akeve")]
 
 [node name="SelectSkill" parent="CanvasLayer" unique_id=974454752 instance=ExtResource("3_h414r")]

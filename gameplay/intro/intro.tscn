@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bs7hboxysf7ok"]
 
 [ext_resource type="Script" uid="uid://bua1uxxicai2n" path="res://gameplay/intro/intro.gd" id="1_4vu2s"]
-[ext_resource type="FontFile" uid="uid://dllwvp0853vla" path="res://ui/menu/NanumBrushScript-Regular.ttf" id="2_dcpql"]
+[ext_resource type="FontFile" uid="uid://dllwvp0853vla" path="res://ui/NanumBrushScript-Regular.ttf" id="2_dcpql"]
 [ext_resource type="AudioStream" uid="uid://dj0lx5hgi0lbn" path="res://gameplay/intro/sounds/nightmare.mp3" id="2_que80"]
 [ext_resource type="Shader" uid="uid://wg6vesuf1jj5" path="res://global/assets/shaders/background.gdshader" id="2_vwy0r"]
 [ext_resource type="Material" uid="uid://do4oost55dfdd" path="res://global/assets/shaders/dissolve_material.tres" id="2_xbjfy"]

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://doikcf3josj2s" path="res://ui/select_skill/card.gd" id="1_2ewhd"]
 [ext_resource type="Texture2D" uid="uid://becemnhwx24jr" path="res://player/art/GirlDefault.png" id="1_fi7s3"]
 [ext_resource type="Texture2D" uid="uid://ckuwpfmm7go3m" path="res://ui/select_skill/art/card.png" id="2_bddtm"]
-[ext_resource type="FontFile" uid="uid://dllwvp0853vla" path="res://ui/menu/NanumBrushScript-Regular.ttf" id="3_5xrdk"]
+[ext_resource type="FontFile" uid="uid://dllwvp0853vla" path="res://ui/NanumBrushScript-Regular.ttf" id="3_5xrdk"]
 [ext_resource type="Texture2D" uid="uid://b24y8uurjvvbv" path="res://ui/select_skill/art/button.png" id="4_85dj2"]
 [ext_resource type="Texture2D" uid="uid://uebfua7k74mg" path="res://ui/select_skill/art/button pressed.png" id="5_7l77p"]
 [ext_resource type="Texture2D" uid="uid://c7wl3yr1u6abx" path="res://ui/select_skill/art/button hover.png" id="6_bddtm"]

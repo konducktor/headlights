@@ -3,6 +3,7 @@
 [ext_resource type="Shader" uid="uid://b04dcj8qumfp3" path="res://global/assets/shaders/dissolve.gdshader" id="1_dud5q"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_txjm0"]
+seed = 1
 frequency = 0.0057
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wuolu"]

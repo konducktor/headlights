@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bfbmogdrisr46"]
+
+[ext_resource type="Script" uid="uid://opy5jkj8ffl2" path="res://levels/triggers/tutorial_trigger/tutorial_trigger.gd" id="1_xwg8m"]
+
+[node name="TutorialTrigger" type="Area2D" unique_id=2094563588]
+script = ExtResource("1_xwg8m")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
