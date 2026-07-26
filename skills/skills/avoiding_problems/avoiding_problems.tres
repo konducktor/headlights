@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://xq1ryae6aww0"]
 
+[ext_resource type="Texture2D" uid="uid://dsceslhgeklv6" path="res://skills/skills/avoiding_problems/avoiding.png" id="1_abtxd"]
 [ext_resource type="Script" uid="uid://c2qrjbbmbwn2p" path="res://skills/skill_data.gd" id="1_ucw3e"]
 [ext_resource type="PackedScene" uid="uid://c1feqm70pffro" path="res://skills/skills/avoiding_problems/avoiding_problems.tscn" id="2_442el"]
 
@@ -7,5 +8,6 @@
 script = ExtResource("1_ucw3e")
 name = "Avoiding problems"
 description = "Gives invincibility while dashing"
+icon = ExtResource("1_abtxd")
 skill = ExtResource("2_442el")
 metadata/_custom_type_script = "uid://c2qrjbbmbwn2p"

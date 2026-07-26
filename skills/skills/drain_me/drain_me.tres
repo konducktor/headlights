@@ -1,11 +1,13 @@
 [gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://cnshbjkvidnls"]
 
 [ext_resource type="Script" uid="uid://c2qrjbbmbwn2p" path="res://skills/skill_data.gd" id="1_7p3v1"]
+[ext_resource type="Texture2D" uid="uid://qnpc1y070wh5" path="res://skills/skills/drain_me/drain_me.png" id="1_ombx6"]
 [ext_resource type="PackedScene" uid="uid://csl3cmvcbk5f6" path="res://skills/skills/drain_me/drain_me.tscn" id="2_abxid"]
 
 [resource]
 script = ExtResource("1_7p3v1")
 name = "Drain me"
 description = "Regenerates one heart when enemy dies"
+icon = ExtResource("1_ombx6")
 skill = ExtResource("2_abxid")
 metadata/_custom_type_script = "uid://c2qrjbbmbwn2p"

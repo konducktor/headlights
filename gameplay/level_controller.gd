@@ -17,7 +17,7 @@ func spawn_level(scene: PackedScene) -> Node2D:
 	for child in get_children():
 		child.queue_free()
 	
-	var level: Node2D = scene.instantiate() as Node2D
+	var level := scene.instantiate() as Node2D
 	add_child(level)
 	
 	return level

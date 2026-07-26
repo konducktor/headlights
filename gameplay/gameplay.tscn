@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://do7aco8xccrl7" path="res://levels/levels/16.tscn" id="2_ueusv"]
 [ext_resource type="PackedScene" uid="uid://bxbbofp71o187" path="res://levels/levels/12.tscn" id="4_ktb3l"]
 [ext_resource type="PackedScene" uid="uid://bnc0frmx71t84" path="res://levels/levels/9.tscn" id="5_gvicd"]
+[ext_resource type="PackedScene" uid="uid://bhwu7cp610fby" path="res://gameplay/outro_transfer.tscn" id="6_7pdct"]
 
 [node name="Gameplay" type="Node2D" unique_id=168348878]
 
@@ -13,5 +14,4 @@ level_controller = NodePath("../LevelController")
 
 [node name="LevelController" type="Node" parent="." unique_id=870319205]
 script = ExtResource("2_ktb3l")
-levels_in_order = Array[PackedScene]([ExtResource("2_ueusv"), ExtResource("4_ktb3l"), ExtResource("5_gvicd")])
-initial_level = 2
+levels_in_order = Array[PackedScene]([ExtResource("2_ueusv"), ExtResource("4_ktb3l"), ExtResource("5_gvicd"), ExtResource("6_7pdct")])

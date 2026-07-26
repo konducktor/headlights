@@ -1,0 +1,174 @@
+[gd_scene format=3 uid="uid://bhf3xjdbnnn57"]
+
+[ext_resource type="Shader" uid="uid://b04dcj8qumfp3" path="res://global/assets/shaders/dissolve.gdshader" id="1_a2t0m"]
+[ext_resource type="Shader" uid="uid://wg6vesuf1jj5" path="res://global/assets/shaders/background.gdshader" id="1_rnglm"]
+[ext_resource type="FontFile" uid="uid://dllwvp0853vla" path="res://ui/NanumBrushScript-Regular.ttf" id="2_xjhm8"]
+[ext_resource type="AudioStream" uid="uid://lnyn1w25uxf6" path="res://ui/menu/sounds/main_menu.mp3" id="4_a2t0m"]
+
+[sub_resource type="Animation" id="Animation_xbjfy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TMPLayer/Control/Label:material:shader_parameter/dissolve_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TMPLayer/Control/Label2:material:shader_parameter/dissolve_value")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_4vu2s"]
+resource_name = "intro"
+length = 10.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TMPLayer/Control/Label:material:shader_parameter/dissolve_value")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4, 5.9666667, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TMPLayer/Control/Label2:material:shader_parameter/dissolve_value")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(5.966666, 9.966666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6mf62"]
+_data = {
+&"RESET": SubResource("Animation_xbjfy"),
+&"intro": SubResource("Animation_4vu2s")
+}
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_txjm0"]
+seed = 1
+frequency = 0.0124
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wuolu"]
+noise = SubResource("FastNoiseLite_txjm0")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_07ngf"]
+resource_local_to_scene = true
+shader = ExtResource("1_a2t0m")
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_wuolu")
+shader_parameter/dissolve_value = 1.0
+shader_parameter/burn_size = 0.0499999988824
+shader_parameter/burn_color = Color(0, 0, 0, 0.49411765)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xjhm8"]
+resource_local_to_scene = true
+shader = ExtResource("1_a2t0m")
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_wuolu")
+shader_parameter/dissolve_value = 0.0
+shader_parameter/burn_size = 0.0499999988824
+shader_parameter/burn_color = Color(0, 0, 0, 0.49411765)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a2t0m"]
+shader = ExtResource("1_rnglm")
+shader_parameter/color_a = Color(0.02, 0.02, 0.05, 1)
+shader_parameter/color_b = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/color_c = Color(0.09, 0.09, 0.09, 1)
+shader_parameter/noise_scale = 3.0
+shader_parameter/speed = 0.1600000076
+shader_parameter/brightness = 1.0
+shader_parameter/contrast = 1.4
+
+[node name="Outro" type="Node" unique_id=574484285]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1400874880]
+libraries/ = SubResource("AnimationLibrary_6mf62")
+autoplay = &"intro"
+
+[node name="TMPLayer" type="CanvasLayer" parent="." unique_id=732040339]
+layer = -1
+
+[node name="Control" type="Control" parent="TMPLayer" unique_id=1037946805]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="TMPLayer/Control" unique_id=424514282]
+material = SubResource("ShaderMaterial_07ngf")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_xjhm8")
+theme_override_font_sizes/font_size = 128
+text = "It's not your fault. And you should move on."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="TMPLayer/Control" unique_id=48502660]
+material = SubResource("ShaderMaterial_xjhm8")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_xjhm8")
+theme_override_font_sizes/font_size = 128
+text = "Thanks for playing."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BG" type="CanvasLayer" parent="." unique_id=139665441]
+layer = -2
+
+[node name="ColorRect" type="ColorRect" parent="BG" unique_id=149099772]
+material = SubResource("ShaderMaterial_a2t0m")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Sounds" type="Node" parent="." unique_id=1749067303]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sounds" unique_id=203245273]
+stream = ExtResource("4_a2t0m")
+autoplay = true

@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://kurs3kiptqku"]
 
+[ext_resource type="Texture2D" uid="uid://bfm66xudkumbo" path="res://skills/skills/hatred_for_society/hatred_for_society.png" id="1_14w0q"]
 [ext_resource type="Script" uid="uid://c2qrjbbmbwn2p" path="res://skills/skill_data.gd" id="1_ilwf0"]
 [ext_resource type="PackedScene" uid="uid://itpq3h31s4af" path="res://skills/skills/hatred_for_society/hatred_for_society.tscn" id="2_6nu7j"]
 
@@ -7,5 +8,6 @@
 script = ExtResource("1_ilwf0")
 name = "Hatred for society"
 description = "Increases the time of invincibility after taking damage by 50%"
+icon = ExtResource("1_14w0q")
 skill = ExtResource("2_6nu7j")
 metadata/_custom_type_script = "uid://c2qrjbbmbwn2p"

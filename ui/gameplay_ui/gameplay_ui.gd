@@ -13,7 +13,7 @@ var _heart_container: HBoxContainer
 
 func _ready() -> void:
 	_animation_player = $AnimationPlayer
-	_heart_container = $CanvasLayer/Control/Health/HBoxContainer
+	_heart_container = $CanvasLayer/Control/Health/MarginContainer/HBoxContainer
 	
 	_player_health = 10
 	_player_max_health = 10
@@ -40,24 +40,35 @@ func _on_player_max_health_changed(new_value: int) -> void:
 
 
 func setup_health_ui() -> void:
+	var previous_hearts: Array[HeartUI.HeartTypes]
 	for child in _heart_container.get_children():
-		child.queue_free()
+		var heart := child as HeartUI
+		previous_hearts.append(heart.heart_type)
+		heart.queue_free()
+	
+	var prev_heart_idx: int = 0
 	
 	@warning_ignore("integer_division")
 	for i in (_player_health / 2):
-		_add_heart_to_container(HeartUI.HeartTypes.FULL)
+		_add_heart_to_container(HeartUI.HeartTypes.FULL, previous_hearts[prev_heart_idx])
+		prev_heart_idx += 1
 	
 	if _player_health % 2 != 0:
-		_add_heart_to_container(HeartUI.HeartTypes.HALF)
+		_add_heart_to_container(HeartUI.HeartTypes.HALF, previous_hearts[prev_heart_idx])
+		prev_heart_idx += 1
 	
 	@warning_ignore("integer_division")
 	for i in ((_player_max_health - _player_health) / 2):
-		_add_heart_to_container(HeartUI.HeartTypes.NONE)
+		_add_heart_to_container(HeartUI.HeartTypes.NONE, previous_hearts[prev_heart_idx])
+		prev_heart_idx += 1
+	
+	for i in (len(previous_hearts) - prev_heart_idx):
+		_add_heart_to_container(HeartUI.HeartTypes.REMOVED, previous_hearts[prev_heart_idx])
 
 
-func _add_heart_to_container(type: HeartUI.HeartTypes) -> HeartUI:
+func _add_heart_to_container(type: HeartUI.HeartTypes, previous_type: HeartUI.HeartTypes) -> HeartUI:
 	var heart: HeartUI = heart_ui_scene.instantiate()
-	heart.set_heart(type)
+	heart.set_heart(type, previous_type)
 	_heart_container.add_child(heart)
 	
 	return heart

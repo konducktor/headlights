@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bhwu7cp610fby"]
+
+[ext_resource type="Script" uid="uid://d24a6o2phyusb" path="res://gameplay/outro_transfer.gd" id="1_av2oc"]
+
+[node name="OutroTransfer" type="Node2D" unique_id=1548843152]
+script = ExtResource("1_av2oc")
+outro_scene = "res://gameplay/outro/outro.tscn"

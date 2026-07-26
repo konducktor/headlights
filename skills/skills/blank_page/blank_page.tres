@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://h7jgt3xvu8gh"]
 
+[ext_resource type="Texture2D" uid="uid://dh0sec0kud3ak" path="res://skills/skills/blank_page/full_health.png" id="1_ievee"]
 [ext_resource type="Script" uid="uid://c2qrjbbmbwn2p" path="res://skills/skill_data.gd" id="1_wtu5v"]
 [ext_resource type="PackedScene" uid="uid://slpt1nitkgdp" path="res://skills/skills/blank_page/blank_page.tscn" id="2_xncj6"]
 
@@ -7,5 +8,6 @@
 script = ExtResource("1_wtu5v")
 name = "Blank page"
 description = "Regenerates full health"
+icon = ExtResource("1_ievee")
 skill = ExtResource("2_xncj6")
 metadata/_custom_type_script = "uid://c2qrjbbmbwn2p"

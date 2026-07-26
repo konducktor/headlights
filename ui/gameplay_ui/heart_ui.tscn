@@ -3,9 +3,90 @@
 [ext_resource type="Script" uid="uid://c8dn1tlif5y3g" path="res://ui/gameplay_ui/heart_ui.gd" id="1_5gxyv"]
 [ext_resource type="Texture2D" uid="uid://bxkctvi7qe3dp" path="res://ui/gameplay_ui/art/heart.png" id="1_g7ygl"]
 [ext_resource type="Texture2D" uid="uid://bl2qkjmsejay7" path="res://ui/gameplay_ui/art/half_heart.png" id="2_7i83r"]
+[ext_resource type="Shader" uid="uid://b04dcj8qumfp3" path="res://global/assets/shaders/dissolve.gdshader" id="2_7o1ev"]
 [ext_resource type="Texture2D" uid="uid://djoh3w8k8rka2" path="res://ui/gameplay_ui/art/no_heart.png" id="3_5gxyv"]
 
-[node name="HeartUI" type="Control" unique_id=841508613 node_paths=PackedStringArray("heart", "half_heart", "no_heart")]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_txjm0"]
+seed = 1
+frequency = 0.001
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wuolu"]
+noise = SubResource("FastNoiseLite_txjm0")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7o1ev"]
+resource_local_to_scene = true
+shader = ExtResource("2_7o1ev")
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_wuolu")
+shader_parameter/dissolve_value = 1.0
+shader_parameter/burn_size = 0.0499999988824
+shader_parameter/burn_color = Color(0, 0, 0, 0.49411765)
+
+[sub_resource type="Animation" id="Animation_ishws"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/Heart:material:shader_parameter/dissolve_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer:offset_transform_position_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_n8f1e"]
+resource_name = "damage_heart"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer:offset_transform_position_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(-0.05, -0.05), Vector2(0.05, 0), Vector2(0, -0.05), Vector2(0, 0.05), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7o1ev"]
+resource_name = "dissolve_heart"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/Heart:material:shader_parameter/dissolve_value")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ishws"]
+_data = {
+&"RESET": SubResource("Animation_ishws"),
+&"damage_heart": SubResource("Animation_n8f1e"),
+&"dissolve_heart": SubResource("Animation_7o1ev")
+}
+
+[node name="HeartUI" type="Control" unique_id=841508613 node_paths=PackedStringArray("heart", "half_heart", "no_heart", "animation_player")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,24 +97,51 @@ script = ExtResource("1_5gxyv")
 heart = NodePath("MarginContainer/Heart")
 half_heart = NodePath("MarginContainer/HalfHeart")
 no_heart = NodePath("MarginContainer/NoHeart")
+animation_player = NodePath("AnimationPlayer")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1307304433]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -48.0
+offset_right = 48.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+offset_transform_enabled = true
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
 [node name="Heart" type="TextureRect" parent="MarginContainer" unique_id=191490732]
+material = SubResource("ShaderMaterial_7o1ev")
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
 texture = ExtResource("1_g7ygl")
 
 [node name="HalfHeart" type="TextureRect" parent="MarginContainer" unique_id=1760687425]
+material = SubResource("ShaderMaterial_7o1ev")
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
 texture = ExtResource("2_7i83r")
 
 [node name="NoHeart" type="TextureRect" parent="MarginContainer" unique_id=1997650407]
+material = SubResource("ShaderMaterial_7o1ev")
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
 texture = ExtResource("3_5gxyv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=141638603]
+libraries/ = SubResource("AnimationLibrary_ishws")

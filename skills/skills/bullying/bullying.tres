@@ -1,11 +1,13 @@
 [gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://by8w20ffiu0v6"]
 
 [ext_resource type="Script" uid="uid://c2qrjbbmbwn2p" path="res://skills/skill_data.gd" id="1_w33pa"]
+[ext_resource type="Texture2D" uid="uid://crt3rus808cou" path="res://skills/skills/bullying/reverse_bullying.png" id="1_wux64"]
 [ext_resource type="PackedScene" uid="uid://bvredi8vc4y2i" path="res://skills/skills/bullying/bullying.tscn" id="2_3tocb"]
 
 [resource]
 script = ExtResource("1_w33pa")
 name = "Bullying"
 description = "Allows to deflect enemy projectiles with "
+icon = ExtResource("1_wux64")
 skill = ExtResource("2_3tocb")
 metadata/_custom_type_script = "uid://c2qrjbbmbwn2p"
