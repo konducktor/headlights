@@ -214,7 +214,7 @@ debug_color = Color(0.86355245, 0.0006218493, 0.8681506, 0.41960785)
 [node name="ColorRect" parent="CanvasLayer" parent_id_path=PackedInt32Array(1270387722) index="0" unique_id=1803115834]
 material = SubResource("ShaderMaterial_5q7yr")
 
-[node name="Light" type="Node2D" parent="." index="11" unique_id=541172024]
+[node name="Light" type="Node2D" parent="." index="10" unique_id=541172024]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Light" index="0" unique_id=2034559941]
 color = Color(0.77784353, 0.7258352, 0.6499398, 1)
@@ -240,7 +240,7 @@ position = Vector2(925, -3027)
 [node name="Lamp2" parent="Light" index="7" unique_id=1577243315 instance=ExtResource("6_djrgy")]
 position = Vector2(957, -4233)
 
-[node name="GameSounds" type="Node" parent="." index="12" unique_id=1711851479 node_paths=PackedStringArray("home")]
+[node name="GameSounds" type="Node" parent="." index="11" unique_id=1711851479 node_paths=PackedStringArray("home")]
 script = ExtResource("12_v6ml0")
 home = NodePath("HomeLoop")
 metadata/_custom_type_script = "uid://cy4ry3fxcdg3t"

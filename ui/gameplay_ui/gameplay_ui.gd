@@ -43,3 +43,4 @@ func _on_bossfight_started(enemy: Enemy) -> void:
 
 func next_level() -> void:
 	level_controller.next_level()
+	Global.player.global_position = Vector2.ZERO

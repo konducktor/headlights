@@ -18,6 +18,9 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		_in_area = true
+	
+	if _killed_enemy_count >= len(required_enemies):
+		Global.level_finished.emit()
 
 
 func _on_body_exited(body: Node2D) -> void:
@@ -28,5 +31,5 @@ func _on_body_exited(body: Node2D) -> void:
 func _on_enemy_died() -> void:
 	_killed_enemy_count += 1
 	
-	if _killed_enemy_count == len(required_enemies):
+	if _killed_enemy_count >= len(required_enemies) and _in_area:
 		Global.level_finished.emit()

@@ -18,6 +18,7 @@
 [ext_resource type="SpriteFrames" uid="uid://cy4hbkod8lbrb" path="res://enemy/enemies/hugger/art/hugger_animations.tres" id="10_oqbdr"]
 [ext_resource type="Script" uid="uid://cnvej1pg3a5f" path="res://enemy/enemies/hugger/hugger_sounds.gd" id="12_t1va6"]
 [ext_resource type="AudioStream" uid="uid://cs5nnpompdabj" path="res://enemy/sounds/ghost_death.mp3" id="13_503nt"]
+[ext_resource type="AudioStream" uid="uid://ds7fkuhw3t7wr" path="res://enemy/sounds/ghost hurt.mp3" id="14_4njxi"]
 
 [sub_resource type="Gradient" id="Gradient_6l1dl"]
 offsets = PackedFloat32Array(0.1658031, 0.72279793)
@@ -53,6 +54,46 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 0.1548944)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FlipOnVelocityComponent/AnimatedSprite2D:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_spql1"]
+resource_name = "damage"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlipOnVelocityComponent/AnimatedSprite2D:material:shader_parameter/dissolve_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.6000000285, 0.6000000285, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlipOnVelocityComponent/AnimatedSprite2D:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.20000002, 0.26666668, 0.33333334, 0.40000004, 0.4666667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(10, 0), Vector2(-10, 0), Vector2(10, 0), Vector2(-10, 0), Vector2(10, 0), Vector2(-10, 0), Vector2(10, 0), Vector2(-10, 0), Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_txjm0"]
@@ -99,6 +140,7 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wuolu"]
 _data = {
 &"RESET": SubResource("Animation_oqbdr"),
+&"damage": SubResource("Animation_spql1"),
 &"dissolve": SubResource("Animation_txjm0")
 }
 
@@ -175,10 +217,11 @@ metadata/_custom_type_script = "uid://cc0a1u5h7b42u"
 wait_time = 0.5
 one_shot = true
 
-[node name="Visual" parent="." index="1" unique_id=11767020 node_paths=PackedStringArray("animated_sprite", "animated_player")]
+[node name="Visual" parent="." index="1" unique_id=11767020 node_paths=PackedStringArray("animated_sprite", "animation_player", "health_component")]
 script = ExtResource("7_oqbdr")
 animated_sprite = NodePath("FlipOnVelocityComponent/AnimatedSprite2D")
-animated_player = NodePath("AnimationPlayer")
+animation_player = NodePath("AnimationPlayer")
+health_component = NodePath("../HealthComponent")
 
 [node name="FlipOnVelocityComponent" type="Node2D" parent="Visual" index="0" unique_id=77286326 node_paths=PackedStringArray("target")]
 script = ExtResource("8_0oeui")
@@ -200,12 +243,18 @@ texture = SubResource("GradientTexture2D_wuolu")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visual" index="1" unique_id=1329796798]
 libraries/ = SubResource("AnimationLibrary_wuolu")
 
-[node name="Sounds" type="Node" parent="." index="2" unique_id=66134863 node_paths=PackedStringArray("death")]
+[node name="Sounds" type="Node" parent="." index="2" unique_id=66134863 node_paths=PackedStringArray("death", "hurt")]
 script = ExtResource("12_t1va6")
 death = NodePath("Death")
+hurt = NodePath("Hurt")
 
 [node name="Death" type="AudioStreamPlayer" parent="Sounds" index="0" unique_id=1075175068]
 stream = ExtResource("13_503nt")
+
+[node name="Hurt" type="AudioStreamPlayer" parent="Sounds" index="1" unique_id=1539749113]
+stream = ExtResource("14_4njxi")
+volume_db = -5.0
+max_polyphony = 3
 
 [node name="WallCollision" parent="." index="3" unique_id=1847437153]
 shape = SubResource("CircleShape2D_1ggug")
@@ -256,3 +305,5 @@ entity = NodePath("../..")
 [connection signal="entered" from="EnemyStateMachine/EnemyStateGrab" to="Visual" method="_on_enemy_state_grab_entered"]
 [connection signal="died" from="HealthComponent" to="Visual" method="_on_health_component_died"]
 [connection signal="died" from="HealthComponent" to="Sounds" method="_on_health_component_died"]
+[connection signal="took_damage" from="HealthComponent" to="Visual" method="_on_health_component_took_damage"]
+[connection signal="took_damage" from="HealthComponent" to="Sounds" method="_on_health_component_took_damage"]

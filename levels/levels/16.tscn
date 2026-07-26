@@ -224,16 +224,24 @@ enemies_in_this_area = [NodePath("../Hugger"), NodePath("../Hugger2"), NodePath(
 position = Vector2(-941, -283)
 shape = SubResource("RectangleShape2D_p1u0y")
 
-[node name="Hugger" parent="Areas/Area4" index="2" unique_id=1182316531 instance=ExtResource("2_y43jq")]
+[node name="TutorialTrigger" parent="Areas/Area4" index="2" unique_id=732698461 instance=ExtResource("4_pn6cn")]
+text = "Find something that is wrong"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Area4/TutorialTrigger" index="0" unique_id=2059551558]
+position = Vector2(2442, 1779)
+shape = SubResource("CircleShape2D_c2fln")
+debug_color = Color(0.66804093, 0.31234482, 1, 0.41960785)
+
+[node name="Hugger" parent="Areas/Area4" index="3" unique_id=1182316531 instance=ExtResource("2_y43jq")]
 position = Vector2(3705, 2395)
 
-[node name="Hugger2" parent="Areas/Area4" index="3" unique_id=2038542474 instance=ExtResource("2_y43jq")]
+[node name="Hugger2" parent="Areas/Area4" index="4" unique_id=2038542474 instance=ExtResource("2_y43jq")]
 position = Vector2(3956, 2331)
 
-[node name="Hugger3" parent="Areas/Area4" index="4" unique_id=1740518471 instance=ExtResource("2_y43jq")]
+[node name="Hugger3" parent="Areas/Area4" index="5" unique_id=1740518471 instance=ExtResource("2_y43jq")]
 position = Vector2(3892, 1897)
 
-[node name="Hugger4" parent="Areas/Area4" index="5" unique_id=1506589883 instance=ExtResource("2_y43jq")]
+[node name="Hugger4" parent="Areas/Area4" index="6" unique_id=1506589883 instance=ExtResource("2_y43jq")]
 position = Vector2(3641, 1679)
 
 [node name="Area5" type="Node2D" parent="Areas" parent_id_path=PackedInt32Array(1921332606) index="4" unique_id=1373380442]

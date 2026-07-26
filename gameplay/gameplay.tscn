@@ -6,12 +6,20 @@
 [ext_resource type="PackedScene" uid="uid://bxbbofp71o187" path="res://levels/levels/12.tscn" id="4_ktb3l"]
 [ext_resource type="PackedScene" uid="uid://bnc0frmx71t84" path="res://levels/levels/9.tscn" id="5_gvicd"]
 [ext_resource type="PackedScene" uid="uid://bhwu7cp610fby" path="res://gameplay/outro_transfer.tscn" id="6_7pdct"]
+[ext_resource type="PackedScene" uid="uid://btaokpyn0qvsy" path="res://player/player.tscn" id="7_uk44f"]
 
 [node name="Gameplay" type="Node2D" unique_id=168348878]
+y_sort_enabled = true
 
 [node name="GameplayUI" parent="." unique_id=467493527 node_paths=PackedStringArray("level_controller") instance=ExtResource("1_41n4r")]
 level_controller = NodePath("../LevelController")
 
-[node name="LevelController" type="Node" parent="." unique_id=870319205]
+[node name="Player" parent="." unique_id=249977393 instance=ExtResource("7_uk44f")]
+y_sort_enabled = true
+wall_min_slide_angle = 0.2617994
+
+[node name="LevelController" type="Node2D" parent="." unique_id=631374351]
+y_sort_enabled = true
 script = ExtResource("2_ktb3l")
 levels_in_order = Array[PackedScene]([ExtResource("2_ueusv"), ExtResource("4_ktb3l"), ExtResource("5_gvicd"), ExtResource("6_7pdct")])
+initial_level = 1

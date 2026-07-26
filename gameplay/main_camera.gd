@@ -7,7 +7,6 @@ extends Camera2D
 @export var level_start_pos: Marker2D
 @export var level_start_zoom: float = 1.0
 
-@export var player: Player
 @export var player_zoom: float = 1.0
 
 
@@ -30,8 +29,8 @@ func _process(_delta: float) -> void:
 		return
 	
 	if _progress == 1.0:
-		position = player.body_pos()
+		position = Global.player.body_pos()
 		return
 	
-	position = lerp(level_start_pos.position, player.body_pos(), _progress)
+	position = lerp(level_start_pos.position, Global.player.body_pos(), _progress)
 	zoom = Vector2.ONE * lerp(level_start_zoom, player_zoom, _progress)

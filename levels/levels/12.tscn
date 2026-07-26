@@ -213,9 +213,6 @@ position = Vector2(2459, 1747)
 zoom = Vector2(0.18, 0.18)
 level_start_zoom = 0.18
 
-[node name="Player" parent="." index="8" unique_id=249977393]
-position = Vector2(-186, -176)
-
 [node name="Area" type="Node2D" parent="Areas" parent_id_path=PackedInt32Array(1921332606) index="0" unique_id=1235545472]
 y_sort_enabled = true
 
@@ -320,7 +317,7 @@ position = Vector2(3127, 3756)
 required_enemies = [NodePath("../Hugger"), NodePath("../Hugger2"), NodePath("../Shooter"), NodePath("../Shooter2"), NodePath("../Shooter3")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Area5/LevelTransition" index="0" unique_id=1438803710]
-position = Vector2(4944, 3586)
+position = Vector2(5254, 3594)
 shape = SubResource("CircleShape2D_ij8ru")
 debug_color = Color(1, 0, 0, 0.63529414)
 

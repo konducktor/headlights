@@ -10,7 +10,10 @@
 [ext_resource type="Material" uid="uid://do4oost55dfdd" path="res://global/assets/shaders/dissolve_material.tres" id="4_yllr7"]
 [ext_resource type="SpriteFrames" uid="uid://bprgrm1daxwf3" path="res://player/art/player_animations.tres" id="5_yllr7"]
 [ext_resource type="Script" uid="uid://diecge05xce0p" path="res://player/player_sounds.gd" id="7_kb6p2"]
+[ext_resource type="AudioStream" uid="uid://kcvmw4t6w11w" path="res://player/sounds/step.mp3" id="7_wodsf"]
+[ext_resource type="AudioStream" uid="uid://d2x0kgb2bedn1" path="res://player/sounds/hurt.mp3" id="8_32hag"]
 [ext_resource type="Script" uid="uid://xeasao763wid" path="res://components/acceleration.gd" id="8_rgyib"]
+[ext_resource type="AudioStream" uid="uid://53b57ghpuvhi" path="res://weapons/knife/sound/knife.mp3" id="9_32hag"]
 [ext_resource type="Script" uid="uid://bkptmvu7f3htp" path="res://skills/skills_context.gd" id="12_ebec5"]
 [ext_resource type="Script" uid="uid://c3qokhf8r8ry" path="res://skills/skills_controller.gd" id="12_yllr7"]
 
@@ -159,12 +162,25 @@ frame_progress = 1.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visual" unique_id=1928647732]
 libraries/ = SubResource("AnimationLibrary_kb6p2")
 
-[node name="Sounds" type="Node" parent="." unique_id=1093670299 node_paths=PackedStringArray("step_hospital")]
+[node name="Sounds" type="Node" parent="." unique_id=1093670299 node_paths=PackedStringArray("step", "hurt", "knife")]
 script = ExtResource("7_kb6p2")
-step_hospital = NodePath("HospitalStep")
+step = NodePath("Step")
+hurt = NodePath("Hurt")
+knife = NodePath("Knife")
 
-[node name="HospitalStep" type="AudioStreamPlayer" parent="Sounds" unique_id=631825945]
-volume_db = -20.0
+[node name="Step" type="AudioStreamPlayer" parent="Sounds" unique_id=631825945]
+stream = ExtResource("7_wodsf")
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="Hurt" type="AudioStreamPlayer" parent="Sounds" unique_id=890920184]
+stream = ExtResource("8_32hag")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="Knife" type="AudioStreamPlayer" parent="Sounds" unique_id=1142265538]
+stream = ExtResource("9_32hag")
+volume_db = -10.0
 bus = &"SFX"
 
 [node name="WallCollision" type="CollisionShape2D" parent="." unique_id=958840399]
@@ -227,9 +243,11 @@ hurtbox = NodePath("../../HurtboxComponent")
 [connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
 [connection signal="max_health_changed" from="HealthComponent" to="." method="_on_health_component_max_health_changed"]
 [connection signal="max_health_decreased" from="HealthComponent" to="." method="_on_health_component_max_health_decreased"]
+[connection signal="max_health_decreased" from="HealthComponent" to="Sounds" method="_on_health_component_max_health_decreased"]
 [connection signal="max_health_increased" from="HealthComponent" to="." method="_on_health_component_max_health_increased"]
 [connection signal="regenerated" from="HealthComponent" to="." method="_on_health_component_regenerated"]
 [connection signal="took_damage" from="HealthComponent" to="." method="_on_health_component_took_damage"]
 [connection signal="took_damage" from="HealthComponent" to="Visual" method="_on_health_component_took_damage"]
+[connection signal="took_damage" from="HealthComponent" to="Sounds" method="_on_health_component_took_damage"]
 [connection signal="timeout" from="HealthComponent/DamageCooldownTimer" to="Visual" method="_on_damage_cooldown_timer_timeout"]
 [connection signal="attacked" from="AttackComponent" to="Visual" method="_on_attack_component_attacked"]

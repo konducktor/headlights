@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://bdeqn5d43smam"]
 
 [ext_resource type="TileSet" uid="uid://cxfc0uaiyefyh" path="res://levels/tileset/tileset.tres" id="1_cwqvt"]
-[ext_resource type="PackedScene" uid="uid://btaokpyn0qvsy" path="res://player/player.tscn" id="2_hjsbj"]
 [ext_resource type="Script" uid="uid://clu8285b8evum" path="res://gameplay/main_camera.gd" id="3_5mrsh"]
 [ext_resource type="Shader" uid="uid://wg6vesuf1jj5" path="res://global/assets/shaders/background.gdshader" id="3_cwqvt"]
 
@@ -42,17 +41,13 @@ tile_set = ExtResource("1_cwqvt")
 
 [node name="CameraStartPosition" type="Marker2D" parent="." unique_id=1354239441]
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=882287073 node_paths=PackedStringArray("level_start_pos", "player")]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=882287073 node_paths=PackedStringArray("level_start_pos")]
 process_callback = 0
 position_smoothing_enabled = true
 script = ExtResource("3_5mrsh")
 transition_delay = 2.5
 transition_duration = 3.0
 level_start_pos = NodePath("../CameraStartPosition")
-player = NodePath("../Player")
-
-[node name="Player" parent="." unique_id=249977393 instance=ExtResource("2_hjsbj")]
-wall_min_slide_angle = 0.2617994
 
 [node name="Areas" type="Node2D" parent="." unique_id=1921332606]
 y_sort_enabled = true

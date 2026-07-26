@@ -1,7 +1,9 @@
 extends GameSounds
 
 
-@export var step_hospital: AudioStreamPlayer
+@export var step: AudioStreamPlayer
+@export var hurt: AudioStreamPlayer
+@export var knife: AudioStreamPlayer
 
 
 var is_walking: bool
@@ -21,4 +23,13 @@ func _on_player_stopped_walking() -> void:
 
 func _process(_delta: float) -> void:
 	if is_walking:
-		play_sound(step_hospital, random_pitch(0.8, 1.2))
+		play_sound(step, random_pitch(0.8, 1.2))
+
+
+func _on_health_component_took_damage(_amount: int) -> void:
+	play_sound(hurt, random_pitch())
+
+
+func _on_health_component_max_health_decreased(_amount: int) -> void:
+	play_sound(hurt, random_pitch())
+	play_sound(knife, random_pitch())
