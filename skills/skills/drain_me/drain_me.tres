@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_7p3v1")
 name = "Drain me"
-description = "Gives a chance of 50% of one heart regenerating when enemy dies. Stacking increases this chance by 50%."
+description = "Gives a chance of 25% of one heart regenerating when enemy dies. Stacking increases this chance by 50%."
 icon = ExtResource("1_ombx6")
 skill = ExtResource("2_abxid")
 metadata/_custom_type_script = "uid://c2qrjbbmbwn2p"

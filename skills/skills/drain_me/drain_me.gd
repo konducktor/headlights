@@ -2,7 +2,7 @@ extends Skill
 class_name SkillDrainMe
 
 
-@export_range(1.0, 2.0) var factor_chance_percent: float = 1
+@export_range(0.0, 1.0) var factor_chance_percent: float = 0
 @export var regenerate_amount: int
 
 var rng := RandomNumberGenerator.new()
@@ -15,7 +15,7 @@ func _ready() -> void:
 	if chance == 0:
 		chance = factor_chance_percent
 	else:
-		chance *= factor_chance_percent
+		chance *= (1 + factor_chance_percent)
 
 
 func apply() -> void:

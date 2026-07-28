@@ -4,4 +4,5 @@
 
 [node name="DrainMe" type="Node2D" unique_id=2132123184]
 script = ExtResource("1_grhr3")
+factor_chance_percent = 0.25
 regenerate_amount = 2

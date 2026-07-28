@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_qy35m")
 name = "Too dramatic"
-description = "Increases knife damage by 2. Can stack"
+description = "+2 damage. Can stack."
 icon = ExtResource("1_gy143")
 skill = ExtResource("2_nnrch")
 metadata/_custom_type_script = "uid://c2qrjbbmbwn2p"

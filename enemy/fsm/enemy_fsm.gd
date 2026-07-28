@@ -3,6 +3,7 @@ class_name EnemyStateMachine
 
 
 @export var initial_state: EnemyState
+@export var die_state: EnemyState
 @export var enemy: Enemy
 @export var report_current_state: bool = false
 
@@ -39,3 +40,7 @@ func change_state(new_state: EnemyState) -> void:
 	
 	new_state.enter()
 	current_state = new_state
+
+
+func _on_enemy_died() -> void:
+	change_state(die_state)
