@@ -17,7 +17,7 @@ func enter() -> void:
 	super()
 
 func physics_update(delta: float) -> EnemyState:
-	var distance: float = enemy.position.distance_to(player.body_pos())
+	var distance: float = enemy.position.distance_to(Global.player.body_pos())
 	if distance >= desired_distance:
 		return exit_if_far_enough
 	elif distance <= min_distance:
@@ -31,13 +31,13 @@ func physics_update(delta: float) -> EnemyState:
 
 func _on_navigation_update() -> void:
 	var target_vector: Vector2 = Vector2.ZERO
-	var target_direction: Vector2 = player.body_pos().direction_to(enemy.position)
+	var target_direction: Vector2 = Global.player.body_pos().direction_to(enemy.position)
 	if desired_distance == -1:
 		target_vector = target_direction * 99999
 	else:
 		target_vector = target_direction * desired_distance
 	
-	pathfinding_component.set_target(player.body_pos() + target_vector)
+	pathfinding_component.set_target(Global.player.body_pos() + target_vector)
 
 
 func _draw() -> void:

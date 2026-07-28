@@ -3,15 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://8x4nbkxxjb8o" path="res://weapons/base_projectile/projectile.tscn" id="1_m4tx0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r030d"]
-radius = 52.0
-height = 114.0
+radius = 78.0
+height = 164.0
 
 [node name="PunchProjectile" unique_id=1317603494 instance=ExtResource("1_m4tx0")]
-damage = 1
 speed = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0" unique_id=1608073000]
-position = Vector2(58, 2)
+position = Vector2(61, 1)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_r030d")
 debug_color = Color(2.8878452e-07, 0.63904136, 0.37469375, 0.41960785)

@@ -4,4 +4,4 @@
 
 [node name="HatredForSociety" type="Node2D" unique_id=527756528]
 script = ExtResource("1_jjk0s")
-factor = 1.5
+factor = 1.75

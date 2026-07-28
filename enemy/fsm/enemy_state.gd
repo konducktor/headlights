@@ -9,7 +9,6 @@ signal exited
 
 
 var enemy: Enemy
-var player: Player
 
 var is_active: bool
 

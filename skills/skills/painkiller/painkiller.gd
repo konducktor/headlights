@@ -5,7 +5,7 @@ class_name Painkiller
 @export var base_invincibility_time: float
 @export var additional_time: float
 
-var _timer: float
+static var _timer: float
 
 
 func apply() -> void:

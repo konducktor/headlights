@@ -7,7 +7,7 @@ class_name EnemyStatePathfinding
 @export var navigation_update_timer: Timer
 
 func enter() -> void:
-	pathfinding_component.set_target(player.global_position)
+	pathfinding_component.set_target(Global.player.global_position)
 	
 	navigation_update_timer.timeout.connect(_on_navigation_update)
 	navigation_update_timer.start()

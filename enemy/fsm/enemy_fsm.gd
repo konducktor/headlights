@@ -15,7 +15,6 @@ func _ready() -> void:
 			continue
 		
 		state.enemy = enemy
-		state.player = Global.player
 	
 	change_state(initial_state)
 

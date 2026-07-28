@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://d3qga85gsi6l4" path="res://components/los.gd" id="5_kyexb"]
 [ext_resource type="Script" uid="uid://5kyj3444bt10" path="res://enemy/fsm/states/attack.gd" id="5_q1oms"]
 [ext_resource type="Script" uid="uid://cc0a1u5h7b42u" path="res://enemy/fsm/states/grab.gd" id="6_1ggug"]
+[ext_resource type="Script" uid="uid://8sd5b4w6157u" path="res://enemy/fsm/states/enemy_state_wait.gd" id="6_spn8a"]
 [ext_resource type="Script" uid="uid://doaxs28i4d4k2" path="res://enemy/enemies/hugger/hugger_visual.gd" id="7_oqbdr"]
 [ext_resource type="Script" uid="uid://bdthesvcg5qi3" path="res://components/flip_on_velocity.gd" id="8_0oeui"]
 [ext_resource type="Script" uid="uid://dsbh06fe22jkp" path="res://components/attack.gd" id="8_q1oms"]
@@ -148,7 +149,7 @@ _data = {
 radius = 62.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_730l8"]
-radius = 100.0
+radius = 76.0
 height = 310.0
 
 [node name="Hugger" unique_id=4220073 instance=ExtResource("1_b67bb")]
@@ -183,7 +184,23 @@ pathfinding_component = NodePath("../../PathfindingComponent")
 navigation_update_timer = NodePath("../../PathfindingComponent/NavigationUpdateTimer")
 metadata/_custom_type_script = "uid://cfgq62b11rbkr"
 
-[node name="EnemyStateAttack" type="Node2D" parent="EnemyStateMachine" index="2" unique_id=1345402437 node_paths=PackedStringArray("attack_component", "exit_if_distance_far", "exit_if_distance_short")]
+[node name="EnemyStateGrab" type="Node2D" parent="EnemyStateMachine" index="2" unique_id=197700785 node_paths=PackedStringArray("position_marker", "exit_into")]
+script = ExtResource("6_1ggug")
+position_marker = NodePath("../../Visual/FlipOnVelocityComponent/GrabOffsetMarker")
+exit_into = NodePath("../EnemyStateWait")
+metadata/_custom_type_script = "uid://cc0a1u5h7b42u"
+
+[node name="EnemyStateWait" type="Node2D" parent="EnemyStateMachine" index="3" unique_id=1992123253 node_paths=PackedStringArray("exit_timer", "exit_to")]
+script = ExtResource("6_spn8a")
+exit_timer = NodePath("ExitTimer")
+exit_to = NodePath("../EnemyStateAttack")
+metadata/_custom_type_script = "uid://8sd5b4w6157u"
+
+[node name="ExitTimer" type="Timer" parent="EnemyStateMachine/EnemyStateWait" index="0" unique_id=3645946]
+wait_time = 0.5
+one_shot = true
+
+[node name="EnemyStateAttack" type="Node2D" parent="EnemyStateMachine" index="4" unique_id=1345402437 node_paths=PackedStringArray("attack_component", "exit_if_distance_far", "exit_if_distance_short")]
 script = ExtResource("5_q1oms")
 max_distance = 200.0
 attack_component = NodePath("../../AttackComponent")
@@ -191,7 +208,7 @@ exit_if_distance_far = NodePath("../EnemyStateChasing")
 exit_if_distance_short = NodePath("../EnemyStateChasing")
 metadata/_custom_type_script = "uid://5kyj3444bt10"
 
-[node name="EnemyStateSearching" type="Node2D" parent="EnemyStateMachine" index="3" unique_id=1961926191 node_paths=PackedStringArray("search_timer", "los_component", "acceleration_component", "exit_if_found", "exit_if_not_found", "pathfinding_component", "navigation_update_timer")]
+[node name="EnemyStateSearching" type="Node2D" parent="EnemyStateMachine" index="5" unique_id=1961926191 node_paths=PackedStringArray("search_timer", "los_component", "acceleration_component", "exit_if_found", "exit_if_not_found", "pathfinding_component", "navigation_update_timer")]
 position = Vector2(-1, 0)
 script = ExtResource("4_27kmv")
 search_timer = NodePath("SearchTimer")
@@ -207,16 +224,6 @@ metadata/_custom_type_script = "uid://du1pdvgphjupd"
 wait_time = 2.0
 one_shot = true
 
-[node name="EnemyStateGrab" type="Node2D" parent="EnemyStateMachine" index="4" unique_id=197700785 node_paths=PackedStringArray("timeout_timer", "exit_into")]
-script = ExtResource("6_1ggug")
-timeout_timer = NodePath("Timer")
-exit_into = NodePath("../EnemyStateAttack")
-metadata/_custom_type_script = "uid://cc0a1u5h7b42u"
-
-[node name="Timer" type="Timer" parent="EnemyStateMachine/EnemyStateGrab" index="0" unique_id=1791889756]
-wait_time = 0.5
-one_shot = true
-
 [node name="Visual" parent="." index="1" unique_id=11767020 node_paths=PackedStringArray("animated_sprite", "animation_player", "health_component")]
 script = ExtResource("7_oqbdr")
 animated_sprite = NodePath("FlipOnVelocityComponent/AnimatedSprite2D")
@@ -228,15 +235,17 @@ script = ExtResource("8_0oeui")
 target = NodePath("../..")
 metadata/_custom_type_script = "uid://bdthesvcg5qi3"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visual/FlipOnVelocityComponent" index="0" unique_id=1686672782]
+[node name="GrabOffsetMarker" type="Marker2D" parent="Visual/FlipOnVelocityComponent" index="0" unique_id=535752736]
+position = Vector2(-130, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visual/FlipOnVelocityComponent" index="1" unique_id=1686672782]
 material = ExtResource("9_txjm0")
-position = Vector2(0, -159)
+position = Vector2(114, -159)
 sprite_frames = ExtResource("10_oqbdr")
 animation = &"catch"
 
-[node name="ShadowSprite" type="Sprite2D" parent="Visual/FlipOnVelocityComponent" index="1" unique_id=406773412]
+[node name="ShadowSprite" type="Sprite2D" parent="Visual/FlipOnVelocityComponent" index="2" unique_id=406773412]
 modulate = Color(1, 1, 1, 0.1548944)
-position = Vector2(-79, 0)
 scale = Vector2(3, 2)
 texture = SubResource("GradientTexture2D_wuolu")
 
@@ -296,6 +305,7 @@ weapon = NodePath("Punch")
 metadata/_custom_type_script = "uid://dsbh06fe22jkp"
 
 [node name="Punch" parent="AttackComponent" index="0" unique_id=1440157568 node_paths=PackedStringArray("entity") instance=ExtResource("10_1ggug")]
+position = Vector2(0, -119)
 entity = NodePath("../..")
 
 [connection signal="entered" from="EnemyStateMachine/EnemyStateListening" to="Visual" method="_on_enemy_state_listening_entered"]

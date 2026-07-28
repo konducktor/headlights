@@ -17,13 +17,13 @@ var rng := RandomNumberGenerator.new()
 
 
 func physics_update(delta: float) -> EnemyState:
-	if player == null:
+	if Global.player == null:
 		return null
 	
-	if los_component and not los_component.is_los_between_points(enemy.position, player.body_pos()):
+	if los_component and not los_component.is_los_between_points(enemy.position, Global.player.body_pos()):
 		return exit_if_los_lost
 	
-	if enemy.position.distance_to(player.body_pos()) <= reach_threshhold:
+	if enemy.position.distance_to(Global.player.body_pos()) <= reach_threshhold:
 		return exit_if_reached
 	
 	enemy.velocity = acceleration_component.smooth_vector(
@@ -33,7 +33,7 @@ func physics_update(delta: float) -> EnemyState:
 
 
 func _on_navigation_update() -> void:
-	pathfinding_component.set_target(player.body_pos() + _scatter_vector(target_scatter_radius))
+	pathfinding_component.set_target(Global.player.body_pos() + _scatter_vector(target_scatter_radius))
 
 
 func _scatter_vector(radius: float) -> Vector2:

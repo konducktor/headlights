@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bss2tm1tkp3co" path="res://enemy/fsm/states/listening.gd" id="2_tknm7"]
 [ext_resource type="Script" uid="uid://d3qga85gsi6l4" path="res://components/los.gd" id="3_5jlf4"]
 [ext_resource type="Script" uid="uid://c45oymkgnu2iw" path="res://enemy/fsm/states/run.gd" id="3_483pe"]
+[ext_resource type="Script" uid="uid://8sd5b4w6157u" path="res://enemy/fsm/states/enemy_state_wait.gd" id="4_kbvd1"]
 [ext_resource type="Script" uid="uid://5kyj3444bt10" path="res://enemy/fsm/states/attack.gd" id="4_uufwc"]
 [ext_resource type="Script" uid="uid://c4cdida6p2443" path="res://components/pathfinding.gd" id="5_3gopn"]
 [ext_resource type="Script" uid="uid://bkqeoxheqvoet" path="res://enemy/enemies/shooter/shooter_visual.gd" id="5_a7qml"]
@@ -201,12 +202,22 @@ metadata/_custom_type_script = "uid://bss2tm1tkp3co"
 script = ExtResource("3_483pe")
 desired_distance = 600.0
 acceleration_component = NodePath("../../AccelerationComponent")
-exit_if_far_enough = NodePath("../EnemyStateAttack")
+exit_if_far_enough = NodePath("../EnemyStateWait")
 pathfinding_component = NodePath("../../PathfindingComponent")
 navigation_update_timer = NodePath("../../PathfindingComponent/NavigationUpdateTimer")
 metadata/_custom_type_script = "uid://c45oymkgnu2iw"
 
-[node name="EnemyStateAttack" type="Node2D" parent="EnemyStateMachine" index="2" unique_id=1816056312 node_paths=PackedStringArray("attack_component", "los_component", "exit_if_distance_far", "exit_if_distance_short", "exit_if_no_los")]
+[node name="EnemyStateWait" type="Node2D" parent="EnemyStateMachine" index="2" unique_id=1658179398 node_paths=PackedStringArray("exit_timer", "exit_to")]
+script = ExtResource("4_kbvd1")
+exit_timer = NodePath("ExitTimer")
+exit_to = NodePath("../EnemyStateAttack")
+metadata/_custom_type_script = "uid://8sd5b4w6157u"
+
+[node name="ExitTimer" type="Timer" parent="EnemyStateMachine/EnemyStateWait" index="0" unique_id=250087983]
+wait_time = 0.5
+one_shot = true
+
+[node name="EnemyStateAttack" type="Node2D" parent="EnemyStateMachine" index="3" unique_id=1816056312 node_paths=PackedStringArray("attack_component", "los_component", "exit_if_distance_far", "exit_if_distance_short", "exit_if_no_los")]
 script = ExtResource("4_uufwc")
 min_distance = 400.0
 max_distance = 1000.0
@@ -231,7 +242,7 @@ metadata/_custom_type_script = "uid://bdthesvcg5qi3"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visual/FlipOnVelocityComponent" index="0" unique_id=766599311]
 material = SubResource("ShaderMaterial_naudl")
-position = Vector2(0, -117)
+position = Vector2(33.999996, -117)
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_d0rpd")
 animation = &"shooting"
@@ -240,7 +251,7 @@ frame_progress = 0.25996795
 
 [node name="ShadowSprite" type="Sprite2D" parent="Visual/FlipOnVelocityComponent" index="1" unique_id=778999952]
 modulate = Color(1, 1, 1, 0.15489441)
-position = Vector2(-49.000004, 0)
+position = Vector2(-3.8146973e-06, 0)
 scale = Vector2(2.2, 1.7)
 texture = SubResource("GradientTexture2D_a7qml")
 
@@ -300,7 +311,7 @@ weapon = NodePath("Paper")
 metadata/_custom_type_script = "uid://dsbh06fe22jkp"
 
 [node name="Paper" parent="AttackComponent" index="0" unique_id=816564922 node_paths=PackedStringArray("entity") instance=ExtResource("8_e0i0j")]
-position = Vector2(0, -135)
+position = Vector2(57, -178)
 entity = NodePath("../..")
 
 [node name="AccelerationComponent" type="Node" parent="." index="8" unique_id=1831776162]

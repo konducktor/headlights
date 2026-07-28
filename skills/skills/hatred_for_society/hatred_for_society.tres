@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_ilwf0")
 name = "Hatred for society"
-description = "Increases the time of invincibility after taking damage by 50%"
+description = "Increases the time of invincibility after taking damage by 75%. Can stack."
 icon = ExtResource("1_14w0q")
 skill = ExtResource("2_6nu7j")
 metadata/_custom_type_script = "uid://c2qrjbbmbwn2p"

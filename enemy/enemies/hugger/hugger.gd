@@ -7,7 +7,6 @@ var enemy_state_machine: EnemyStateMachine
 
 func _ready() -> void:
 	enemy_state_machine = $EnemyStateMachine
-	super()
 
 
 func clear_grab_and_queue_free() -> void:

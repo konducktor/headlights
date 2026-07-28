@@ -22,10 +22,10 @@ func enter() -> void:
 
 
 func physics_update(delta: float) -> EnemyState:
-	if player == null:
+	if Global.player == null:
 		return null
 	
-	if los_component.is_los_between_points(enemy.position, player.body_pos()):
+	if los_component.is_los_between_points(enemy.position, Global.player.body_pos()):
 		return exit_if_found
 	
 	if not searching:
@@ -44,7 +44,7 @@ func exit() -> void:
 
 
 func _on_navigation_update() -> void:
-	pathfinding_component.set_target(player.body_pos())
+	pathfinding_component.set_target(Global.player.body_pos())
 
 
 func _on_search_timer_timeout() -> void:
