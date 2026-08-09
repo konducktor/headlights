@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://53b57ghpuvhi" path="res://weapons/knife/sound/knife.mp3" id="9_32hag"]
 [ext_resource type="Script" uid="uid://bkptmvu7f3htp" path="res://skills/skills_context.gd" id="12_ebec5"]
 [ext_resource type="Script" uid="uid://c3qokhf8r8ry" path="res://skills/skills_controller.gd" id="12_yllr7"]
+[ext_resource type="PackedScene" uid="uid://csl3cmvcbk5f6" path="res://skills/skills/drain_me/drain_me.tscn" id="17_tqiix"]
 
 [sub_resource type="Gradient" id="Gradient_yllr7"]
 offsets = PackedFloat32Array(0.1658031, 0.72279793)
@@ -232,6 +233,8 @@ attack = NodePath("../../AttackComponent")
 hurtbox = NodePath("../../HurtboxComponent")
 
 [node name="Container" type="Node" parent="Skills" unique_id=202663198]
+
+[node name="DrainMe" parent="Skills/Container" unique_id=2132123184 instance=ExtResource("17_tqiix")]
 
 [connection signal="started_walking" from="." to="Visual" method="_on_player_started_walking"]
 [connection signal="started_walking" from="." to="Sounds" method="_on_player_started_walking"]

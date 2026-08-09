@@ -32,7 +32,3 @@ func _on_yourself_activated() -> void:
 
 func _on_knife_wait_entered() -> void:
 	animated_sprite.play("idle")
-
-
-func _on_paper_wait_entered() -> void:
-	animated_sprite.play("idle")

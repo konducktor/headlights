@@ -11,18 +11,16 @@ var rng := RandomNumberGenerator.new()
 static var chance: float = 0
 
 
-func _ready() -> void:
+func apply() -> void:
 	if chance == 0:
 		chance = factor_chance_percent
 	else:
 		chance *= (1 + factor_chance_percent)
-
-
-func apply() -> void:
-	chance *= factor_chance_percent
+	
 	Global.enemy_died.connect(_on_enemy_died)
 
 
 func _on_enemy_died() -> void:
 	if rng.randf() <= chance:
+		prints("rng.randf() <= chance")
 		context.health.regenerate(regenerate_amount)

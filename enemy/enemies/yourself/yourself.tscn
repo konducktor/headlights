@@ -113,7 +113,7 @@ exit_to = NodePath("../KnifeAttack")
 metadata/_custom_type_script = "uid://8sd5b4w6157u"
 
 [node name="ExitTimer" type="Timer" parent="EnemyStateMachine/KnifeWait" index="0" unique_id=737507215]
-wait_time = 0.5
+wait_time = 0.3
 one_shot = true
 
 [node name="KnifeAttack" type="Node2D" parent="EnemyStateMachine" index="2" unique_id=1262615440 node_paths=PackedStringArray("attack_component", "exit_if_distance_far", "exit_if_distance_short", "exit_if_attack_amount")]
@@ -131,23 +131,13 @@ script = ExtResource("4_oy5ss")
 desired_distance = 500.0
 min_distance = 250.0
 acceleration_component = NodePath("../../AccelerationComponent")
-exit_if_far_enough = NodePath("../PaperWait")
+exit_if_far_enough = NodePath("../PaperAttack")
 exit_if_too_close = NodePath("../KnifeWait")
 pathfinding_component = NodePath("../../PathfindingComponent")
 navigation_update_timer = NodePath("../../PathfindingComponent/NavigationUpdateTimer")
 metadata/_custom_type_script = "uid://c45oymkgnu2iw"
 
-[node name="PaperWait" type="Node2D" parent="EnemyStateMachine" index="4" unique_id=1294089512 node_paths=PackedStringArray("exit_timer", "exit_to")]
-script = ExtResource("4_7n0ej")
-exit_timer = NodePath("ExitTimer")
-exit_to = NodePath("../PaperAttack")
-metadata/_custom_type_script = "uid://8sd5b4w6157u"
-
-[node name="ExitTimer" type="Timer" parent="EnemyStateMachine/PaperWait" index="0" unique_id=261241996]
-wait_time = 0.7
-one_shot = true
-
-[node name="PaperAttack" type="Node2D" parent="EnemyStateMachine" index="5" unique_id=1307268003 node_paths=PackedStringArray("attack_component", "exit_if_distance_far", "exit_if_distance_short")]
+[node name="PaperAttack" type="Node2D" parent="EnemyStateMachine" index="4" unique_id=1307268003 node_paths=PackedStringArray("attack_component", "exit_if_distance_far", "exit_if_distance_short")]
 script = ExtResource("3_v5bnd")
 min_distance = 250.0
 max_distance = 1000.0
@@ -241,6 +231,5 @@ entity = NodePath("../..")
 [connection signal="entered" from="EnemyStateMachine/KnifeWait" to="Visual" method="_on_knife_wait_entered"]
 [connection signal="fired" from="EnemyStateMachine/KnifeAttack" to="Visual" method="_on_knife_attack_fired"]
 [connection signal="entered" from="EnemyStateMachine/EnemyStateRun" to="Visual" method="_on_enemy_state_run_entered"]
-[connection signal="entered" from="EnemyStateMachine/PaperWait" to="Visual" method="_on_paper_wait_entered"]
 [connection signal="fired" from="EnemyStateMachine/PaperAttack" to="Visual" method="_on_paper_attack_fired"]
 [connection signal="died" from="HealthComponent" to="Visual" method="_on_health_component_died"]
