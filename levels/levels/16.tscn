@@ -185,7 +185,7 @@ position = Vector2(46, 217)
 shape = SubResource("RectangleShape2D_fcnqv")
 
 [node name="TutorialTrigger" parent="Areas/Area2" index="2" unique_id=192255153 instance=ExtResource("4_pn6cn")]
-text = "LEFT CLICK to attack"
+text = "Use MOUSE to attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Area2/TutorialTrigger" index="0" unique_id=1555860956]
 position = Vector2(887, 1512)
@@ -225,7 +225,7 @@ position = Vector2(-941, -283)
 shape = SubResource("RectangleShape2D_p1u0y")
 
 [node name="TutorialTrigger" parent="Areas/Area4" index="2" unique_id=732698461 instance=ExtResource("4_pn6cn")]
-text = "Find something that is wrong"
+text = "Find [SOMETHING] that is [WRONG]"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Area4/TutorialTrigger" index="0" unique_id=2059551558]
 position = Vector2(2442, 1779)
@@ -313,6 +313,14 @@ position = Vector2(3956, -257)
 
 [node name="Hugger2" parent="Areas/Area7" index="3" unique_id=510507009 instance=ExtResource("2_y43jq")]
 position = Vector2(3957, 32)
+
+[node name="TutorialTrigger" parent="Areas/Area7" index="4" unique_id=109872458 instance=ExtResource("4_pn6cn")]
+text = "Get rid of enemies close to [SOMETHING WRONG]"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Area7/TutorialTrigger" index="0" unique_id=1261381652]
+position = Vector2(3516, -274)
+shape = SubResource("CircleShape2D_c2fln")
+debug_color = Color(0.66804093, 0.31234482, 1, 0.41960785)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sounds" parent_id_path=PackedInt32Array(1409857496) index="0" unique_id=1104239390]
 stream = ExtResource("6_clcgi")

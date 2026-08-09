@@ -1,7 +1,7 @@
 extends Area2D
 
 
-@export var text: String
+@export_multiline var text: String
 
 
 func _on_body_entered(body: Node2D) -> void:

@@ -16,6 +16,14 @@ func enter() -> void:
 	
 	exit_timer.start()
 	exit_timer.timeout.connect(_on_exit_timer_timeout)
+	
+	super()
+
+
+func exit() -> void:
+	exit_timer.timeout.disconnect(_on_exit_timer_timeout)
+	
+	super()
 
 
 func _on_exit_timer_timeout() -> void:
