@@ -2,34 +2,22 @@
 
 [ext_resource type="Script" uid="uid://cwemmvnecske2" path="res://ui/gameplay_ui/gameplay_ui.gd" id="1_2yrgj"]
 [ext_resource type="PackedScene" uid="uid://6rnxfnarx8si" path="res://ui/gameplay_ui/health/heart_ui.tscn" id="2_n5c7t"]
-[ext_resource type="Shader" uid="uid://clllrp6vhqo7k" path="res://global/assets/shaders/vhs.gdshader" id="2_rxnur"]
 [ext_resource type="PackedScene" uid="uid://bgnlnpksxqdc" path="res://ui/select_skill/select_skill.tscn" id="3_h414r"]
 [ext_resource type="Shader" uid="uid://brdv3gb404ag4" path="res://global/assets/shaders/brightness.gdshader" id="4_ht2um"]
 [ext_resource type="PackedScene" uid="uid://dbsb3fotk1tns" path="res://ui/gameplay_ui/health/health.tscn" id="5_vasx0"]
 [ext_resource type="PackedScene" uid="uid://cdtmr5uuycv4f" path="res://ui/tutorial/tutorial.tscn" id="5_wapsp"]
 [ext_resource type="PackedScene" uid="uid://djjp3a1ecr7si" path="res://ui/hugger_warning/hugger_warning.tscn" id="6_akeve"]
+[ext_resource type="PackedScene" uid="uid://cm05vgt8kqqof" path="res://ui/gameplay_ui/skills_ui/skills_ui.tscn" id="6_fkv66"]
 
 [sub_resource type="Animation" id="Animation_h414r"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("VHS/VHS:material:shader_parameter/smear")
+tracks/0/path = NodePath("Brightness/Brightness:material:shader_parameter/amount")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.10000000475]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Brightness/Brightness:material:shader_parameter/amount")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -42,34 +30,22 @@ length = 4.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("VHS/VHS:material:shader_parameter/smear")
+tracks/0/path = NodePath("Brightness/Brightness:material:shader_parameter/amount")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(1, 2, 4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.10000000475, 2.0, 0.10000000475]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Brightness/Brightness:material:shader_parameter/amount")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(1.5000001, 2, 3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.0, 100.0, 0.0]
 }
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(2),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -81,34 +57,10 @@ tracks/2/keys = {
 [sub_resource type="Animation" id="Animation_n5c7t"]
 resource_name = "select_skill"
 length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("VHS/VHS:material:shader_parameter/smear")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.10000000475, 2.0]
-}
 
 [sub_resource type="Animation" id="Animation_ht2um"]
 resource_name = "unpaused"
 length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("VHS/VHS:material:shader_parameter/smear")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [2.0, 0.2000000095]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ht2um"]
 _data = {
@@ -117,13 +69,6 @@ _data = {
 &"paused": SubResource("Animation_n5c7t"),
 &"unpaused": SubResource("Animation_ht2um")
 }
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_r030d"]
-shader = ExtResource("2_rxnur")
-shader_parameter/wiggle = 0.0
-shader_parameter/wiggle_speed = 25.0
-shader_parameter/smear = 0.10000000475
-shader_parameter/blur_samples = 3
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ht2um"]
 shader = ExtResource("4_ht2um")
@@ -136,17 +81,6 @@ heart_ui_scene = ExtResource("2_n5c7t")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1634620420]
 libraries/ = SubResource("AnimationLibrary_ht2um")
-
-[node name="VHS" type="CanvasLayer" parent="." unique_id=1414266217]
-
-[node name="VHS" type="ColorRect" parent="VHS" unique_id=1057895405]
-material = SubResource("ShaderMaterial_r030d")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
 
 [node name="Brightness" type="CanvasLayer" parent="." unique_id=1207668672]
 
@@ -161,7 +95,7 @@ color = Color(1, 1, 1, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=769948891]
 
-[node name="Control" type="Control" parent="CanvasLayer" unique_id=385632661]
+[node name="Indicators" type="Control" parent="CanvasLayer" unique_id=385632661]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -171,14 +105,19 @@ grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
-[node name="PlayerHealth" parent="CanvasLayer/Control" unique_id=733240420 instance=ExtResource("5_vasx0")]
+[node name="PlayerHealth" parent="CanvasLayer/Indicators" unique_id=733240420 instance=ExtResource("5_vasx0")]
+unique_name_in_owner = true
 layout_mode = 1
 
-[node name="YourselfHealth" parent="CanvasLayer/Control" unique_id=568327838 instance=ExtResource("5_vasx0")]
+[node name="YourselfHealth" parent="CanvasLayer/Indicators" unique_id=568327838 instance=ExtResource("5_vasx0")]
+unique_name_in_owner = true
 modulate = Color(0.5, 0.5, 0.5, 1)
 layout_mode = 1
 offset_left = 1217.0
 offset_right = 1217.0
+
+[node name="SkillsUI" parent="CanvasLayer/Indicators" unique_id=583412497 instance=ExtResource("6_fkv66")]
+layout_mode = 1
 
 [node name="Tutorial" parent="CanvasLayer" unique_id=673164223 instance=ExtResource("5_wapsp")]
 

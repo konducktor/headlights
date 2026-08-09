@@ -20,8 +20,8 @@ func _ready() -> void:
 	Global.bossfight_started.connect(_on_bossfight_started)
 	
 	await get_tree().process_frame
-	_yourself_health = $CanvasLayer/Control/YourselfHealth
-	_player_health = $CanvasLayer/Control/PlayerHealth
+	_yourself_health = %YourselfHealth
+	_player_health = %PlayerHealth
 	_player_health.health_component = Global.player.health_component
 
 

@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cm05vgt8kqqof"]
+
+[ext_resource type="Script" uid="uid://ddqjlu550b6r" path="res://ui/gameplay_ui/skills_ui/skills_ui.gd" id="1_m5adc"]
+
+[node name="SkillsUI" type="Control" unique_id=583412497]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+script = ExtResource("1_m5adc")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1580071491]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -312.0
+offset_right = 228.0
+offset_bottom = 312.0
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="SkillsIconContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1721854620]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 2
